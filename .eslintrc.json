@@ -17,7 +17,7 @@
   "rules": {
     "@typescript-eslint/ban-types": ["error"],
     "@typescript-eslint/brace-style": ["error", "1tbs"],
-    "@typescript-eslint/comma-dangle": ["error", "always"],
+    "@typescript-eslint/comma-dangle": ["error", "never"],
     "@typescript-eslint/comma-spacing": ["error", { "before": false, "after": true }],
     "@typescript-eslint/dot-notation": "error",
     "@typescript-eslint/explicit-function-return-type": "error",
@@ -119,12 +119,21 @@
     "es2021": true
   },
   "parserOptions": {
+    "project": "./tsconfig.json",
     "ecmaVersion": 12,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
   },
+  "overrides": [
+    {
+      "files": ["*.config.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ],
   "settings": {
     "react": {
       "version": "detect"

@@ -2,7 +2,7 @@ const Home = (): JSX.Element => {
   return (
     <>
       <header className="">
-        <h1>Blog</h1>
+        <p>Blog</p>
       </header>
       <main></main>
     </>

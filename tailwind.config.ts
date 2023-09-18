@@ -1,12 +1,5 @@
 import type { Config } from 'tailwindcss';
 
-/*
-до 320px: стандартные стили
-от 321px до 767px: стили после sm:
-от 768px до 1440px: стили после md:
-от 1440px и выше: стили после lg:
-*/
-
 const config: Config = {
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}',
@@ -22,7 +15,13 @@ const config: Config = {
       current: 'currentColor',
       background: '#f5f5f5',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        mono: ['Roboto Mono', 'monospace'],
+        condensed: ['Roboto Condensed', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };

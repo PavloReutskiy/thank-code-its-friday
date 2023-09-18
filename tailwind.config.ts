@@ -1,19 +1,28 @@
 import type { Config } from 'tailwindcss';
 
+/*
+до 320px: стандартные стили
+от 321px до 767px: стили после sm:
+от 768px до 1440px: стили после md:
+от 1440px и выше: стили после lg:
+*/
+
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+    screens: {
+      sm: '320px',
+      md: '768px',
+      lg: '1440px',
     },
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      background: '#f5f5f5',
+    },
+    extend: {},
   },
   plugins: [],
 };

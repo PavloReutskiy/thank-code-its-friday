@@ -6,20 +6,23 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      sm: '320px',
-      md: '768px',
+      sm: '321px',
+      md: '769px',
       lg: '1440px',
     },
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      background: '#f5f5f5',
-    },
     extend: {
+      colors: {
+        background: '#f5f5f5',
+      },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         mono: ['Roboto Mono', 'monospace'],
         condensed: ['Roboto Condensed', 'sans-serif'],
+      },
+      spacing: {
+        '10p': '10%',
+        '5.6p': '5.6%',
+        '7.5p': '7.5%',
       },
     },
   },

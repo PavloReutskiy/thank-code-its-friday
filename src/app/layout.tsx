@@ -15,7 +15,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en" className={inter.className}>
-      <body>
+      <body className='bg-background'>
         <header>
           <Navbar />
         </header>

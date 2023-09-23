@@ -13,6 +13,7 @@ const config: Config = {
     extend: {
       colors: {
         background: '#f5f5f5',
+        nav_line: '#d2d2d2',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

@@ -69,7 +69,7 @@
     "id-length": ["error", { "min": 2, "exceptions": ["i", "j", "x"] }],
     "implicit-arrow-linebreak": ["error", "beside"],
     "max-len": ["error", {"code": 120, "ignoreComments": true, "ignoreUrls": true}],
-    "multiline-ternary": ["error", "always-multiline"],
+    // "multiline-ternary": ["error", "always-multiline"],
     "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 2 }],
     "new-cap": ["error", { "newIsCap": true, "capIsNew": false }],
     "no-bitwise": "error",

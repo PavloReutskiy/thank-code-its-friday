@@ -56,7 +56,7 @@
 
     "array-bracket-spacing": ["error", "never"],
     "array-callback-return": "error",
-    "arrow-body-style": ["error", "always"],
+    // "arrow-body-style": ["error", "always"],
     "arrow-parens": ["error", "as-needed"],
     "arrow-spacing": "error",
     "comma-style": ["error", "last"],

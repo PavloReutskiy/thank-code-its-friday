@@ -1,7 +1,0 @@
-.spacer {
-  @apply w-36 flex-shrink;
-}
-
-.bold-upcase-black {
-  @apply font-bold text-black uppercase
-}

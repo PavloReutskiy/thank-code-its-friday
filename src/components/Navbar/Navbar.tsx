@@ -24,8 +24,8 @@ export const Navbar = (): JSX.Element => {
           )}
         </div>
 
-        <div className="hidden md:flex md:items-center md:justify-between md:min-w-[45%]">
-          <ul className="flex space-x-7 mr-10 text-lg font-bold text-black uppercase leading-normal">
+        <div className="hidden md:flex md:items-center md:justify-end md:min-w-[45%]">
+          <ul className="flex space-x-6 mr-9 text-lg font-bold text-black uppercase leading-normal">
             <li>
               <Link href="/">Home</Link>
             </li>
@@ -37,7 +37,7 @@ export const Navbar = (): JSX.Element => {
             </li>
           </ul>
 
-          <div className="flex items-center space-x-7">
+          <div className="flex items-center space-x-9">
             <div className="flex-shrink-0 py-3">
               <Image
                 src={en}

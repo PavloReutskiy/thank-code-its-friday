@@ -13,7 +13,7 @@ export const Navbar = (): JSX.Element => {
 
   return (
     <nav className="mx-auto w-[85%] font-condensed">
-      <div className="flex justify-between items-center border-b border-nav_line">
+      <div className="flex justify-between items-center border-b border-nav_line max-w-[1224px] mx-auto">
         <div className="py-4 text-2xl leading-tight font-bold text-black uppercase whitespace-nowrap">
           {pathname !== '/' ? (
             <Link href="/" className="block">

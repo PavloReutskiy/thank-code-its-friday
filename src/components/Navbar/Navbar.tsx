@@ -1,30 +1,45 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import React, { useState } from 'react';
+import './Navbar.css';
+import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import gsap from 'gsap';
 import en from 'public/assets/navbar/en.webp';
 // import ua from 'public/assets/navbar/ua.webp';
 
 export const Navbar = (): JSX.Element => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const tl = gsap.timeline();
 
-  const handleMenuOpen = (): void => {
-    setIsOpen(true);
+  const toggleMenu = (): void => {
+    setIsOpen(prevState => !prevState);
   };
 
-  const handleMenuClose = (): void => {
-    setIsOpen(false);
-  };
+  useEffect(() => {
+    if (isOpen) {
+      gsap.to('.bar1', { duration: .3, width: '32px', height: '3px', top: '65%', rotate: '45deg' });
+      gsap.to('.bar2', { duration: 0, opacity: 0 });
+      gsap.to('.bar3', { duration: .3, width: '32px', height: '3px', top: '65%', rotate: '-45deg' });
+    } else {
+      gsap.to('.bar1', { duration: .3, width: '28px', height: '3px', top: '40%', rotate: '0deg' });
+      gsap.to('.bar2', { duration: .3, width: '28px', height: '3px', top: '65%', opacity: 1 });
+      gsap.to('.bar3', { duration: .3, width: '28px', height: '3px', top: '90%', rotate: '0deg' });
+    }
+  }, [isOpen, tl]);
 
   return (
     <nav className="mx-auto w-[85%] font-condensed">
       <div className="flex justify-between items-center border-b border-nav_line max-w-[1224px] mx-auto">
-        <div className="py-4 text-2xl leading-tight font-bold text-black uppercase whitespace-nowrap">
+        <div className="relative z-20 py-4 text-2xl leading-tight font-bold text-black uppercase whitespace-nowrap">
           {pathname !== '/' ? (
-            <Link href="/" className="block">
+            <Link
+              href="/"
+              className="block"
+              onClick={():void => setIsOpen(false)}
+            >
               thank code <br /> it`s friday
             </Link>
           ) : (
@@ -62,66 +77,21 @@ export const Navbar = (): JSX.Element => {
           </div>
         </div>
 
-        <div className="flex items-center md:hidden">
-          <button
-            onClick={handleMenuOpen}
-            className="py-5"
-            type="button"
-            aria-label="Open menu"
-          >
-            <img
-              className="w-9 h-9"
-              src="/assets/navbar/burger.svg"
-              alt="Burger Icon"
-            />
-          </button>
+        <div className="w-7 h-7 relative z-20 md:hidden" onClick={toggleMenu}>
+          <span className="bar1 top-[40%] menuToggleStyles"></span>
+          <span className="bar2 top-[65%] menuToggleStyles"></span>
+          <span className="bar3 top-[90%] menuToggleStyles"></span>
         </div>
       </div>
 
       {isOpen && (
-        <aside role="navigation" className="fixed inset-0 z-50 flex flex-col bg-[#D0E3F7]">
-          <div className="flex justify-between items-center mx-auto mb-6 w-[85%] border-b border-slate-400">
-            <div className="py-4 text-2xl leading-tight font-bold text-black uppercase whitespace-nowrap">
-              {pathname !== '/' ? (
-                <Link
-                  href="/"
-                  className="block"
-                  onClick={handleMenuClose}
-                >
-                  thank code <br /> it`s friday
-                </Link>
-              ) : (
-                <span
-                  className="block cursor-pointer"
-                  onClick={handleMenuClose}
-                >
-                  thank code <br /> it`s friday
-                </span>
-              )}
-            </div>
-
-            <div className="flex items-center">
-              <button
-                onClick={handleMenuClose}
-                className="py-5"
-                type="button"
-                aria-label="Close menu"
-              >
-                <img
-                  className="w-9 h-9"
-                  src="/assets/navbar/close.svg"
-                  alt="Close Icon"
-                />
-              </button>
-            </div>
-          </div>
-
-          <div className="mx-auto w-[85%]">
+        <aside role="navigation" className="fixed inset-0 z-10 flex flex-col bg-[#D0E3F7] md:hidden">
+          <div className="mt-[92px] pt-6 border-t border-slate-400 mx-auto w-[85%]">
             <ul className="flex flex-col text-lg font-bold text-black uppercase leading-normal">
               <li role="menuitem" className="py-3">
                 <Link
                   href="/"
-                  onClick={handleMenuClose}
+                  onClick={toggleMenu}
                 >
                   Home
                 </Link>
@@ -129,7 +99,7 @@ export const Navbar = (): JSX.Element => {
               <li role="menuitem" className="py-3">
                 <Link
                   href="/about"
-                  onClick={handleMenuClose}
+                  onClick={toggleMenu}
                 >
                   About
                 </Link>
@@ -137,7 +107,7 @@ export const Navbar = (): JSX.Element => {
               <li role="menuitem" className="py-3">
                 <Link
                   href="/contact"
-                  onClick={handleMenuClose}
+                  onClick={toggleMenu}
                 >
                   Contact
                 </Link>
@@ -157,7 +127,7 @@ export const Navbar = (): JSX.Element => {
             <div className="py-3 text-lg font-bold text-black uppercase leading-normal">
               <Link
                 href="/subscribe"
-                onClick={handleMenuClose}
+                onClick={toggleMenu}
               >
                 Subscribe
               </Link>

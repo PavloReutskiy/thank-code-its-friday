@@ -9,7 +9,15 @@ import en from 'public/assets/navbar/en.webp';
 
 export const Navbar = (): JSX.Element => {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleMenuOpen = (): void => {
+    setIsOpen(true);
+  };
+
+  const handleMenuClose = (): void => {
+    setIsOpen(false);
+  };
 
   return (
     <nav className="mx-auto w-[85%] font-condensed">
@@ -26,13 +34,13 @@ export const Navbar = (): JSX.Element => {
 
         <div className="hidden md:flex md:items-center md:justify-end md:min-w-[45%]">
           <ul className="flex space-x-6 mr-9 text-lg font-bold text-black uppercase leading-normal">
-            <li>
+            <li role="menuitem">
               <Link href="/">Home</Link>
             </li>
-            <li>
+            <li role="menuitem">
               <Link href="/about">About</Link>
             </li>
-            <li>
+            <li role="menuitem">
               <Link href="/contact">Contact</Link>
             </li>
           </ul>
@@ -56,7 +64,7 @@ export const Navbar = (): JSX.Element => {
 
         <div className="flex items-center md:hidden">
           <button
-            onClick={():void => setIsOpen(true)}
+            onClick={handleMenuOpen}
             className="py-5"
             type="button"
             aria-label="Open menu"
@@ -71,29 +79,38 @@ export const Navbar = (): JSX.Element => {
       </div>
 
       {isOpen && (
-        <aside className="fixed inset-0 z-50 flex flex-col bg-[#D0E3F7]">
+        <aside role="navigation" className="fixed inset-0 z-50 flex flex-col bg-[#D0E3F7]">
           <div className="flex justify-between items-center mx-auto mb-6 w-[85%] border-b border-slate-400">
             <div className="py-4 text-2xl leading-tight font-bold text-black uppercase whitespace-nowrap">
               {pathname !== '/' ? (
-                <Link href="/" className="block">
+                <Link
+                  href="/"
+                  className="block"
+                  onClick={handleMenuClose}
+                >
                   thank code <br /> it`s friday
                 </Link>
               ) : (
-                <span className="block cursor-pointer">thank code <br /> it`s friday</span>
+                <span
+                  className="block cursor-pointer"
+                  onClick={handleMenuClose}
+                >
+                  thank code <br /> it`s friday
+                </span>
               )}
             </div>
 
             <div className="flex items-center">
               <button
-                onClick={():void => setIsOpen(false)}
+                onClick={handleMenuClose}
                 className="py-5"
                 type="button"
-                aria-label="Open menu"
+                aria-label="Close menu"
               >
                 <img
                   className="w-9 h-9"
                   src="/assets/navbar/close.svg"
-                  alt="Burger Icon"
+                  alt="Close Icon"
                 />
               </button>
             </div>
@@ -101,14 +118,29 @@ export const Navbar = (): JSX.Element => {
 
           <div className="mx-auto w-[85%]">
             <ul className="flex flex-col text-lg font-bold text-black uppercase leading-normal">
-              <li className="py-3">
-                <Link href="/">Home</Link>
+              <li role="menuitem" className="py-3">
+                <Link
+                  href="/"
+                  onClick={handleMenuClose}
+                >
+                  Home
+                </Link>
               </li>
-              <li className="py-3">
-                <Link href="/about">About</Link>
+              <li role="menuitem" className="py-3">
+                <Link
+                  href="/about"
+                  onClick={handleMenuClose}
+                >
+                  About
+                </Link>
               </li>
-              <li className="py-3">
-                <Link href="/contact">Contact</Link>
+              <li role="menuitem" className="py-3">
+                <Link
+                  href="/contact"
+                  onClick={handleMenuClose}
+                >
+                  Contact
+                </Link>
               </li>
             </ul>
 
@@ -123,7 +155,12 @@ export const Navbar = (): JSX.Element => {
             </div>
 
             <div className="py-3 text-lg font-bold text-black uppercase leading-normal">
-              <Link href="/subscribe">Subscribe</Link>
+              <Link
+                href="/subscribe"
+                onClick={handleMenuClose}
+              >
+                Subscribe
+              </Link>
             </div>
           </div>
         </aside>

@@ -20,19 +20,26 @@ export const Navbar = (): JSX.Element => {
 
   useEffect(() => {
     if (isOpen) {
-      gsap.to('.bar1', { duration: .3, width: '32px', height: '3px', top: '65%', rotate: '45deg' });
+      gsap.to('.bar1', { duration: .3, width: '32px', height: '3px', top: '50%', rotate: '45deg' });
       gsap.to('.bar2', { duration: 0, opacity: 0 });
-      gsap.to('.bar3', { duration: .3, width: '32px', height: '3px', top: '65%', rotate: '-45deg' });
-    } else {
-      gsap.to('.bar1', { duration: .3, width: '28px', height: '3px', top: '40%', rotate: '0deg' });
-      gsap.to('.bar2', { duration: .3, width: '28px', height: '3px', top: '65%', opacity: 1 });
-      gsap.to('.bar3', { duration: .3, width: '28px', height: '3px', top: '90%', rotate: '0deg' });
+      gsap.to('.bar3', { duration: .3, width: '32px', height: '3px', top: '50%', rotate: '-45deg' });
+      tl.to('.sidebar', { duration: .5, x: '0%', ease: 'power2.in' });
+      tl.to('.navItem', { duration: .5, opacity: 1, ease: 'power2.in', stagger: .15 });
+    }
+
+    if (!isOpen) {
+      gsap.to('.bar1', { duration: .3, width: '28px', height: '3px', top: '25%', rotate: '0deg' });
+      gsap.to('.bar2', { duration: .3, width: '28px', height: '3px', top: '50%', opacity: 1 });
+      gsap.to('.bar3', { duration: .3, width: '28px', height: '3px', top: '75%', rotate: '0deg' });
+      tl.to('.navItem', { duration: .3, opacity: 0, ease: 'power2.out', stagger: .1 });
+      tl.to('.sidebar', { duration: .3, x: '100%', ease: 'power2.in' });
     }
   }, [isOpen, tl]);
+  // #endregion
 
   return (
     <nav className="mx-auto w-[85%] font-condensed">
-      <div className="flex justify-between items-center border-b border-nav_line max-w-[1224px] mx-auto">
+      <div className="relative z-20 flex justify-between items-center border-b border-slate-400 max-w-[1224px] mx-auto">
         <div className="relative z-20 py-4 text-2xl leading-tight font-bold text-black uppercase whitespace-nowrap">
           {pathname !== '/' ? (
             <Link
@@ -77,64 +84,69 @@ export const Navbar = (): JSX.Element => {
           </div>
         </div>
 
-        <div className="w-7 h-7 relative z-20 md:hidden" onClick={toggleMenu}>
-          <span className="bar1 top-[40%] menuToggleStyles"></span>
-          <span className="bar2 top-[65%] menuToggleStyles"></span>
-          <span className="bar3 top-[90%] menuToggleStyles"></span>
+        <div
+          role="button"
+          className="w-7 h-7 relative z-20 md:hidden"
+          onClick={toggleMenu}
+        >
+          <span className="bar1 top-[25%] menuToggleStyles"></span>
+          <span className="bar2 top-[50%] menuToggleStyles"></span>
+          <span className="bar3 top-[75%] menuToggleStyles"></span>
         </div>
       </div>
 
-      {isOpen && (
-        <aside role="navigation" className="fixed inset-0 z-10 flex flex-col bg-[#D0E3F7] md:hidden">
-          <div className="mt-[92px] pt-6 border-t border-slate-400 mx-auto w-[85%]">
-            <ul className="flex flex-col text-lg font-bold text-black uppercase leading-normal">
-              <li role="menuitem" className="py-3">
-                <Link
-                  href="/"
-                  onClick={toggleMenu}
-                >
-                  Home
-                </Link>
-              </li>
-              <li role="menuitem" className="py-3">
-                <Link
-                  href="/about"
-                  onClick={toggleMenu}
-                >
-                  About
-                </Link>
-              </li>
-              <li role="menuitem" className="py-3">
-                <Link
-                  href="/contact"
-                  onClick={toggleMenu}
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-
-            <div className="py-3">
-              <Image
-                src={en}
-                alt="English language icon"
-                width={30}
-                height={30}
-                aria-label="Switch to Ukrainian"
-              />
-            </div>
-
-            <div className="py-3 text-lg font-bold text-black uppercase leading-normal">
+      <aside
+        role="navigation"
+        className="sidebar fixed inset-0 z-10 flex flex-col bg-[#D0E3F7] md:hidden translate-x-full"
+      >
+        <div className="mt-[92px] pt-6 mx-auto w-[85%]">
+          <ul className="flex flex-col text-lg font-bold text-black uppercase leading-normal">
+            <li role="menuitem" className="navItem py-3 opacity-0">
               <Link
-                href="/subscribe"
+                href="/"
                 onClick={toggleMenu}
               >
-                Subscribe
+                Home
               </Link>
-            </div>
+            </li>
+            <li role="menuitem" className="navItem py-3 opacity-0">
+              <Link
+                href="/about"
+                onClick={toggleMenu}
+              >
+                About
+              </Link>
+            </li>
+            <li role="menuitem" className="navItem py-3 opacity-0">
+              <Link
+                href="/contact"
+                onClick={toggleMenu}
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
+
+          <div className="navItem py-3 opacity-0">
+            <Image
+              src={en}
+              alt="English language icon"
+              width={30}
+              height={30}
+              aria-label="Switch to Ukrainian"
+            />
           </div>
-        </aside>
-      )}
+
+          <div className="navItem py-3 opacity-0 text-lg font-bold text-black uppercase leading-normal">
+            <Link
+              href="/subscribe"
+              onClick={toggleMenu}
+            >
+              Subscribe
+            </Link>
+          </div>
+        </div>
+      </aside>
     </nav>
   );
 };

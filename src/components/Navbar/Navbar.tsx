@@ -12,20 +12,26 @@ import en from 'public/assets/navbar/en.webp';
 export const Navbar = (): JSX.Element => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const tl = gsap.timeline();
+  const tlSidebar = gsap.timeline();
 
   const toggleMenu = (): void => {
     setIsOpen(prevState => !prevState);
   };
 
-  // #region Sidebar animation
+  // #region Nav appearance animation
+  useEffect(() => {
+    gsap.to('.animateNav', { duration: 1, y: '0%', opacity: 1, ease: 'power2.out' });
+  }, []);
+  // #endregion
+
+  // #region Gumburger animation
   useEffect(() => {
     if (isOpen) {
       gsap.to('.bar1', { duration: .3, width: '32px', height: '3px', top: '50%', rotate: '45deg' });
       gsap.to('.bar2', { duration: 0, opacity: 0 });
       gsap.to('.bar3', { duration: .3, width: '32px', height: '3px', top: '50%', rotate: '-45deg' });
-      tl.to('.sidebar', { duration: .5, x: '0%', ease: 'power2.in' });
-      tl.to('.navItem', { duration: .5, opacity: 1, ease: 'power2.in', stagger: .15 });
+      // tl.to('.sidebar', { duration: .5, x: '0%', ease: 'power2.in' });
+      // tl.to('.navItem', { duration: .5, opacity: 1, ease: 'power2.in', stagger: .15 });
     }
 
     if (!isOpen) {
@@ -35,12 +41,26 @@ export const Navbar = (): JSX.Element => {
       // tl.to('.navItem', { duration: .3, opacity: 0, ease: 'power2.out', stagger: .1 });
       // tl.to('.sidebar', { duration: .3, x: '100%', ease: 'power2.in' });
     }
-  }, [isOpen, tl]);
+  }, [isOpen]);
+  // #endregion
+
+  // #region Sidebar animation
+  useEffect(() => {
+    if (isOpen) {
+      tlSidebar.to('.sidebar', { duration: .5, x: '0%', ease: 'power2.in' });
+      tlSidebar.to('.navItem', { duration: .5, opacity: 1, ease: 'power2.in', stagger: .15 });
+    }
+  }, [isOpen, tlSidebar]);
   // #endregion
 
   return (
     <nav className="mx-auto w-[85%] font-condensed">
-      <div className="relative z-20 flex justify-between items-center border-b border-slate-400 max-w-[1224px] mx-auto">
+      <div className="
+        animateNav opacity-0 translate-y-[-100%]
+        relative z-20 flex justify-between items-center
+        border-b border-slate-400
+        max-w-[1224px] mx-auto"
+      >
         <div className="relative z-20 py-4 text-2xl leading-tight font-bold text-black uppercase whitespace-nowrap">
           {pathname !== '/' ? (
             <Link

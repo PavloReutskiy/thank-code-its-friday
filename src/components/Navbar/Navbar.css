@@ -10,7 +10,7 @@
 
 .text {
   display: block;
-  transition: .7s cubic-bezier(0.5, 0, 0.2, 1);
+  transition: .4s cubic-bezier(.86,.35,.44,.99);
 }
 
 .link:hover .text {
@@ -22,7 +22,7 @@
   content: attr(data-link-alt);
   top: 100%;
   opacity: 0;
-  transition: .7s cubic-bezier(0.5, 0, 0.2, 1);
+  transition: .4s cubic-bezier(.86,.35,.44,.99);
 }
 
 .link:hover::before {

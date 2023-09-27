@@ -32,8 +32,8 @@ export const Navbar = (): JSX.Element => {
       gsap.to('.bar1', { duration: .3, width: '28px', height: '3px', top: '25%', rotate: '0deg' });
       gsap.to('.bar2', { duration: .3, width: '28px', height: '3px', top: '50%', opacity: 1 });
       gsap.to('.bar3', { duration: .3, width: '28px', height: '3px', top: '75%', rotate: '0deg' });
-      tl.to('.navItem', { duration: .3, opacity: 0, ease: 'power2.out', stagger: .1 });
-      tl.to('.sidebar', { duration: .3, x: '100%', ease: 'power2.in' });
+      // tl.to('.navItem', { duration: .3, opacity: 0, ease: 'power2.out', stagger: .1 });
+      // tl.to('.sidebar', { duration: .3, x: '100%', ease: 'power2.in' });
     }
   }, [isOpen, tl]);
   // #endregion
@@ -120,58 +120,60 @@ export const Navbar = (): JSX.Element => {
         </div>
       </div>
 
-      <aside
-        role="navigation"
-        className="sidebar fixed inset-0 z-10 flex flex-col bg-[#D0E3F7] md:hidden translate-x-full"
-      >
-        <div className="mt-[92px] pt-6 mx-auto w-[85%]">
-          <ul className="flex flex-col text-lg font-bold text-black uppercase leading-normal">
-            <li role="menuitem" className="navItem py-3 opacity-0">
-              <Link
-                href="/"
-                onClick={toggleMenu}
-              >
-                Home
-              </Link>
-            </li>
-            <li role="menuitem" className="navItem py-3 opacity-0">
-              <Link
-                href="/about"
-                onClick={toggleMenu}
-              >
-                About
-              </Link>
-            </li>
-            <li role="menuitem" className="navItem py-3 opacity-0">
-              <Link
-                href="/contact"
-                onClick={toggleMenu}
-              >
-                Contact
-              </Link>
-            </li>
-          </ul>
+      {isOpen && (
+        <aside
+          role="navigation"
+          className="sidebar fixed inset-0 z-10 flex flex-col bg-[#D0E3F7] md:hidden translate-x-full"
+        >
+          <div className="mt-[92px] pt-6 mx-auto w-[85%]">
+            <ul className="flex flex-col text-lg font-bold text-black uppercase leading-normal">
+              <li role="menuitem" className="navItem py-3 opacity-0">
+                <Link
+                  href="/"
+                  onClick={toggleMenu}
+                >
+                  Home
+                </Link>
+              </li>
+              <li role="menuitem" className="navItem py-3 opacity-0">
+                <Link
+                  href="/about"
+                  onClick={toggleMenu}
+                >
+                  About
+                </Link>
+              </li>
+              <li role="menuitem" className="navItem py-3 opacity-0">
+                <Link
+                  href="/contact"
+                  onClick={toggleMenu}
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
 
-          <div className="navItem py-3 opacity-0">
-            <Image
-              src={en}
-              alt="English language icon"
-              width={30}
-              height={30}
-              aria-label="Switch to Ukrainian"
-            />
-          </div>
+            <div className="navItem py-3 opacity-0">
+              <Image
+                src={en}
+                alt="English language icon"
+                width={30}
+                height={30}
+                aria-label="Switch to Ukrainian"
+              />
+            </div>
 
-          <div className="navItem py-3 opacity-0 text-lg font-bold text-black uppercase leading-normal">
-            <Link
-              href="/subscribe"
-              onClick={toggleMenu}
-            >
-              Subscribe
-            </Link>
+            <div className="navItem py-3 opacity-0 text-lg font-bold text-black uppercase leading-normal">
+              <Link
+                href="/subscribe"
+                onClick={toggleMenu}
+              >
+                Subscribe
+              </Link>
+            </div>
           </div>
-        </div>
-      </aside>
+        </aside>
+      )}
     </nav>
   );
 };

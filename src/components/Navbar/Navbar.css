@@ -1,3 +1,31 @@
-.menuToggleStyles {
+.menu-toggle-styles {
   @apply ease-in-out rotate-0 inline-block rounded absolute h-[3px] w-7 bg-[#292929];
+}
+
+.link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.text {
+  display: block;
+  transition: .7s cubic-bezier(0.5, 0, 0.2, 1);
+}
+
+.link:hover .text {
+  transform: translateY(-100%);
+}
+
+.link::before {
+  position: absolute;
+  content: attr(data-link-alt);
+  top: 100%;
+  opacity: 0;
+  transition: .7s cubic-bezier(0.5, 0, 0.2, 1);
+}
+
+.link:hover::before {
+  top: 0;
+  opacity: 1;
 }

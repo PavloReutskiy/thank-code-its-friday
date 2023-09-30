@@ -1,17 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 import './Navbar.css';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
 import en from 'public/assets/navbar/en.webp';
-// import ua from 'public/assets/navbar/ua.webp';
+import uk from 'public/assets/navbar/ua.webp';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/redux/store';
+import { setLanguage, selectLanguage } from '@/redux/features/language/languageSlice';
 
 export const Navbar = (): JSX.Element => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const language = useSelector<RootState>(selectLanguage);
   const tlSidebar = gsap.timeline();
 
   const toggleMenu = (): void => {
@@ -53,10 +58,14 @@ export const Navbar = (): JSX.Element => {
   }, [isOpen, tlSidebar]);
   // #endregion
 
+  const changeLanguage = (newLanguage: LanguageType): void => {
+    dispatch(setLanguage(newLanguage));
+  };
+
   return (
     <nav className="mx-auto w-[85%] font-condensed">
       <div className="
-        animateNav opacity-0 translate-y-[-100%]
+        animateNav opacity-1 translate-y-0 md:opacity-0 md:translate-y-[-100%]
         relative z-20 flex justify-between items-center
         border-b border-slate-400
         max-w-[1224px] mx-auto"
@@ -107,14 +116,26 @@ export const Navbar = (): JSX.Element => {
           </ul>
 
           <div className="flex items-center space-x-9">
-            <div className="flex-shrink-0 py-3">
-              <Image
-                src={en}
-                alt="English language icon"
-                width={30}
-                height={30}
-                aria-label="Switch to Ukrainian"
-              />
+            <div className="flex-shrink-0 py-3 cursor-pointer">
+              {language === 'en' ? (
+                <Image
+                  src={en}
+                  alt="English language icon"
+                  width={30}
+                  height={30}
+                  aria-label="Switch to Ukrainian"
+                  onClick={(): void => changeLanguage('uk')}
+                />
+              ) : (
+                <Image
+                  src={uk}
+                  alt="English language icon"
+                  width={30}
+                  height={30}
+                  aria-label="Switch to English"
+                  onClick={(): void => changeLanguage('en')}
+                />
+              )}
             </div>
 
             <div className="text-lg font-bold text-black uppercase leading-normal">
@@ -174,13 +195,25 @@ export const Navbar = (): JSX.Element => {
             </ul>
 
             <div className="navItem py-3 opacity-0">
-              <Image
-                src={en}
-                alt="English language icon"
-                width={30}
-                height={30}
-                aria-label="Switch to Ukrainian"
-              />
+              {language === 'en' ? (
+                <Image
+                  src={en}
+                  alt="English language icon"
+                  width={30}
+                  height={30}
+                  aria-label="Switch to Ukrainian"
+                  onClick={(): void => changeLanguage('uk')}
+                />
+              ) : (
+                <Image
+                  src={uk}
+                  alt="English language icon"
+                  width={30}
+                  height={30}
+                  aria-label="Switch to English"
+                  onClick={(): void => changeLanguage('en')}
+                />
+              )}
             </div>
 
             <div className="navItem py-3 opacity-0 text-lg font-bold text-black uppercase leading-normal">

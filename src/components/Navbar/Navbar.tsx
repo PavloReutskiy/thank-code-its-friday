@@ -1,54 +1,36 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 import './Navbar.css';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import gsap from 'gsap';
+import { Sidebar } from '@/components/Sidebar';
 
 export const Navbar = (): JSX.Element => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const tlSidebar = gsap.timeline();
 
   const toggleMenu = (): void => {
     setIsOpen(prevState => !prevState);
   };
 
-  // #region Nav appearance animation
   useEffect(() => {
     gsap.to('.animateNav', { duration: 1, y: '0%', opacity: 1, ease: 'power2.out' });
   }, []);
-  // #endregion
 
-  // #region Gumburger animation
   useEffect(() => {
     if (isOpen) {
       gsap.to('.bar1', { duration: .3, width: '32px', height: '3px', top: '50%', rotate: '45deg' });
       gsap.to('.bar2', { duration: 0, opacity: 0 });
       gsap.to('.bar3', { duration: .3, width: '32px', height: '3px', top: '50%', rotate: '-45deg' });
-      // tl.to('.sidebar', { duration: .5, x: '0%', ease: 'power2.in' });
-      // tl.to('.navItem', { duration: .5, opacity: 1, ease: 'power2.in', stagger: .15 });
     }
 
     if (!isOpen) {
       gsap.to('.bar1', { duration: .3, width: '28px', height: '3px', top: '25%', rotate: '0deg' });
       gsap.to('.bar2', { duration: .3, width: '28px', height: '3px', top: '50%', opacity: 1 });
       gsap.to('.bar3', { duration: .3, width: '28px', height: '3px', top: '75%', rotate: '0deg' });
-      // tl.to('.navItem', { duration: .3, opacity: 0, ease: 'power2.out', stagger: .1 });
-      // tl.to('.sidebar', { duration: .3, x: '100%', ease: 'power2.in' });
     }
   }, [isOpen]);
-  // #endregion
-
-  // #region Sidebar animation
-  useEffect(() => {
-    if (isOpen) {
-      tlSidebar.to('.sidebar', { duration: .5, x: '0%', ease: 'power2.in' });
-      tlSidebar.to('.navItem', { duration: .5, opacity: 1, ease: 'power2.in', stagger: .15 });
-    }
-  }, [isOpen, tlSidebar]);
-  // #endregion
 
   return (
     <nav className="mx-auto w-[85%] font-condensed">
@@ -124,49 +106,7 @@ export const Navbar = (): JSX.Element => {
         </div>
       </div>
 
-      {isOpen && (
-        <aside
-          role="navigation"
-          className="sidebar fixed inset-0 z-10 flex flex-col bg-[#D0E3F7] md:hidden translate-x-full"
-        >
-          <div className="mt-[92px] pt-6 mx-auto w-[85%]">
-            <ul className="flex flex-col space-y-6 pt-3 text-xl font-bold text-black uppercase leading-normal">
-              <li role="menuitem" className="navItem opacity-0">
-                <Link
-                  href="/"
-                  onClick={toggleMenu}
-                >
-                  Home
-                </Link>
-              </li>
-              <li role="menuitem" className="navItem opacity-0">
-                <Link
-                  href="/about"
-                  onClick={toggleMenu}
-                >
-                  About
-                </Link>
-              </li>
-              <li role="menuitem" className="navItem opacity-0">
-                <Link
-                  href="/contact"
-                  onClick={toggleMenu}
-                >
-                  Contact
-                </Link>
-              </li>
-              <li role="menuitem" className="navItem opacity-0">
-                <Link
-                  href="/subscribe"
-                  onClick={toggleMenu}
-                >
-                  Subscribe
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </aside>
-      )}
+      {isOpen && <Sidebar onToggleMenu={toggleMenu} />}
     </nav>
   );
 };

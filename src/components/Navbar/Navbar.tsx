@@ -4,19 +4,11 @@ import './Navbar.css';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import gsap from 'gsap';
-import en from 'public/assets/navbar/en.webp';
-import uk from 'public/assets/navbar/ua.webp';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/redux/store';
-import { setLanguage, selectLanguage } from '@/redux/features/language/languageSlice';
 
 export const Navbar = (): JSX.Element => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const dispatch = useDispatch<AppDispatch>();
-  const language = useSelector<RootState>(selectLanguage);
   const tlSidebar = gsap.timeline();
 
   const toggleMenu = (): void => {
@@ -58,10 +50,6 @@ export const Navbar = (): JSX.Element => {
   }, [isOpen, tlSidebar]);
   // #endregion
 
-  const changeLanguage = (newLanguage: LanguageType): void => {
-    dispatch(setLanguage(newLanguage));
-  };
-
   return (
     <nav className="mx-auto w-[85%] font-condensed">
       <div className="
@@ -85,7 +73,7 @@ export const Navbar = (): JSX.Element => {
         </div>
 
         <div className="hidden md:flex md:items-center md:justify-end md:min-w-[45%]">
-          <ul className="flex space-x-6 mr-9 text-lg font-bold text-black uppercase leading-normal">
+          <ul className="flex space-x-6 text-lg font-bold text-black uppercase leading-normal">
             <li role="menuitem">
               <Link
                 href="/"
@@ -113,32 +101,7 @@ export const Navbar = (): JSX.Element => {
                 <span className="text">Contact</span>
               </Link>
             </li>
-          </ul>
-
-          <div className="flex items-center space-x-9">
-            <div className="flex-shrink-0 py-3 cursor-pointer">
-              {language === 'en' ? (
-                <Image
-                  src={en}
-                  alt="English language icon"
-                  width={30}
-                  height={30}
-                  aria-label="Switch to Ukrainian"
-                  onClick={(): void => changeLanguage('uk')}
-                />
-              ) : (
-                <Image
-                  src={uk}
-                  alt="English language icon"
-                  width={30}
-                  height={30}
-                  aria-label="Switch to English"
-                  onClick={(): void => changeLanguage('en')}
-                />
-              )}
-            </div>
-
-            <div className="text-lg font-bold text-black uppercase leading-normal">
+            <li role="menuitem">
               <Link
                 href="/subscribe"
                 data-link-alt="Subscribe"
@@ -146,8 +109,8 @@ export const Navbar = (): JSX.Element => {
               >
                 <span className="text">Subscribe</span>
               </Link>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
 
         <div
@@ -167,8 +130,8 @@ export const Navbar = (): JSX.Element => {
           className="sidebar fixed inset-0 z-10 flex flex-col bg-[#D0E3F7] md:hidden translate-x-full"
         >
           <div className="mt-[92px] pt-6 mx-auto w-[85%]">
-            <ul className="flex flex-col text-lg font-bold text-black uppercase leading-normal">
-              <li role="menuitem" className="navItem py-3 opacity-0">
+            <ul className="flex flex-col space-y-6 pt-3 text-xl font-bold text-black uppercase leading-normal">
+              <li role="menuitem" className="navItem opacity-0">
                 <Link
                   href="/"
                   onClick={toggleMenu}
@@ -176,7 +139,7 @@ export const Navbar = (): JSX.Element => {
                   Home
                 </Link>
               </li>
-              <li role="menuitem" className="navItem py-3 opacity-0">
+              <li role="menuitem" className="navItem opacity-0">
                 <Link
                   href="/about"
                   onClick={toggleMenu}
@@ -184,7 +147,7 @@ export const Navbar = (): JSX.Element => {
                   About
                 </Link>
               </li>
-              <li role="menuitem" className="navItem py-3 opacity-0">
+              <li role="menuitem" className="navItem opacity-0">
                 <Link
                   href="/contact"
                   onClick={toggleMenu}
@@ -192,38 +155,15 @@ export const Navbar = (): JSX.Element => {
                   Contact
                 </Link>
               </li>
+              <li role="menuitem" className="navItem opacity-0">
+                <Link
+                  href="/subscribe"
+                  onClick={toggleMenu}
+                >
+                  Subscribe
+                </Link>
+              </li>
             </ul>
-
-            <div className="navItem py-3 opacity-0">
-              {language === 'en' ? (
-                <Image
-                  src={en}
-                  alt="English language icon"
-                  width={30}
-                  height={30}
-                  aria-label="Switch to Ukrainian"
-                  onClick={(): void => changeLanguage('uk')}
-                />
-              ) : (
-                <Image
-                  src={uk}
-                  alt="English language icon"
-                  width={30}
-                  height={30}
-                  aria-label="Switch to English"
-                  onClick={(): void => changeLanguage('en')}
-                />
-              )}
-            </div>
-
-            <div className="navItem py-3 opacity-0 text-lg font-bold text-black uppercase leading-normal">
-              <Link
-                href="/subscribe"
-                onClick={toggleMenu}
-              >
-                Subscribe
-              </Link>
-            </div>
           </div>
         </aside>
       )}

@@ -66,7 +66,7 @@
     "eqeqeq": ["error", "always"],
     "func-style": ["error", "expression"],
     "function-paren-newline": ["error", { "minItems": 3 }],
-    "id-length": ["error", { "min": 2, "exceptions": ["i", "j", "x", "y"] }],
+    "id-length": ["error", { "min": 2, "exceptions": ["i", "j", "x", "y", "t"] }],
     "implicit-arrow-linebreak": ["error", "beside"],
     "max-len": ["error", {"code": 120, "ignoreComments": true, "ignoreUrls": true}],
     // "multiline-ternary": ["error", "always-multiline"],

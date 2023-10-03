@@ -8,6 +8,7 @@ const config: Config = {
     screens: {
       sm: '321px',
       md: '769px',
+      nav: '850px',
       lg: '1440px',
     },
     extend: {

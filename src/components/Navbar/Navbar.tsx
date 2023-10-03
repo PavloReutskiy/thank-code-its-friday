@@ -1,14 +1,19 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import './Navbar.css';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import gsap from 'gsap';
+import en from 'public/assets/navbar/en.webp';
+import uk from 'public/assets/navbar/ua.webp';
 import { Sidebar } from '@/components/Sidebar';
 
 export const Navbar = (): JSX.Element => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [language, setLenguage] = useState<boolean>(true);
 
   const toggleMenu = (): void => {
     setIsOpen(prevState => !prevState);
@@ -31,6 +36,11 @@ export const Navbar = (): JSX.Element => {
       gsap.to('.bar3', { duration: .3, width: '28px', height: '3px', top: '75%', rotate: '0deg' });
     }
   }, [isOpen]);
+
+  const changeLanguage = (newLanguage: LanguageType): void => {
+    console.log(newLanguage);
+    setLenguage(prevState => !prevState);
+  };
 
   return (
     <nav className="mx-auto w-[85%] font-condensed">
@@ -55,7 +65,7 @@ export const Navbar = (): JSX.Element => {
         </div>
 
         <div className="hidden md:flex md:items-center md:justify-end md:min-w-[45%]">
-          <ul className="flex space-x-6 text-lg font-bold text-black uppercase leading-normal">
+          <ul className="flex space-x-6 mr-9 text-lg font-bold text-black uppercase leading-normal">
             <li role="menuitem">
               <Link
                 href="/"
@@ -83,7 +93,32 @@ export const Navbar = (): JSX.Element => {
                 <span className="text">Contact</span>
               </Link>
             </li>
-            <li role="menuitem">
+          </ul>
+
+          <div className="flex items-center space-x-9">
+            <div className="flex-shrink-0 py-3 cursor-pointer">
+              {language === true ? (
+                <Image
+                  src={en}
+                  alt="English language icon"
+                  width={30}
+                  height={30}
+                  aria-label="Switch to Ukrainian"
+                  onClick={(): void => changeLanguage('uk')}
+                />
+              ) : (
+                <Image
+                  src={uk}
+                  alt="English language icon"
+                  width={30}
+                  height={30}
+                  aria-label="Switch to English"
+                  onClick={(): void => changeLanguage('en')}
+                />
+              )}
+            </div>
+
+            <div className="text-lg font-bold text-black uppercase leading-normal">
               <Link
                 href="/subscribe"
                 data-link-alt="Subscribe"
@@ -91,8 +126,8 @@ export const Navbar = (): JSX.Element => {
               >
                 <span className="text">Subscribe</span>
               </Link>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
 
         <div

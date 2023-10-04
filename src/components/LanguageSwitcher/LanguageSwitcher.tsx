@@ -29,7 +29,7 @@ export const LanguageSwitcher = (): JSX.Element => {
     locale === 'uk' ? (
       <Image
         src={uk}
-        alt="Ukraine language icon"
+        alt="Ukrainian language icon"
         width={30}
         height={30}
         aria-label="Switch to English"

@@ -54,7 +54,7 @@ export const Sidebar: FC<Props> = ({ onToggleMenu }): JSX.Element => {
           <LanguageSwitcher />
         </div>
 
-        <div className="navItem py-3 opacity-0 text-lg font-bold text-black uppercase leading-normal">
+        <div className="navItem py-3 opacity-0 text-xl font-bold text-black uppercase leading-normal">
           <Link
             href="/subscribe"
             onClick={onToggleMenu}

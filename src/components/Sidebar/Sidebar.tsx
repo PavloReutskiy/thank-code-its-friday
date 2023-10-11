@@ -20,7 +20,7 @@ export const Sidebar: FC<Props> = ({ onToggleMenu }): JSX.Element => {
   return (
     <aside
       role="navigation"
-      className="sidebar fixed inset-0 z-10 flex flex-col bg-[#D0E3F7] nav:hidden translate-x-full"
+      className="sidebar fixed inset-0 z-10 flex flex-col bg-[#D0E3F7] md:hidden translate-x-full"
     >
       <div className="mt-[92px] pt-6 mx-auto w-[85%]">
         <ul className="flex flex-col text-xl font-bold text-black uppercase leading-normal">

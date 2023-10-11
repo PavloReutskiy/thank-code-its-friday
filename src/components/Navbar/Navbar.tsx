@@ -37,13 +37,13 @@ export const Navbar = (): JSX.Element => {
   }, [isOpen]);
 
   return (
-    <nav className="mx-auto w-[85%] font-condensed">
+    <nav className="mx-auto px-[7.5%] font-condensed">
       <div className="
-        animateNav opacity-1 translate-y-0 nav:opacity-0 nav:translate-y-[-100%]
+        animateNav opacity-1 translate-y-0 md:opacity-0 md:translate-y-[-100%]
         relative z-20 flex justify-between items-center
         border-b border-slate-400
-        max-w-[1224px] mx-auto"
-      >
+        max-w-[1224px] mx-auto
+      ">
         <div className="relative z-20 py-4 text-2xl leading-tight font-bold text-black uppercase whitespace-nowrap">
           {pathname !== '/' ? (
             <Link
@@ -54,12 +54,18 @@ export const Navbar = (): JSX.Element => {
               thank code <br /> it`s friday
             </Link>
           ) : (
-            <span className="block cursor-pointer">thank code <br /> it`s friday</span>
+            <span className="block cursor-pointer leading-tight text-base xsm:text-[20px]">
+              thank code <br /> it`s friday
+            </span>
           )}
         </div>
 
-        <div className="hidden nav:flex nav:items-center nav:justify-end nav:min-w-[45%]">
-          <ul className="flex space-x-6 mr-9 text-lg font-bold text-black uppercase leading-normal">
+        <div className="hidden md:flex md:items-center md:justify-end md:min-w-[45%]">
+          <ul className="
+            flex space-x-6
+            mr-8 mt-[2px]
+            text-lg md:text-base font-bold text-black uppercase leading-normal
+          ">
             <li role="menuitem">
               <Link
                 href="/"
@@ -89,12 +95,12 @@ export const Navbar = (): JSX.Element => {
             </li>
           </ul>
 
-          <div className="flex items-center space-x-9">
+          <div className="flex items-center space-x-8">
             <div className="flex-shrink-0 py-3 cursor-pointer">
               <LanguageSwitcher />
             </div>
 
-            <div className="text-lg font-bold text-black uppercase leading-normal">
+            <div className="text-lg mt-[2px] md:text-base font-bold text-black uppercase leading-normal">
               <Link
                 href="/subscribe"
                 data-link-alt={t('subscribe')}
@@ -108,7 +114,7 @@ export const Navbar = (): JSX.Element => {
 
         <div
           role="button"
-          className="w-7 h-7 relative z-20 nav:hidden"
+          className="w-7 h-7 relative z-20 md:hidden"
           onClick={toggleMenu}
         >
           <span className="bar1 top-[25%] menu-toggle-styles"></span>

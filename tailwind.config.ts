@@ -6,10 +6,12 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      sm: '321px',
+      xsm: '321px',
+      sm: '501px',
       md: '769px',
-      nav: '850px',
-      lg: '1440px',
+      lg: '951px',
+      xl: '1201px',
+      xxl: '1440px',
     },
     extend: {
       colors: {
@@ -21,11 +23,17 @@ const config: Config = {
         mono: ['Roboto Mono', 'monospace'],
         condensed: ['Roboto Condensed', 'sans-serif'],
       },
-      spacing: {
-        '10p': '10%',
-        '5.6p': '5.6%',
-        '7.5p': '7.5%',
-      },
+      // spacing: {
+      //   '10p': '10%',
+      //   '5.6p': '5.6%',
+      //   '7.5p': '7.5%',
+      // },
+      // container: {
+      //   center: true,
+      //   padding: {
+      //     DEFAULT: '7.5%',
+      //   },
+      // },
     },
   },
   plugins: [],

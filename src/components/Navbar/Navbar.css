@@ -1,5 +1,5 @@
 .menu-toggle-styles {
-  @apply ease-in-out rotate-0 inline-block rounded absolute h-[3px] w-7 bg-[#292929];
+  @apply ease-in-out rotate-0 inline-block rounded absolute h-[3px] w-7 bg-title_color;
 }
 
 .link {

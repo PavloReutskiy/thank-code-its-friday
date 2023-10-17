@@ -16,7 +16,11 @@ const config: Config = {
     extend: {
       colors: {
         background: '#f5f5f5',
-        nav_line: '#d2d2d2',
+        accent_colour: '#D0E3F7',
+        label_color: '#7F7F7F',
+        title_color: '#333333',
+        text_color: '#151515',
+        border_color: '#94a3b8',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

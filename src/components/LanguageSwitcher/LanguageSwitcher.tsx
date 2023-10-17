@@ -29,19 +29,19 @@ export const LanguageSwitcher = (): JSX.Element => {
     locale === 'uk' ? (
       <Image
         src={uk}
-        alt="Ukrainian language icon"
+        alt='Ukrainian language icon'
         width={30}
         height={30}
-        aria-label="Switch to English"
+        aria-label='Switch to English'
         onClick={(): void => changeLanguage('en')}
       />
     ) : (
       <Image
         src={en}
-        alt="English language icon"
+        alt='English language icon'
         width={30}
         height={30}
-        aria-label="Switch to Ukrainian"
+        aria-label='Switch to Ukrainian'
         onClick={(): void => changeLanguage('uk')}
       />
     )

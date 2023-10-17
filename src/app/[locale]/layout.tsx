@@ -29,7 +29,7 @@ export default async function RootLayout({ children, params: { locale } }: Props
   }
   return (
     <html lang={locale} className={inter.className}>
-      <body className="bg-background">
+      <body className='bg-background'>
         <ReduxProvider>
           <NextIntlClientProvider locale={locale} messages={dictionaries}>
             <header>

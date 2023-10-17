@@ -19,30 +19,30 @@ export const Sidebar: FC<Props> = ({ onToggleMenu }): JSX.Element => {
 
   return (
     <aside
-      role="navigation"
-      className="sidebar fixed inset-0 z-10 flex flex-col bg-[#D0E3F7] md:hidden translate-x-full"
+      role='navigation'
+      className='sidebar fixed inset-0 z-10 flex flex-col bg-accent_colour md:hidden translate-x-full'
     >
-      <div className="mt-[92px] pt-6 mx-auto w-[85%]">
-        <ul className="flex flex-col text-xl font-bold text-black uppercase leading-normal">
-          <li role="menuitem" className="navItem py-3 opacity-0">
+      <div className='mt-[92px] pt-6 mx-auto w-[85%]'>
+        <ul className='flex flex-col text-xl font-bold text-title_color uppercase leading-normal'>
+          <li role='menuitem' className='navItem py-3 opacity-0'>
             <Link
-              href="/"
+              href='/'
               onClick={onToggleMenu}
             >
               {t('home')}
             </Link>
           </li>
-          <li role="menuitem" className="navItem py-3 opacity-0">
+          <li role='menuitem' className='navItem py-3 opacity-0'>
             <Link
-              href="/about"
+              href='/about'
               onClick={onToggleMenu}
             >
               {t('about')}
             </Link>
           </li>
-          <li role="menuitem" className="navItem py-3 opacity-0">
+          <li role='menuitem' className='navItem py-3 opacity-0'>
             <Link
-              href="/contact"
+              href='/contact'
               onClick={onToggleMenu}
             >
               {t('contact')}
@@ -50,13 +50,13 @@ export const Sidebar: FC<Props> = ({ onToggleMenu }): JSX.Element => {
           </li>
         </ul>
 
-        <div className="navItem py-3 opacity-0">
+        <div className='navItem py-3 opacity-0'>
           <LanguageSwitcher />
         </div>
 
-        <div className="navItem py-3 opacity-0 text-xl font-bold text-black uppercase leading-normal">
+        <div className='navItem py-3 opacity-0 text-xl font-bold text-title_color uppercase leading-normal'>
           <Link
-            href="/subscribe"
+            href='/subscribe'
             onClick={onToggleMenu}
           >
             {t('subscribe')}

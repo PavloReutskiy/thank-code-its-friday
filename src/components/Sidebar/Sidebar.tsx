@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { FC, useEffect } from 'react';

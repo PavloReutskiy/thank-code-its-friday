@@ -46,7 +46,7 @@ export const Navbar = (): JSX.Element => {
       '>
         <div className='
           relative z-20 py-4
-          text-2xl leading-tight font-bold text-title_color uppercase whitespace-nowrap
+          text-base sm:text-xl leading-tight font-bold text-title_color uppercase whitespace-nowrap
         '>
           {pathname !== '/' ? (
             <Link
@@ -57,7 +57,7 @@ export const Navbar = (): JSX.Element => {
               thank code <br /> it`s friday
             </Link>
           ) : (
-            <span className='block cursor-pointer leading-tight text-base xsm:text-[20px]'>
+            <span className='block cursor-pointer leading-tight text-base sm:text-xl'>
               thank code <br /> it`s friday
             </span>
           )}

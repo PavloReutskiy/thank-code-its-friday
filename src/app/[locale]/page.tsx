@@ -7,9 +7,72 @@ import closures from 'public/assets/main/closures.png';
 import portal from 'public/assets/main/portal.png';
 import formatData from '@/utils/formatData';
 import './PostPreview.css';
+import { gsap } from 'gsap';
+import { useEffect } from 'react';
 
 const Home = (): JSX.Element => {
   const router = useRouter();
+
+  useEffect(() => {
+    const cursor = document.querySelector('.cursor');
+    const sectionElements = document.querySelectorAll('section');
+    const buttonElements = document.querySelectorAll('section button');
+
+    let posX = 0;
+    let posY = 0;
+    let mouseX = 0;
+    let mouseY = 0;
+
+    gsap.ticker.add(() => {
+      posX += (mouseX - posX) / 10;
+      posY += (mouseY - posY) / 10;
+
+      gsap.set(cursor, {
+        left: posX,
+        top: posY,
+      });
+    });
+
+    const handleMouseMove = (event: MouseEvent):void => {
+      mouseX = event.pageX;
+      mouseY = event.pageY;
+    };
+
+    const handleActiveAdd = ():void => {
+      cursor?.classList.add('active');
+    };
+
+    const handleActiveRemove = ():void => {
+      cursor?.classList.remove('active');
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    sectionElements.forEach(section => {
+      section.addEventListener('mouseenter', handleActiveAdd);
+      section.addEventListener('mouseleave', handleActiveRemove);
+    });
+
+    buttonElements.forEach(button => {
+      button.addEventListener('mouseenter', handleActiveRemove);
+      button.addEventListener('mouseleave', handleActiveAdd);
+    });
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+
+      sectionElements.forEach(section => {
+        section.removeEventListener('mouseenter', handleActiveAdd);
+        section.removeEventListener('mouseleave', handleActiveRemove);
+      });
+
+      buttonElements.forEach(button => {
+        button.removeEventListener('mouseenter', handleActiveRemove);
+        button.removeEventListener('mouseleave', handleActiveAdd);
+      });
+    };
+  }, []);
+
   return (
     <>
       <header className='mx-auto max-w-[85%] font-condensed'>
@@ -39,7 +102,10 @@ const Home = (): JSX.Element => {
       </header>
 
       <main className='mx-auto max-w-[85%] font-condensed'>
-        <Link href='/post/react-portals-vs-modal-windows-a-practical-guide'>
+        <Link
+          href='/post/react-portals-vs-modal-windows-a-practical-guide'
+          className='block max-w-[1224px] mx-auto cursor-default'
+        >
           <section className='
             flex flex-col lg:flex-row lg:gap-8
             px-4 sm:px-5 py-5 sm:py-6 md:p-8 mb-8 md:mb-10
@@ -84,7 +150,7 @@ const Home = (): JSX.Element => {
                   className='tag py-1 md:py-2 md:pr-1 md:pl-1'
                 >
                   <span className='text-rose-500'>#</span>
-                  programming
+                  javascript
                 </button>
 
                 <button
@@ -102,7 +168,7 @@ const Home = (): JSX.Element => {
                   className='tag py-1 md:py-2 md:pr-1 md:pl-1'
                 >
                   <span className='text-yellow-300'>#</span>
-                  tutorial
+                  css
                 </button>
 
                 <button
@@ -130,7 +196,7 @@ const Home = (): JSX.Element => {
             px-4 sm:px-5 py-5 sm:py-6 md:p-8
             border border-border_color rounded-3xl shadow
           '>
-            <Link href='/post/the-magic-of-closures-in-javaScript-for-beginners'>
+            <Link href='/post/the-magic-of-closures-in-javaScript-for-beginners' className='cursor-default'>
               <div className='
                 max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]
                 overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8
@@ -215,7 +281,7 @@ const Home = (): JSX.Element => {
             px-4 sm:px-5 py-5 sm:py-6 md:p-8
             border border-slate-400 rounded-3xl shadow
           '>
-            <Link href='/post/todo-app-why-is-it-a-good-choice-for-a-pet-project?'>
+            <Link href='/post/todo-app-why-is-it-a-good-choice-for-a-pet-project?' className='cursor-default'>
               <div className='
                 max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]
                 overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8
@@ -281,7 +347,7 @@ const Home = (): JSX.Element => {
                     className='tag py-1 md:pr-1 md:pl-1'
                   >
                     <span className='text-amber-400'>#</span>
-                    webdev
+                    typescript
                   </button>
                 </div>
 
@@ -295,6 +361,8 @@ const Home = (): JSX.Element => {
           </section>
         </div>
       </main>
+
+      <div className='cursor'></div>
     </>
   );
 };

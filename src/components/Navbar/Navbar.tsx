@@ -19,8 +19,16 @@ export const Navbar = (): JSX.Element => {
   };
 
   useEffect(() => {
-    gsap.to('.animateNav', { duration: 1, y: '0%', opacity: 1, ease: 'power2.out' });
-  }, []);
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -39,7 +47,6 @@ export const Navbar = (): JSX.Element => {
   return (
     <nav className='mx-auto max-w-[85%] font-condensed'>
       <div className='
-        animateNav opacity-1 translate-y-0 md:opacity-0 md:translate-y-[-100%]
         relative z-20 flex justify-between items-center
         border-b border-border_color
         max-w-[1224px] mx-auto

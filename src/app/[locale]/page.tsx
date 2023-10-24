@@ -9,6 +9,7 @@ import formatData from '@/utils/formatData';
 import './PostPreview.css';
 import { gsap } from 'gsap';
 import { useEffect } from 'react';
+import { PaginationComponent } from '@/components/PaginationComponent';
 
 const Home = (): JSX.Element => {
   const router = useRouter();
@@ -101,7 +102,7 @@ const Home = (): JSX.Element => {
         </h1>
       </header>
 
-      <main className='mx-auto max-w-[85%] font-condensed'>
+      <main className='mx-auto max-w-[85%] font-condensed mb-8'>
         <Link
           href='/post/react-portals-vs-modal-windows-a-practical-guide'
           className='block max-w-[1224px] mx-auto cursor-default'
@@ -359,8 +360,676 @@ const Home = (): JSX.Element => {
               </div>
             </Link>
           </section>
+          <section className='
+            flex flex-col
+            px-4 sm:px-5 py-5 sm:py-6 md:p-8
+            border border-slate-400 rounded-3xl shadow
+          '>
+            <Link href='/post/todo-app-why-is-it-a-good-choice-for-a-pet-project?' className='cursor-default'>
+              <div className='
+                max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]
+                overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8
+              '>
+                <Image
+                  src={todo}
+                  alt='Developer is surrounded by a lot of things in front of the laptop'
+                  className='object-cover object-center rounded-3xl'
+                />
+              </div>
+
+              <div className='flex flex-col'>
+                <div className='
+                  mb-2.5 lg:mb-5
+                  text-label_color font-sans uppercase text-sm lg:text-base xl:text-xl leading-normal font-bold
+                '>
+                  <span className='mr-8'>{formatData('2023-07-10')}</span>
+                  <span>3 min read</span>
+                </div>
+
+                <h2 className='
+                  mb-2 lg:mb-4 xl:max-w-[600px]
+                  text-title_color font-sans text-2xl lg:text-3xl xl:text-4xl leading-[1.4] font-bold
+                '>
+                  Todo App: Why is it a Good Choice for a Pet Project?
+                </h2>
+
+                <div className='
+                  flex justify-start gap-x-4 flex-wrap
+                  mb-2 lg:mb-4
+                  text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
+                '>
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/programming')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-rose-500'>#</span>
+                    programming
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/beginners')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-green-500'>#</span>
+                    beginners
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/javascript')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-indigo-700'>#</span>
+                    javascript
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/webdev')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-amber-400'>#</span>
+                    typescript
+                  </button>
+                </div>
+
+                <p className='text-text_color font-sans text-base lg:text-xl xl:text-2xl leading-[1.4]'>
+                  The Todo App has become a classic, often seen as a clichéd and overused
+                  concept for initial projects. But, what if we reconsider and view it
+                  from a fresh perspective?
+                </p>
+              </div>
+            </Link>
+          </section>
+          <section className='
+            flex flex-col
+            px-4 sm:px-5 py-5 sm:py-6 md:p-8
+            border border-slate-400 rounded-3xl shadow
+          '>
+            <Link href='/post/todo-app-why-is-it-a-good-choice-for-a-pet-project?' className='cursor-default'>
+              <div className='
+                max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]
+                overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8
+              '>
+                <Image
+                  src={todo}
+                  alt='Developer is surrounded by a lot of things in front of the laptop'
+                  className='object-cover object-center rounded-3xl'
+                />
+              </div>
+
+              <div className='flex flex-col'>
+                <div className='
+                  mb-2.5 lg:mb-5
+                  text-label_color font-sans uppercase text-sm lg:text-base xl:text-xl leading-normal font-bold
+                '>
+                  <span className='mr-8'>{formatData('2023-07-10')}</span>
+                  <span>3 min read</span>
+                </div>
+
+                <h2 className='
+                  mb-2 lg:mb-4 xl:max-w-[600px]
+                  text-title_color font-sans text-2xl lg:text-3xl xl:text-4xl leading-[1.4] font-bold
+                '>
+                  Todo App: Why is it a Good Choice for a Pet Project?
+                </h2>
+
+                <div className='
+                  flex justify-start gap-x-4 flex-wrap
+                  mb-2 lg:mb-4
+                  text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
+                '>
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/programming')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-rose-500'>#</span>
+                    programming
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/beginners')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-green-500'>#</span>
+                    beginners
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/javascript')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-indigo-700'>#</span>
+                    javascript
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/webdev')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-amber-400'>#</span>
+                    typescript
+                  </button>
+                </div>
+
+                <p className='text-text_color font-sans text-base lg:text-xl xl:text-2xl leading-[1.4]'>
+                  The Todo App has become a classic, often seen as a clichéd and overused
+                  concept for initial projects. But, what if we reconsider and view it
+                  from a fresh perspective?
+                </p>
+              </div>
+            </Link>
+          </section>
+          <section className='
+            flex flex-col
+            px-4 sm:px-5 py-5 sm:py-6 md:p-8
+            border border-slate-400 rounded-3xl shadow
+          '>
+            <Link href='/post/todo-app-why-is-it-a-good-choice-for-a-pet-project?' className='cursor-default'>
+              <div className='
+                max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]
+                overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8
+              '>
+                <Image
+                  src={todo}
+                  alt='Developer is surrounded by a lot of things in front of the laptop'
+                  className='object-cover object-center rounded-3xl'
+                />
+              </div>
+
+              <div className='flex flex-col'>
+                <div className='
+                  mb-2.5 lg:mb-5
+                  text-label_color font-sans uppercase text-sm lg:text-base xl:text-xl leading-normal font-bold
+                '>
+                  <span className='mr-8'>{formatData('2023-07-10')}</span>
+                  <span>3 min read</span>
+                </div>
+
+                <h2 className='
+                  mb-2 lg:mb-4 xl:max-w-[600px]
+                  text-title_color font-sans text-2xl lg:text-3xl xl:text-4xl leading-[1.4] font-bold
+                '>
+                  Todo App: Why is it a Good Choice for a Pet Project?
+                </h2>
+
+                <div className='
+                  flex justify-start gap-x-4 flex-wrap
+                  mb-2 lg:mb-4
+                  text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
+                '>
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/programming')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-rose-500'>#</span>
+                    programming
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/beginners')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-green-500'>#</span>
+                    beginners
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/javascript')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-indigo-700'>#</span>
+                    javascript
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/webdev')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-amber-400'>#</span>
+                    typescript
+                  </button>
+                </div>
+
+                <p className='text-text_color font-sans text-base lg:text-xl xl:text-2xl leading-[1.4]'>
+                  The Todo App has become a classic, often seen as a clichéd and overused
+                  concept for initial projects. But, what if we reconsider and view it
+                  from a fresh perspective?
+                </p>
+              </div>
+            </Link>
+          </section>
+          <section className='
+            flex flex-col
+            px-4 sm:px-5 py-5 sm:py-6 md:p-8
+            border border-slate-400 rounded-3xl shadow
+          '>
+            <Link href='/post/todo-app-why-is-it-a-good-choice-for-a-pet-project?' className='cursor-default'>
+              <div className='
+                max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]
+                overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8
+              '>
+                <Image
+                  src={todo}
+                  alt='Developer is surrounded by a lot of things in front of the laptop'
+                  className='object-cover object-center rounded-3xl'
+                />
+              </div>
+
+              <div className='flex flex-col'>
+                <div className='
+                  mb-2.5 lg:mb-5
+                  text-label_color font-sans uppercase text-sm lg:text-base xl:text-xl leading-normal font-bold
+                '>
+                  <span className='mr-8'>{formatData('2023-07-10')}</span>
+                  <span>3 min read</span>
+                </div>
+
+                <h2 className='
+                  mb-2 lg:mb-4 xl:max-w-[600px]
+                  text-title_color font-sans text-2xl lg:text-3xl xl:text-4xl leading-[1.4] font-bold
+                '>
+                  Todo App: Why is it a Good Choice for a Pet Project?
+                </h2>
+
+                <div className='
+                  flex justify-start gap-x-4 flex-wrap
+                  mb-2 lg:mb-4
+                  text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
+                '>
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/programming')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-rose-500'>#</span>
+                    programming
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/beginners')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-green-500'>#</span>
+                    beginners
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/javascript')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-indigo-700'>#</span>
+                    javascript
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/webdev')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-amber-400'>#</span>
+                    typescript
+                  </button>
+                </div>
+
+                <p className='text-text_color font-sans text-base lg:text-xl xl:text-2xl leading-[1.4]'>
+                  The Todo App has become a classic, often seen as a clichéd and overused
+                  concept for initial projects. But, what if we reconsider and view it
+                  from a fresh perspective?
+                </p>
+              </div>
+            </Link>
+          </section>
+          <section className='
+            flex flex-col
+            px-4 sm:px-5 py-5 sm:py-6 md:p-8
+            border border-slate-400 rounded-3xl shadow
+          '>
+            <Link href='/post/todo-app-why-is-it-a-good-choice-for-a-pet-project?' className='cursor-default'>
+              <div className='
+                max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]
+                overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8
+              '>
+                <Image
+                  src={todo}
+                  alt='Developer is surrounded by a lot of things in front of the laptop'
+                  className='object-cover object-center rounded-3xl'
+                />
+              </div>
+
+              <div className='flex flex-col'>
+                <div className='
+                  mb-2.5 lg:mb-5
+                  text-label_color font-sans uppercase text-sm lg:text-base xl:text-xl leading-normal font-bold
+                '>
+                  <span className='mr-8'>{formatData('2023-07-10')}</span>
+                  <span>3 min read</span>
+                </div>
+
+                <h2 className='
+                  mb-2 lg:mb-4 xl:max-w-[600px]
+                  text-title_color font-sans text-2xl lg:text-3xl xl:text-4xl leading-[1.4] font-bold
+                '>
+                  Todo App: Why is it a Good Choice for a Pet Project?
+                </h2>
+
+                <div className='
+                  flex justify-start gap-x-4 flex-wrap
+                  mb-2 lg:mb-4
+                  text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
+                '>
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/programming')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-rose-500'>#</span>
+                    programming
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/beginners')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-green-500'>#</span>
+                    beginners
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/javascript')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-indigo-700'>#</span>
+                    javascript
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/webdev')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-amber-400'>#</span>
+                    typescript
+                  </button>
+                </div>
+
+                <p className='text-text_color font-sans text-base lg:text-xl xl:text-2xl leading-[1.4]'>
+                  The Todo App has become a classic, often seen as a clichéd and overused
+                  concept for initial projects. But, what if we reconsider and view it
+                  from a fresh perspective?
+                </p>
+              </div>
+            </Link>
+          </section>
+          <section className='
+            flex flex-col
+            px-4 sm:px-5 py-5 sm:py-6 md:p-8
+            border border-slate-400 rounded-3xl shadow
+          '>
+            <Link href='/post/todo-app-why-is-it-a-good-choice-for-a-pet-project?' className='cursor-default'>
+              <div className='
+                max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]
+                overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8
+              '>
+                <Image
+                  src={todo}
+                  alt='Developer is surrounded by a lot of things in front of the laptop'
+                  className='object-cover object-center rounded-3xl'
+                />
+              </div>
+
+              <div className='flex flex-col'>
+                <div className='
+                  mb-2.5 lg:mb-5
+                  text-label_color font-sans uppercase text-sm lg:text-base xl:text-xl leading-normal font-bold
+                '>
+                  <span className='mr-8'>{formatData('2023-07-10')}</span>
+                  <span>3 min read</span>
+                </div>
+
+                <h2 className='
+                  mb-2 lg:mb-4 xl:max-w-[600px]
+                  text-title_color font-sans text-2xl lg:text-3xl xl:text-4xl leading-[1.4] font-bold
+                '>
+                  Todo App: Why is it a Good Choice for a Pet Project?
+                </h2>
+
+                <div className='
+                  flex justify-start gap-x-4 flex-wrap
+                  mb-2 lg:mb-4
+                  text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
+                '>
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/programming')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-rose-500'>#</span>
+                    programming
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/beginners')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-green-500'>#</span>
+                    beginners
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/javascript')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-indigo-700'>#</span>
+                    javascript
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/webdev')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-amber-400'>#</span>
+                    typescript
+                  </button>
+                </div>
+
+                <p className='text-text_color font-sans text-base lg:text-xl xl:text-2xl leading-[1.4]'>
+                  The Todo App has become a classic, often seen as a clichéd and overused
+                  concept for initial projects. But, what if we reconsider and view it
+                  from a fresh perspective?
+                </p>
+              </div>
+            </Link>
+          </section>
+          <section className='
+            flex flex-col
+            px-4 sm:px-5 py-5 sm:py-6 md:p-8
+            border border-slate-400 rounded-3xl shadow
+          '>
+            <Link href='/post/todo-app-why-is-it-a-good-choice-for-a-pet-project?' className='cursor-default'>
+              <div className='
+                max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]
+                overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8
+              '>
+                <Image
+                  src={todo}
+                  alt='Developer is surrounded by a lot of things in front of the laptop'
+                  className='object-cover object-center rounded-3xl'
+                />
+              </div>
+
+              <div className='flex flex-col'>
+                <div className='
+                  mb-2.5 lg:mb-5
+                  text-label_color font-sans uppercase text-sm lg:text-base xl:text-xl leading-normal font-bold
+                '>
+                  <span className='mr-8'>{formatData('2023-07-10')}</span>
+                  <span>3 min read</span>
+                </div>
+
+                <h2 className='
+                  mb-2 lg:mb-4 xl:max-w-[600px]
+                  text-title_color font-sans text-2xl lg:text-3xl xl:text-4xl leading-[1.4] font-bold
+                '>
+                  Todo App: Why is it a Good Choice for a Pet Project?
+                </h2>
+
+                <div className='
+                  flex justify-start gap-x-4 flex-wrap
+                  mb-2 lg:mb-4
+                  text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
+                '>
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/programming')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-rose-500'>#</span>
+                    programming
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/beginners')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-green-500'>#</span>
+                    beginners
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/javascript')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-indigo-700'>#</span>
+                    javascript
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/webdev')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-amber-400'>#</span>
+                    typescript
+                  </button>
+                </div>
+
+                <p className='text-text_color font-sans text-base lg:text-xl xl:text-2xl leading-[1.4]'>
+                  The Todo App has become a classic, often seen as a clichéd and overused
+                  concept for initial projects. But, what if we reconsider and view it
+                  from a fresh perspective?
+                </p>
+              </div>
+            </Link>
+          </section>
+          <section className='
+            flex flex-col
+            px-4 sm:px-5 py-5 sm:py-6 md:p-8
+            border border-slate-400 rounded-3xl shadow
+          '>
+            <Link href='/post/todo-app-why-is-it-a-good-choice-for-a-pet-project?' className='cursor-default'>
+              <div className='
+                max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]
+                overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8
+              '>
+                <Image
+                  src={todo}
+                  alt='Developer is surrounded by a lot of things in front of the laptop'
+                  className='object-cover object-center rounded-3xl'
+                />
+              </div>
+
+              <div className='flex flex-col'>
+                <div className='
+                  mb-2.5 lg:mb-5
+                  text-label_color font-sans uppercase text-sm lg:text-base xl:text-xl leading-normal font-bold
+                '>
+                  <span className='mr-8'>{formatData('2023-07-10')}</span>
+                  <span>3 min read</span>
+                </div>
+
+                <h2 className='
+                  mb-2 lg:mb-4 xl:max-w-[600px]
+                  text-title_color font-sans text-2xl lg:text-3xl xl:text-4xl leading-[1.4] font-bold
+                '>
+                  Todo App: Why is it a Good Choice for a Pet Project?
+                </h2>
+
+                <div className='
+                  flex justify-start gap-x-4 flex-wrap
+                  mb-2 lg:mb-4
+                  text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
+                '>
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/programming')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-rose-500'>#</span>
+                    programming
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/beginners')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-green-500'>#</span>
+                    beginners
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/javascript')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-indigo-700'>#</span>
+                    javascript
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={():void => router.push('/tags/webdev')}
+                    className='tag py-1 md:pr-1 md:pl-1'
+                  >
+                    <span className='text-amber-400'>#</span>
+                    typescript
+                  </button>
+                </div>
+
+                <p className='text-text_color font-sans text-base lg:text-xl xl:text-2xl leading-[1.4]'>
+                  The Todo App has become a classic, often seen as a clichéd and overused
+                  concept for initial projects. But, what if we reconsider and view it
+                  from a fresh perspective?
+                </p>
+              </div>
+            </Link>
+          </section>
         </div>
       </main>
+
+      <nav className='mx-auto max-w-[85%] mb-8 flex justify-center'>
+        <PaginationComponent />
+      </nav>
 
       <div className='cursor'></div>
     </>

@@ -27,17 +27,6 @@ const config: Config = {
         mono: ['Roboto Mono', 'monospace'],
         condensed: ['Roboto Condensed', 'sans-serif'],
       },
-      // spacing: {
-      //   '10p': '10%',
-      //   '5.6p': '5.6%',
-      //   '7.5p': '7.5%',
-      // },
-      // container: {
-      //   center: true,
-      //   padding: {
-      //     DEFAULT: '7.5%',
-      //   },
-      // },
     },
   },
   plugins: [],

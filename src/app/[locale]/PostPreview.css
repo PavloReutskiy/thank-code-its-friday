@@ -63,3 +63,18 @@
 .cursor.active::before {
   opacity: 1;
 }
+
+/* .MuiPaginationItem-page.Mui-selected {
+  background-color: #D0E3F7;
+}
+
+.MuiPaginationItem-root:hover {
+  background-color: #D0E3F7;
+}
+
+.MuiPaginationItem-root:active {
+  background-color: transparent;
+}
+.MuiPaginationItem-root:focus {
+  background-color: transparent;
+} */

@@ -29,3 +29,31 @@
   top: 0;
   opacity: 1;
 }
+
+@keyframes toBottomFadeIn {
+  from {
+      transform: translateY(-100%);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+.animateNav {
+  opacity: 1;
+  z-index: 11;
+  background: linear-gradient(to left, transparent 50%, #f5f5f5 50%);
+  background-size: 200% 100%;
+  background-position: 0% 0;
+}
+
+@media (min-width: 769px) {
+  .animateNav {
+    animation: toBottomFadeIn 1s forwards;
+    opacity: 0;
+    z-index: 11;
+  }
+}
+

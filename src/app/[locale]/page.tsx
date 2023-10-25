@@ -80,7 +80,7 @@ const Home = (): JSX.Element => {
         <h1 className='
           flex flex-col justify-center items-center
           md:flex-row md:gap-6 lg:gap-4
-          mt-4 sm:mt-6 xxl:mt-10 mb-4 sm:mb-7 md:mb-10
+          mt-[89px] sm:mt-[113px] xxl:mt-[129px] mb-4 sm:mb-7 md:mb-10
           font-bold uppercase text-black text-center leading-none
           drop-shadow-md
         '>

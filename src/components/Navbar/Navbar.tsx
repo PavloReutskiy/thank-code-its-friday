@@ -44,96 +44,108 @@ export const Navbar = (): JSX.Element => {
     }
   }, [isOpen]);
 
-  return (
-    <nav className='mx-auto max-w-[85%] font-condensed'>
-      <div className='
-        relative z-20 flex justify-between items-center
-        border-b border-border_color
-        max-w-[1224px] mx-auto
-      '>
-        <div className='
-          relative z-20 py-4
-          text-base sm:text-xl leading-tight font-bold text-title_color uppercase whitespace-nowrap
-        '>
-          {pathname !== '/' ? (
-            <Link
-              href='/'
-              className='block'
-              onClick={():void => setIsOpen(false)}
-            >
-              thank code <br /> it`s friday
-            </Link>
-          ) : (
-            <span className='block cursor-pointer leading-tight text-base sm:text-xl'>
-              thank code <br /> it`s friday
-            </span>
-          )}
-        </div>
+  useEffect(() => {
+    if (isOpen) {
+      gsap.to('.animateNav', { duration: .5, backgroundPosition: '100% 0', ease: 'power2.in' });
+    }
 
-        <div className='hidden md:flex md:items-center md:justify-end md:min-w-[45%]'>
-          <ul className='
-            flex space-x-6
-            mr-8 mt-[2px]
-            text-lg md:text-base font-bold text-title_color uppercase leading-normal
+    if (!isOpen) {
+      gsap.set('.animateNav', { backgroundPosition: '0% 0' });
+    }
+  }, [isOpen]);
+
+  return (
+    <>
+      <nav className='animateNav fixed top-0 left-0 right-0 mx-auto max-w-full font-condensed'>
+        <div className='
+          relative z-20 flex justify-between items-center
+          border-b border-border_color
+          max-w-[85%] xxl:max-w-[1224px] mx-auto
+        '>
+          <div className='
+            relative z-20 py-4
+            text-base sm:text-xl leading-tight font-bold text-title_color uppercase whitespace-nowrap
           '>
-            <li role='menuitem'>
+            {pathname !== '/' ? (
               <Link
                 href='/'
-                data-link-alt={t('home')}
-                className='link'
+                className='block'
+                onClick={():void => setIsOpen(false)}
               >
-                <span className='text'>{t('home')}</span>
+                thank code <br /> it`s friday
               </Link>
-            </li>
-            <li role='menuitem'>
-              <Link
-                href='/about'
-                data-link-alt={t('about')}
-                className='link'
-              >
-                <span className='text'>{t('about')}</span>
-              </Link>
-            </li>
-            <li role='menuitem'>
-              <Link
-                href='/contact'
-                data-link-alt={t('contact')}
-                className='link'
-              >
-                <span className='text'>{t('contact')}</span>
-              </Link>
-            </li>
-          </ul>
+            ) : (
+              <span className='block cursor-pointer leading-tight text-base sm:text-xl'>
+                thank code <br /> it`s friday
+              </span>
+            )}
+          </div>
 
-          <div className='flex items-center space-x-8'>
-            <div className='flex-shrink-0 py-3 cursor-pointer'>
-              <LanguageSwitcher />
-            </div>
+          <div className='hidden md:flex md:items-center md:justify-end md:min-w-[45%]'>
+            <ul className='
+              flex space-x-6
+              mr-8 mt-[2px]
+              text-lg md:text-base font-bold text-title_color uppercase leading-normal
+            '>
+              <li role='menuitem'>
+                <Link
+                  href='/'
+                  data-link-alt={t('home')}
+                  className='link'
+                >
+                  <span className='text'>{t('home')}</span>
+                </Link>
+              </li>
+              <li role='menuitem'>
+                <Link
+                  href='/about'
+                  data-link-alt={t('about')}
+                  className='link'
+                >
+                  <span className='text'>{t('about')}</span>
+                </Link>
+              </li>
+              <li role='menuitem'>
+                <Link
+                  href='/contact'
+                  data-link-alt={t('contact')}
+                  className='link'
+                >
+                  <span className='text'>{t('contact')}</span>
+                </Link>
+              </li>
+            </ul>
 
-            <div className='text-lg mt-[2px] md:text-base font-bold text-title_color uppercase leading-normal'>
-              <Link
-                href='/subscribe'
-                data-link-alt={t('subscribe')}
-                className='link'
-              >
-                <span className='text'>{t('subscribe')}</span>
-              </Link>
+            <div className='flex items-center space-x-8'>
+              <div className='flex-shrink-0 py-3 cursor-pointer'>
+                <LanguageSwitcher />
+              </div>
+
+              <div className='text-lg mt-[2px] md:text-base font-bold text-title_color uppercase leading-normal'>
+                <Link
+                  href='/subscribe'
+                  data-link-alt={t('subscribe')}
+                  className='link'
+                >
+                  <span className='text'>{t('subscribe')}</span>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div
-          role='button'
-          className='w-7 h-7 relative z-20 md:hidden'
-          onClick={toggleMenu}
-        >
-          <span className='bar1 top-[25%] menu-toggle-styles'></span>
-          <span className='bar2 top-[50%] menu-toggle-styles'></span>
-          <span className='bar3 top-[75%] menu-toggle-styles'></span>
+          <div
+            role='button'
+            className='w-7 h-7 relative z-20 md:hidden'
+            onClick={toggleMenu}
+          >
+            <span className='bar1 top-[25%] menu-toggle-styles'></span>
+            <span className='bar2 top-[50%] menu-toggle-styles'></span>
+            <span className='bar3 top-[75%] menu-toggle-styles'></span>
+          </div>
         </div>
-      </div>
+      </nav>
 
       {isOpen && <Sidebar onToggleMenu={toggleMenu} />}
-    </nav>
+    </>
   );
 };

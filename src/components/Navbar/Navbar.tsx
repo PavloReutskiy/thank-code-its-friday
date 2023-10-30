@@ -1,6 +1,6 @@
 'use client';
 import './Navbar.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import gsap from 'gsap';
@@ -10,7 +10,7 @@ import { useTranslations } from 'next-intl';
 
 export const Navbar = (): JSX.Element => {
   const pathname = usePathname();
-
+  const navRef = useRef(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const t = useTranslations('Navbar');
 
@@ -54,9 +54,63 @@ export const Navbar = (): JSX.Element => {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    let lastScrollTop = 0;
+
+    const handleAnimation = (): void => {
+      if (window.innerWidth >= 769) {
+        gsap.to(navRef.current, {
+          y: '0%',
+          opacity: 1,
+          duration: .5,
+        });
+      }
+    };
+
+    const handleScroll = (): void => {
+      const position = window.scrollY;
+
+      if (window.innerWidth < 769) {
+        return;
+      }
+
+      if (position > lastScrollTop) {
+        gsap.to(navRef.current, {
+          y: '-100%',
+          duration: .5,
+          delay: .3,
+        });
+      } else if (position < lastScrollTop) {
+        gsap.to(navRef.current, {
+          y: '0%',
+          duration: .5,
+          delay: .3,
+        });
+      }
+
+      lastScrollTop = position <= 0 ? 0 : position;
+    };
+
+    handleAnimation();
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleAnimation);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleAnimation);
+    };
+  }, []);
+
   return (
     <>
-      <nav className='animateNav fixed top-0 left-0 right-0 mx-auto max-w-full font-condensed'>
+      <nav
+        ref={navRef}
+        className='
+          animateNav z-20
+          opacity-1 translate-y-0 md:opacity-0 md:translate-y-[-100%]
+          fixed top-0 left-0 right-0 mx-auto max-w-full font-condensed'
+      >
         <div className='
           relative z-20 flex justify-between items-center
           border-b border-border_color

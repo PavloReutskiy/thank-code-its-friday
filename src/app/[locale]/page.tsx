@@ -17,6 +17,15 @@ const Home = (): JSX.Element => {
   const router = useRouter();
 
   useEffect(() => {
+    (
+      async(): Promise<void> => {
+        const LocomotiveScroll = (await import('locomotive-scroll')).default;
+        new LocomotiveScroll();
+      }
+    )();
+  }, []);
+
+  useEffect(() => {
     const cursor = document.querySelector('.cursor');
     const sectionElements = document.querySelectorAll('section');
     const buttonElements = document.querySelectorAll('section button');

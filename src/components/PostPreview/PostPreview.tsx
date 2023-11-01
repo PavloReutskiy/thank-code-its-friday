@@ -1,17 +1,23 @@
+import './PostPreview.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import formatData from '@/utils/formatData';
 import closures from 'public/assets/main/closures.png';
+import { FC } from 'react';
+import clsx from 'clsx';
 
-export const PostPreview = (): JSX.Element => {
+type Props = {
+  className: string;
+};
+
+export const PostPreview: FC<Props> = ({ className }): JSX.Element => {
   const router = useRouter();
   return (
-    <section className='
-      flex flex-col
-      px-4 sm:px-5 py-5 sm:py-6 md:p-8
-      border border-border_color rounded-3xl shadow
-    '>
+    <section className={clsx(`
+      flex flex-col px-4 sm:px-5 py-5 sm:py-6 md:p-8
+      border border-border_color rounded-3xl shadow`, className)
+    }>
       <Link href='/post/the-magic-of-closures-in-javaScript-for-beginners' className='cursor-default'>
         <div className='
           max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]

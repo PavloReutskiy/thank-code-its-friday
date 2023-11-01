@@ -1,16 +1,23 @@
+import './LastPostPreview.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import formatData from '@/utils/formatData';
 import portal from 'public/assets/main/portal.png';
+import clsx from 'clsx';
+import { FC } from 'react';
 
-export const LastPostPreview = (): JSX.Element => {
+type Props = {
+  className: string;
+};
+
+export const LastPostPreview: FC<Props> = ({ className }): JSX.Element => {
   const router = useRouter();
 
   return (
     <Link
       href='/post/react-portals-vs-modal-windows-a-practical-guide'
-      className='block max-w-[1224px] mx-auto cursor-default'
+      className={clsx('block max-w-[1224px] mx-auto cursor-default', className)}
     >
       <section className='
         flex flex-col lg:flex-row lg:gap-8

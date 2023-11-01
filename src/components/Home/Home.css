@@ -1,30 +1,3 @@
-.tag {
-  position: relative;
-  transition: 0.4s color ease-in-out;
-}
-
-.tag:hover {
-  color: #151515;
-}
-
-.tag::before {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 1px;
-  width: 0;
-  height: 100%;
-  z-index: -1;
-  background-color: #D0E3F7;
-  border-radius: 25px;
-  transition: 0.4s all ease-in-out;
-}
-
-.tag:hover::before {
-  left: 0;
-  width: 100%;
-}
-
 .cursor {
   position: absolute;
   background: #D0E3F7;
@@ -63,18 +36,3 @@
 .cursor.active::before {
   opacity: 1;
 }
-
-/* .MuiPaginationItem-page.Mui-selected {
-  background-color: #D0E3F7;
-}
-
-.MuiPaginationItem-root:hover {
-  background-color: #D0E3F7;
-}
-
-.MuiPaginationItem-root:active {
-  background-color: transparent;
-}
-.MuiPaginationItem-root:focus {
-  background-color: transparent;
-} */

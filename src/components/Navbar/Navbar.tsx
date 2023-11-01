@@ -62,7 +62,7 @@ export const Navbar = (): JSX.Element => {
         gsap.to(navRef.current, {
           y: '0%',
           opacity: 1,
-          duration: .5,
+          duration: 1,
         });
       }
     };

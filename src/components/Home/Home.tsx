@@ -11,7 +11,22 @@ export const Home = (): JSX.Element => {
   gsap.registerPlugin(ScrollTrigger);
 
   useLayoutEffect(() => {
-    window.scrollTo(0, 0);
+    if (window.innerWidth < 769) {
+      gsap.set('.header-animation', { opacity: 1, y: 0 });
+      return;
+    }
+
+    // const timeline = gsap.timeline();
+
+    gsap.to('.header-animation', {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power1.inOut',
+    });
+  }, []);
+
+  useLayoutEffect(() => {
     if (window.innerWidth < 769) {
       gsap.set('.scroll-animation', { opacity: 1, y: 0 });
       return;
@@ -21,16 +36,17 @@ export const Home = (): JSX.Element => {
     const timeline = gsap.timeline();
     const triggerArray = Array.from(triggerElements);
 
-    timeline.to(triggerArray.slice(0, 4), {
+    timeline.to(triggerArray.slice(0, 3), {
       opacity: 1,
       y: 0,
+      delay: .3,
       stagger: .3,
       duration: 1,
       ease: 'power1.inOut',
     });
 
     triggerArray.forEach((element, index) => {
-      if (index > 3) {
+      if (index > 2) {
         gsap.to(element, {
           scrollTrigger: {
             trigger: element,
@@ -39,7 +55,7 @@ export const Home = (): JSX.Element => {
           },
           opacity: 1,
           y: 0,
-          delay: index % 2 === 1 ? 0.3 : 0,
+          delay: index % 2 === 1 ? 0 : 0.3,
           duration: 1,
         });
       }
@@ -121,8 +137,9 @@ export const Home = (): JSX.Element => {
 
   return (
     <>
-      <header className='scroll-animation mx-auto max-w-[85%] font-condensed'>
+      <header className='mx-auto max-w-[85%] font-condensed'>
         <h1 className='
+          header-animation
           flex flex-col justify-center items-center
           md:flex-row md:gap-6 lg:gap-4
           mt-[89px] sm:mt-[113px] xxl:mt-[129px] mb-4 sm:mb-7 md:mb-10

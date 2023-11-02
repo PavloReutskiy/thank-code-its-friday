@@ -57,20 +57,21 @@ export const Navbar = (): JSX.Element => {
   useEffect(() => {
     let lastScrollTop = 0;
 
-    const handleAnimation = (): void => {
-      if (window.innerWidth >= 769) {
-        gsap.to(navRef.current, {
-          y: '0%',
-          opacity: 1,
-          duration: 1,
-        });
-      }
-    };
+    // const handleAnimation = (): void => {
+    if (window.innerWidth >= 769) {
+      gsap.to(navRef.current, {
+        y: '0%',
+        opacity: 1,
+        duration: 1,
+      });
+    }
+    // };
 
     const handleScroll = (): void => {
       const position = window.scrollY;
 
       if (window.innerWidth < 769) {
+        gsap.set(navRef.current, { opacity: 1, y: 0 });
         return;
       }
 
@@ -91,14 +92,14 @@ export const Navbar = (): JSX.Element => {
       lastScrollTop = position <= 0 ? 0 : position;
     };
 
-    handleAnimation();
+    // handleAnimation();
 
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleAnimation);
+    // window.addEventListener('resize', handleAnimation);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleAnimation);
+      // window.removeEventListener('resize', handleAnimation);
     };
   }, []);
 

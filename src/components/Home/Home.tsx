@@ -2,7 +2,7 @@
 import './Home.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { PaginationComponent } from '@/components/PaginationComponent';
 import { PostPreview } from '@/components/PostPreview';
 import { LastPostPreview } from '@/components/LastPostPreview';
@@ -10,56 +10,42 @@ import { LastPostPreview } from '@/components/LastPostPreview';
 export const Home = (): JSX.Element => {
   gsap.registerPlugin(ScrollTrigger);
 
-  useEffect(() => {
-    let currentWidth = window.innerWidth;
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+    if (window.innerWidth < 769) {
+      gsap.set('.scroll-animation', { opacity: 1, y: 0 });
+      return;
+    }
 
-    const handleAnimation = (): void => {
-      const triggerElements = document.querySelectorAll('.scroll-animation');
-      const timeline = gsap.timeline();
-      const triggerArray = Array.from(triggerElements);
+    const triggerElements = document.querySelectorAll('.scroll-animation');
+    const timeline = gsap.timeline();
+    const triggerArray = Array.from(triggerElements);
 
-      if (currentWidth >= 769) {
-        timeline.from(triggerArray.slice(0, 4), {
-          opacity: 0,
-          y: 50,
-          stagger: .3,
+    timeline.to(triggerArray.slice(0, 4), {
+      opacity: 1,
+      y: 0,
+      stagger: .3,
+      duration: 1,
+      ease: 'power1.inOut',
+    });
+
+    triggerArray.forEach((element, index) => {
+      if (index > 3) {
+        gsap.to(element, {
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 90%',
+            toggleActions: 'restart none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          delay: index % 2 === 1 ? 0.3 : 0,
           duration: 1,
-          ease: 'power1.inOut',
         });
-
-        triggerArray.forEach((element, index) => {
-          if (index > 3) {
-            gsap.from(element, {
-              scrollTrigger: {
-                trigger: element,
-                start: 'top 90%',
-                toggleActions: 'restart none none reverse',
-              },
-              opacity: 0,
-              y: 100,
-              delay: index % 2 === 1 ? 0.3 : 0,
-              duration: 1,
-            });
-          }
-        });
-      } else {
-        timeline.clear();
-        gsap.set(triggerArray, { clearProps: 'all' });
-        ScrollTrigger.getAll().forEach(st => st.kill());
       }
-    };
-
-    const handleResize = (): void => {
-      currentWidth = window.innerWidth;
-      handleAnimation();
-    };
-
-    handleAnimation();
-
-    window.addEventListener('resize', handleResize);
+    });
 
     return () => {
-      window.removeEventListener('resize', handleResize);
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
   }, []);

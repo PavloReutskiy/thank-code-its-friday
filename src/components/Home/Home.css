@@ -36,3 +36,8 @@
 .cursor.active::before {
   opacity: 1;
 }
+
+.scroll-animation {
+  opacity: 0;
+  transform: translateY(50px);
+}

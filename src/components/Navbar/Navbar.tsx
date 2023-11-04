@@ -57,7 +57,6 @@ export const Navbar = (): JSX.Element => {
   useEffect(() => {
     let lastScrollTop = 0;
 
-    // const handleAnimation = (): void => {
     if (window.innerWidth >= 769) {
       gsap.to(navRef.current, {
         y: '0%',
@@ -65,7 +64,6 @@ export const Navbar = (): JSX.Element => {
         duration: 1,
       });
     }
-    // };
 
     const handleScroll = (): void => {
       const position = window.scrollY;
@@ -92,14 +90,10 @@ export const Navbar = (): JSX.Element => {
       lastScrollTop = position <= 0 ? 0 : position;
     };
 
-    // handleAnimation();
-
     window.addEventListener('scroll', handleScroll);
-    // window.addEventListener('resize', handleAnimation);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      // window.removeEventListener('resize', handleAnimation);
     };
   }, []);
 

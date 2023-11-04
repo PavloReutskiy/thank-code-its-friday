@@ -2,12 +2,14 @@
 import './Home.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { PaginationComponent } from '@/components/PaginationComponent';
 import { PostPreview } from '@/components/PostPreview';
 import { LastPostPreview } from '@/components/LastPostPreview';
+import { BackToTopButton } from '../BackToTopButton';
 
 export const Home = (): JSX.Element => {
+  const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null);
   gsap.registerPlugin(ScrollTrigger);
 
   useLayoutEffect(() => {
@@ -15,8 +17,6 @@ export const Home = (): JSX.Element => {
       gsap.set('.header-animation', { opacity: 1, y: 0 });
       return;
     }
-
-    // const timeline = gsap.timeline();
 
     gsap.to('.header-animation', {
       opacity: 1,
@@ -70,7 +70,8 @@ export const Home = (): JSX.Element => {
     (
       async(): Promise<void> => {
         const LocomotiveScroll = (await import('locomotive-scroll')).default;
-        new LocomotiveScroll();
+        const loco = new LocomotiveScroll();
+        setLocoScroll(loco);
       }
     )();
   }, []);
@@ -184,6 +185,8 @@ export const Home = (): JSX.Element => {
       <nav className='mx-auto max-w-[85%] mb-8 flex justify-center'>
         <PaginationComponent />
       </nav>
+
+      <BackToTopButton locoScroll={locoScroll} />
 
       <div className='cursor'></div>
     </>

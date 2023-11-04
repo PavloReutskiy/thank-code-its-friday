@@ -2,7 +2,6 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { inter } from './fonts';
 import { Navbar } from '@/components/Navbar';
-import ReduxProvider from '@/redux/provider';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
@@ -30,12 +29,10 @@ export default async function RootLayout({ children, params: { locale } }: Props
   return (
     <html lang={locale} className={inter.className}>
       <body className='bg-background'>
-        <ReduxProvider>
-          <NextIntlClientProvider locale={locale} messages={dictionaries}>
-            <Navbar />
-            {children}
-          </NextIntlClientProvider>
-        </ReduxProvider>
+        <NextIntlClientProvider locale={locale} messages={dictionaries}>
+          <Navbar />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

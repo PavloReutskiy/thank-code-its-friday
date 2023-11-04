@@ -70,8 +70,8 @@ export const Home = (): JSX.Element => {
     (
       async(): Promise<void> => {
         const LocomotiveScroll = (await import('locomotive-scroll')).default;
-        const loco = new LocomotiveScroll();
-        setLocoScroll(loco);
+        const scroll = new LocomotiveScroll();
+        setLocoScroll(scroll);
       }
     )();
   }, []);

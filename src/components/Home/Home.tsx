@@ -14,51 +14,35 @@ export const Home = (): JSX.Element => {
 
   useLayoutEffect(() => {
     if (window.innerWidth < 769) {
+      gsap.set('.scroll-animation', { opacity: 1, y: 0 });
       gsap.set('.header-animation', { opacity: 1, y: 0 });
       return;
     }
 
-    gsap.to('.header-animation', {
+    const timeline = gsap.timeline();
+
+    timeline.to('.header-animation', {
       opacity: 1,
       y: 0,
       duration: 1,
       ease: 'power1.inOut',
     });
-  }, []);
-
-  useLayoutEffect(() => {
-    if (window.innerWidth < 769) {
-      gsap.set('.scroll-animation', { opacity: 1, y: 0 });
-      return;
-    }
 
     const triggerElements = document.querySelectorAll('.scroll-animation');
-    const timeline = gsap.timeline();
-    const triggerArray = Array.from(triggerElements);
 
-    timeline.to(triggerArray.slice(0, 3), {
-      opacity: 1,
-      y: 0,
-      delay: .3,
-      stagger: .3,
-      duration: 1,
-      ease: 'power1.inOut',
-    });
-
-    triggerArray.forEach((element, index) => {
-      if (index > 2) {
-        gsap.to(element, {
-          scrollTrigger: {
-            trigger: element,
-            start: 'top 90%',
-            toggleActions: 'restart none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          delay: index % 2 === 1 ? 0 : 0.3,
-          duration: 1,
-        });
-      }
+    triggerElements.forEach((element, index) => {
+      gsap.to(element, {
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 100%',
+          toggleActions: 'restart none none reverse',
+        },
+        opacity: 1,
+        y: 0,
+        delay: index * 0.05,
+        duration: 1,
+        ease: 'power1.inOut',
+      });
     });
 
     return () => {

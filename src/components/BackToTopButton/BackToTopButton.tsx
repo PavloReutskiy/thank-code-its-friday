@@ -40,7 +40,7 @@ export const BackToTopButton: FC<Props> = ({ locoScroll }): JSX.Element | null =
         type='button'
         onClick={scrollUp}
         className='
-          fixed bottom-12 right-12 w-14 h-14
+          fixed bottom-12 right-12 w-10 h-10 md:w-14 md:h-14
           flex justify-center items-center
           bg-accent_colour rounded-md drop-shadow-md z-10 active:drop-shadow-none
           transform active:scale-95

@@ -5,6 +5,7 @@ import { Navbar } from '@/components/Navbar';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
+import ReduxProvider from '@/redux/provider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -29,10 +30,12 @@ export default async function RootLayout({ children, params: { locale } }: Props
   return (
     <html lang={locale} className={inter.className}>
       <body className='bg-background'>
-        <NextIntlClientProvider locale={locale} messages={dictionaries}>
-          <Navbar />
-          {children}
-        </NextIntlClientProvider>
+        <ReduxProvider>
+          <NextIntlClientProvider locale={locale} messages={dictionaries}>
+            <Navbar />
+            {children}
+          </NextIntlClientProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

@@ -3,11 +3,16 @@ import { useParams, usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import en from 'public/assets/navbar/en.webp';
 import uk from 'public/assets/navbar/ua.webp';
+import { useDispatch } from 'react-redux';
+import { setLanguage } from '@/redux/features/language/languageSlice';
+import { AppDispatch } from '@/redux/store';
 
 export const LanguageSwitcher = (): JSX.Element => {
   const { locale } = useParams();
   const pathname = usePathname();
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  // const currentLocale = useSelector(selectLanguage);
 
   const changeLanguage = (newLocale: LanguageType): void => {
     const days = 30;
@@ -15,6 +20,8 @@ export const LanguageSwitcher = (): JSX.Element => {
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     const expires = `; expires=${date.toUTCString()}`;
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`;
+
+    dispatch(setLanguage(newLocale));
 
     if (!locale) {
       router.push(`/${newLocale}${pathname}`);

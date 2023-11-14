@@ -1,18 +1,32 @@
+'use client';
 import './LastPostPreview.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import formatData from '@/utils/formatData';
-import portal from 'public/assets/main/portal.png';
 import clsx from 'clsx';
 import { FC } from 'react';
 
 type Props = {
   className: string;
+  preview: Preview;
 };
 
-export const LastPostPreview: FC<Props> = ({ className }): JSX.Element => {
+export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
   const router = useRouter();
+  const {
+    date,
+    readTime,
+    title,
+    tags,
+    description,
+    altText,
+    image,
+  } = preview;
+
+  const { url, width, height } = image.data.attributes;
+  const tagList = tags.data.map(tag => tag.attributes.tagName);
+  const imageUrl = process.env.NEXT_PUBLIC_BASE_URL + url;
 
   return (
     <Link
@@ -30,8 +44,10 @@ export const LastPostPreview: FC<Props> = ({ className }): JSX.Element => {
           overflow-hidden rounded-3xl flex justify-center items-center mb-4 md:mb-8 lg:mb-0
         '>
           <Image
-            src={portal}
-            alt='Developer sitting at a computer in front of an open portal'
+            src={imageUrl}
+            width={Number(width)}
+            height={Number(height)}
+            alt={altText}
             className='object-cover object-center rounded-3xl'
           />
         </div>
@@ -41,63 +57,61 @@ export const LastPostPreview: FC<Props> = ({ className }): JSX.Element => {
             mb-2.5 md:mb-5
             text-label_color font-sans uppercase text-sm md:text-base xl:text-xl leading-normal font-bold
           '>
-            <span className='mr-8'>{formatData('2023-11-18')}</span>
-            <span>5 min read</span>
+            <span className='mr-8'>{formatData(date)}</span>
+            <span>{readTime}</span>
           </div>
 
           <h2 className='
-            mb-2 xl:max-w-[30ch]
+            mb-2 lg:mb-4 xl:max-w-[30ch]
             text-title_color font-sans text-2xl md:text-3xl xl:text-4xl leading-[1.4] font-bold
           '>
-            React Portals vs. Modal Windows: A Practical Guide
+            {title}
           </h2>
 
           <div className='
             flex justify-start gap-x-4 flex-wrap
-            mb-2
-            text-label_color font-sans text-sm md:text-base xl:text-xl font-normal
+            mb-2 lg:mb-4
+            text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
           '>
             <button
               type="button"
               onClick={():void => router.push('/tags/programming')}
-              className='tag py-1 md:py-2 md:pr-1 md:pl-1'
+              className='tag py-1 md:pr-1 md:pl-1'
             >
               <span className='text-rose-500'>#</span>
-              javascript
+              {tagList[0]}
             </button>
 
             <button
               type="button"
               onClick={():void => router.push('/tags/beginners')}
-              className='tag py-1 md:py-2 md:pr-1 md:pl-1'
+              className='tag py-1 md:pr-1 md:pl-1'
             >
               <span className='text-green-500'>#</span>
-              beginners
+              {tagList[1]}
             </button>
 
             <button
               type="button"
               onClick={():void => router.push('/tags/tutorial')}
-              className='tag py-1 md:py-2 md:pr-1 md:pl-1'
+              className='tag py-1 md:pr-1 md:pl-1'
             >
               <span className='text-yellow-300'>#</span>
-              css
+              {tagList[2]}
             </button>
 
             <button
               type="button"
               onClick={():void => router.push('/tags/react')}
-              className='tag py-1 md:py-2 md:pr-1 md:pl-1'
+              className='tag py-1 md:pr-1 md:pl-1'
             >
               <span className='text-slate-800'>#</span>
-              react
+              {tagList[3]}
             </button>
           </div>
 
           <p className='text-text_color font-sans text-base md:text-xl xl:text-2xl leading-[1.4]'>
-            This article compares React Portals and modal windows in web interface development.
-            We&apos;ll look at their differences and similarities, explore use cases, and
-            help you make the right choice.
+            {description}
           </p>
         </div>
       </section>

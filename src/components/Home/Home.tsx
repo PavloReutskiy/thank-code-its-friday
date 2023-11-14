@@ -7,9 +7,57 @@ import { PaginationComponent } from '@/components/PaginationComponent';
 import { PostPreview } from '@/components/PostPreview';
 import { LastPostPreview } from '@/components/LastPostPreview';
 import { BackToTopButton } from '../BackToTopButton';
+import fetcher from '@/utils/fetcher';
+import { gql } from '@apollo/client';
+import useSWR from 'swr';
+
+const GET_ARTICLE_PREVIEWS = gql`
+  query {
+    articlePreviews(sort: "id:desc") {
+      data {
+        id,
+        attributes {
+          date,
+          readTime,
+          title,
+          tags {
+            data {
+              attributes {
+                tagName
+              }
+            }
+          },
+          description,
+          altText,
+          locale,
+          image {
+            data {
+              attributes {
+                url,
+                width,
+                height
+              }
+            }
+          }
+        }
+      }
+      meta {
+        pagination {
+          page,
+          pageSize,
+          pageCount,
+          total
+        }
+      }
+    }
+  }
+`;
 
 export const Home = (): JSX.Element => {
   const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null);
+  const { data, error } = useSWR(GET_ARTICLE_PREVIEWS, fetcher);
+  const previews = data?.articlePreviews.data;
+
   gsap.registerPlugin(ScrollTrigger);
 
   useLayoutEffect(() => {
@@ -48,7 +96,7 @@ export const Home = (): JSX.Element => {
     return () => {
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     (
@@ -120,6 +168,10 @@ export const Home = (): JSX.Element => {
     };
   }, []);
 
+  if (error) {
+    return <div>failed to load</div>;
+  }
+
   return (
     <>
       <header className='mx-auto max-w-[85%] font-condensed'>
@@ -150,7 +202,9 @@ export const Home = (): JSX.Element => {
       </header>
 
       <main className='mx-auto max-w-[85%] font-condensed mb-8'>
-        <LastPostPreview className='scroll-animation' />
+        {previews && (
+          <LastPostPreview className='scroll-animation' preview={previews[0].attributes} />
+        )}
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8 md:mb-10 max-w-[1224px] mx-auto'>
           <PostPreview className='scroll-animation' />

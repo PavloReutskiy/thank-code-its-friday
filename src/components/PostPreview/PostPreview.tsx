@@ -1,18 +1,39 @@
 import './PostPreview.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import formatData from '@/utils/formatData';
-import closures from 'public/assets/main/closures.png';
+// import closures from 'public/assets/main/closures.png';
 import { FC } from 'react';
 import clsx from 'clsx';
+import { Tag } from '../Tag';
 
 type Props = {
   className: string;
+  preview: Preview;
 };
 
-export const PostPreview: FC<Props> = ({ className }): JSX.Element => {
-  const router = useRouter();
+export const PostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
+  // const router = useRouter();
+
+  const {
+    date,
+    readTime,
+    title,
+    tags,
+    description,
+    altText,
+    image,
+  } = preview;
+
+  const { url, width, height } = image.data.attributes;
+  const imageUrl = process.env.NEXT_PUBLIC_BASE_URL + url;
+
+  const tagList = tags.data.map(tag => ({
+    name: tag.attributes.tagName,
+    color: tag.attributes.color,
+  }));
+
   return (
     <section className={clsx(`
       flex flex-col px-4 sm:px-5 py-5 sm:py-6 md:p-8
@@ -24,8 +45,10 @@ export const PostPreview: FC<Props> = ({ className }): JSX.Element => {
           overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8
         '>
           <Image
-            src={closures}
-            alt='Developer sitting in front of computer'
+            src={imageUrl}
+            width={Number(width)}
+            height={Number(height)}
+            alt={altText}
             className='object-cover object-center rounded-3xl'
           />
         </div>
@@ -35,15 +58,15 @@ export const PostPreview: FC<Props> = ({ className }): JSX.Element => {
             mb-2.5 lg:mb-5
             text-label_color font-sans uppercase text-sm lg:text-base xl:text-xl leading-normal font-bold
           '>
-            <span className='mr-8'>{formatData('2023-08-12')}</span>
-            <span>6 min read</span>
+            <span className='mr-8'>{formatData(date)}</span>
+            <span>{readTime}</span>
           </div>
 
           <h2 className='
             mb-2 lg:mb-4 xl:max-w-[600px]
             text-title_color font-sans text-2xl lg:text-3xl xl:text-4xl leading-[1.4] font-bold
           '>
-            The Magic of Closures in JavaScript for Beginners
+            {title}
           </h2>
 
           <div className='
@@ -51,48 +74,17 @@ export const PostPreview: FC<Props> = ({ className }): JSX.Element => {
             mb-2 lg:mb-4
             text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
           '>
-            <button
-              type="button"
-              onClick={():void => router.push('/tags/programming')}
-              className='tag py-1 md:pr-1 md:pl-1'
-            >
-              <span className='text-rose-500'>#</span>
-              programming
-            </button>
-
-            <button
-              type="button"
-              onClick={():void => router.push('/tags/beginners')}
-              className='tag py-1 md:pr-1 md:pl-1'
-            >
-              <span className='text-green-500'>#</span>
-              beginners
-            </button>
-
-            <button
-              type="button"
-              onClick={():void => router.push('/tags/javascript')}
-              className='tag py-1 md:pr-1 md:pl-1'
-            >
-              <span className='text-indigo-700'>#</span>
-              javascript
-            </button>
-
-            <button
-              type="button"
-              onClick={():void => router.push('/tags/webdev')}
-              className='tag py-1 md:pr-1 md:pl-1'
-            >
-              <span className='text-amber-400'>#</span>
-              webdev
-            </button>
+            {tagList.map(tag => (
+              <Tag
+                key={tag.name}
+                tagName={tag.name}
+                color={tag.color}
+              />
+            ))}
           </div>
 
           <p className='text-text_color font-sans text-base lg:text-xl xl:text-2xl leading-[1.4]'>
-            Closures are a very important part of JavaScript that every developer should
-            know well. But, this topic often becomes a real challenge for beginners and
-            can be difficult to understand. In this article, I want to explain closures
-            in JavaScript in a very simple way.
+            {description}
           </p>
         </div>
       </Link>

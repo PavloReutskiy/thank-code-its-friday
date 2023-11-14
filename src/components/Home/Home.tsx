@@ -23,7 +23,8 @@ const GET_ARTICLE_PREVIEWS = gql`
           tags {
             data {
               attributes {
-                tagName
+                tagName,
+                color
               }
             }
           },
@@ -203,21 +204,21 @@ export const Home = (): JSX.Element => {
 
       <main className='mx-auto max-w-[85%] font-condensed mb-8'>
         {previews && (
-          <LastPostPreview className='scroll-animation' preview={previews[0].attributes} />
+          <>
+            <LastPostPreview className='scroll-animation' preview={previews[0].attributes} />
+
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-8 md:mb-10 max-w-[1224px] mx-auto'>
+              {previews.slice(1).map(preview => (
+                <PostPreview
+                  className='scroll-animation'
+                  preview={preview.attributes}
+                  key={preview.id}
+                />
+              ))}
+            </div>
+          </>
         )}
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-8 md:mb-10 max-w-[1224px] mx-auto'>
-          <PostPreview className='scroll-animation' />
-          <PostPreview className='scroll-animation' />
-          <PostPreview className='scroll-animation' />
-          <PostPreview className='scroll-animation' />
-          <PostPreview className='scroll-animation' />
-          <PostPreview className='scroll-animation' />
-          <PostPreview className='scroll-animation' />
-          <PostPreview className='scroll-animation' />
-          <PostPreview className='scroll-animation' />
-          <PostPreview className='scroll-animation' />
-        </div>
       </main>
 
       <nav className='mx-auto max-w-[85%] mb-8 flex justify-center'>

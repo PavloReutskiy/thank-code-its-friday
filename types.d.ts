@@ -16,6 +16,7 @@ interface ArticlePreviewsResponse {
           data: Array<{
             attributes: {
               tagName: string;
+              color: string;
             }
           }>
         },
@@ -52,6 +53,7 @@ interface Preview {
     data: Array<{
       attributes: {
         tagName: string;
+        color: string;
       }
     }>
   },

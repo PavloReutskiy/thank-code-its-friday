@@ -2,10 +2,10 @@
 import './LastPostPreview.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import formatData from '@/utils/formatData';
 import clsx from 'clsx';
 import { FC } from 'react';
+import { Tag } from '../Tag';
 
 type Props = {
   className: string;
@@ -13,7 +13,6 @@ type Props = {
 };
 
 export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
-  const router = useRouter();
   const {
     date,
     readTime,
@@ -25,8 +24,12 @@ export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element 
   } = preview;
 
   const { url, width, height } = image.data.attributes;
-  const tagList = tags.data.map(tag => tag.attributes.tagName);
   const imageUrl = process.env.NEXT_PUBLIC_BASE_URL + url;
+
+  const tagList = tags.data.map(tag => ({
+    name: tag.attributes.tagName,
+    color: tag.attributes.color,
+  }));
 
   return (
     <Link
@@ -73,41 +76,13 @@ export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element 
             mb-2 lg:mb-4
             text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
           '>
-            <button
-              type="button"
-              onClick={():void => router.push('/tags/programming')}
-              className='tag py-1 md:pr-1 md:pl-1'
-            >
-              <span className='text-rose-500'>#</span>
-              {tagList[0]}
-            </button>
-
-            <button
-              type="button"
-              onClick={():void => router.push('/tags/beginners')}
-              className='tag py-1 md:pr-1 md:pl-1'
-            >
-              <span className='text-green-500'>#</span>
-              {tagList[1]}
-            </button>
-
-            <button
-              type="button"
-              onClick={():void => router.push('/tags/tutorial')}
-              className='tag py-1 md:pr-1 md:pl-1'
-            >
-              <span className='text-yellow-300'>#</span>
-              {tagList[2]}
-            </button>
-
-            <button
-              type="button"
-              onClick={():void => router.push('/tags/react')}
-              className='tag py-1 md:pr-1 md:pl-1'
-            >
-              <span className='text-slate-800'>#</span>
-              {tagList[3]}
-            </button>
+            {tagList.map(tag => (
+              <Tag
+                key={tag.name}
+                tagName={tag.name}
+                color={tag.color}
+              />
+            ))}
           </div>
 
           <p className='text-text_color font-sans text-base md:text-xl xl:text-2xl leading-[1.4]'>

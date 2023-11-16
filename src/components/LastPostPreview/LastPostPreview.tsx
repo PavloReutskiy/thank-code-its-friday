@@ -6,6 +6,7 @@ import formatData from '@/utils/formatData';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { Tag } from '../Tag';
+import { useParams } from 'next/navigation';
 
 type Props = {
   className: string;
@@ -13,6 +14,8 @@ type Props = {
 };
 
 export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
+  const { locale } = useParams();
+
   const {
     date,
     readTime,
@@ -60,7 +63,7 @@ export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element 
             mb-2.5 md:mb-5
             text-label_color font-sans uppercase text-sm md:text-base xl:text-xl leading-normal font-bold
           '>
-            <span className='mr-8'>{formatData(date)}</span>
+            <span className='mr-8'>{formatData(date, locale)}</span>
             <span>{readTime}</span>
           </div>
 

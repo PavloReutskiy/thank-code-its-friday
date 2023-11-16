@@ -6,41 +6,9 @@ type LanguageType = 'en' | 'uk';
 
 interface ArticlePreviewsResponse {
   articlePreviews: {
-    data: Array<{
-      id: string;
-      attributes: {
-        date: string;
-        readTime: string;
-        title: string;
-        tags: {
-          data: Array<{
-            attributes: {
-              tagName: string;
-              color: string;
-            }
-          }>
-        },
-        description: string;
-        altText: string;
-        locale: string;
-        image: {
-          data: {
-            attributes: {
-              url: string;
-              width: string;
-              height: string;
-            };
-          };
-        };
-      };
-    }>;
+    data: Array<PreviewWithID>;
     meta: {
-      pagination: {
-        page: number;
-        pageSize: number;
-        pageCount: number;
-        total: number;
-      };
+      pagination: Pagination;
     };
   };
 }
@@ -69,4 +37,16 @@ interface Preview {
       };
     };
   };
+}
+
+interface PreviewWithID {
+  id: string;
+  attributes: Preview;
+}
+
+interface Pagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
 }

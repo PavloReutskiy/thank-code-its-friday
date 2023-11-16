@@ -15,7 +15,7 @@ export const Tag: FC<Props> = ({ tagName, color }): JSX.Element => {
       onClick={():void => router.push(`/tags/${tagName}`)}
       className='tag py-1 md:pr-1 md:pl-1'
     >
-      <span className={color}>#</span>
+      <span style={{ color }}>#</span>
       {tagName}
     </button>
   );

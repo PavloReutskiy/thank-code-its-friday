@@ -7,13 +7,13 @@ import { PaginationComponent } from '@/components/PaginationComponent';
 import { PostPreview } from '@/components/PostPreview';
 import { LastPostPreview } from '@/components/LastPostPreview';
 import { BackToTopButton } from '../BackToTopButton';
-import fetcher from '@/utils/fetcher';
-import { gql } from '@apollo/client';
-import useSWR from 'swr';
+import { useQuery, gql } from '@apollo/client';
+import getClient from '@/utils/graphql-client';
+import { useParams } from 'next/navigation';
 
 const GET_ARTICLE_PREVIEWS = gql`
-  query {
-    articlePreviews(sort: "id:desc") {
+  query GetPreviews($locale: I18NLocaleCode!) {
+    articlePreviews(sort: "id:desc" locale: $locale) {
       data {
         id,
         attributes {
@@ -56,8 +56,15 @@ const GET_ARTICLE_PREVIEWS = gql`
 
 export const Home = (): JSX.Element => {
   const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null);
-  const { data, error } = useSWR(GET_ARTICLE_PREVIEWS, fetcher);
-  const previews = data?.articlePreviews.data;
+
+  const { locale } = useParams();
+  const client = getClient();
+  const { loading, error, data } = useQuery(GET_ARTICLE_PREVIEWS, {
+    variables: { locale },
+    client,
+  });
+
+  const previews: PreviewWithID[] = data?.articlePreviews.data;
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -119,14 +126,23 @@ export const Home = (): JSX.Element => {
     let mouseX = 0;
     let mouseY = 0;
 
+    let lastPosX = 0;
+    let lastPosY = 0;
+    const threshold = 0.1;
+
     gsap.ticker.add(() => {
       posX += (mouseX - posX) / 10;
       posY += (mouseY - posY) / 10;
 
-      gsap.set(cursor, {
-        left: posX,
-        top: posY,
-      });
+      if (Math.abs(posX - lastPosX) > threshold || Math.abs(posY - lastPosY) > threshold) {
+        gsap.set(cursor, {
+          left: posX,
+          top: posY,
+        });
+
+        lastPosX = posX;
+        lastPosY = posY;
+      }
     });
 
     const handleMouseMove = (event: MouseEvent):void => {
@@ -167,10 +183,13 @@ export const Home = (): JSX.Element => {
         button.removeEventListener('mouseleave', handleActiveAdd);
       });
     };
-  }, []);
+  }, [data]);
 
+  if (loading) {
+    return <p>Loading...!!!!</p>;
+  }
   if (error) {
-    return <div>failed to load</div>;
+    return <p>Error</p>;
   }
 
   return (
@@ -218,7 +237,6 @@ export const Home = (): JSX.Element => {
             </div>
           </>
         )}
-
       </main>
 
       <nav className='mx-auto max-w-[85%] mb-8 flex justify-center'>

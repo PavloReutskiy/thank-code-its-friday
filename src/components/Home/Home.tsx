@@ -7,35 +7,37 @@ import { PaginationComponent } from '@/components/PaginationComponent';
 import { PostPreview } from '@/components/PostPreview';
 import { LastPostPreview } from '@/components/LastPostPreview';
 import { BackToTopButton } from '../BackToTopButton';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, gql, TypedDocumentNode } from '@apollo/client';
 import getClient from '@/utils/graphql-client';
 import { useParams } from 'next/navigation';
+import { Loader } from '../Loader';
+import { ErrorMessage } from '../ErrorMessage';
 
-const GET_ARTICLE_PREVIEWS = gql`
+const GET_ARTICLE_PREVIEWS: TypedDocumentNode<ArticlePreviewsResponse, QueryVariables> = gql`
   query GetPreviews($locale: I18NLocaleCode!) {
     articlePreviews(sort: "id:desc" locale: $locale) {
       data {
-        id,
+        id
         attributes {
-          date,
-          readTime,
-          title,
+          date
+          readTime
+          title
           tags {
             data {
               attributes {
-                tagName,
+                tagName
                 color
               }
             }
-          },
-          description,
-          altText,
-          locale,
+          }
+          description
+          altText
+          locale
           image {
             data {
               attributes {
-                url,
-                width,
+                url
+                width
                 height
               }
             }
@@ -44,9 +46,9 @@ const GET_ARTICLE_PREVIEWS = gql`
       }
       meta {
         pagination {
-          page,
-          pageSize,
-          pageCount,
+          page
+          pageSize
+          pageCount
           total
         }
       }
@@ -56,17 +58,24 @@ const GET_ARTICLE_PREVIEWS = gql`
 
 export const Home = (): JSX.Element => {
   const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null);
+  const [isQueryInitialized, setIsQueryInitialized] = useState(false);
 
   const { locale } = useParams();
   const client = getClient();
   const { loading, error, data } = useQuery(GET_ARTICLE_PREVIEWS, {
     variables: { locale },
     client,
+    onCompleted: () => setIsQueryInitialized(false),
+    onError: () => setIsQueryInitialized(false),
   });
 
-  const previews: PreviewWithID[] = data?.articlePreviews.data;
+  const previews = data?.articlePreviews.data;
 
   gsap.registerPlugin(ScrollTrigger);
+
+  useEffect(() => {
+    setIsQueryInitialized(true);
+  }, []);
 
   useLayoutEffect(() => {
     if (window.innerWidth < 769) {
@@ -185,11 +194,11 @@ export const Home = (): JSX.Element => {
     };
   }, [data]);
 
-  if (loading) {
-    return <p>Loading...!!!!</p>;
+  if (loading && isQueryInitialized) {
+    return <Loader />;
   }
   if (error) {
-    return <p>Error</p>;
+    return <ErrorMessage error={error} />;
   }
 
   return (
@@ -240,7 +249,7 @@ export const Home = (): JSX.Element => {
       </main>
 
       <nav className='mx-auto max-w-[85%] mb-8 flex justify-center'>
-        <PaginationComponent />
+        {data && <PaginationComponent />}
       </nav>
 
       <BackToTopButton locoScroll={locoScroll} />

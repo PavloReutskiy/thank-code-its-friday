@@ -50,3 +50,7 @@ interface Pagination {
   pageCount: number;
   total: number;
 }
+
+interface QueryVariables {
+  locale: string | string[];
+}

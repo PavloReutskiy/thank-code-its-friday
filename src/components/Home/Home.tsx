@@ -9,13 +9,13 @@ import { LastPostPreview } from '@/components/LastPostPreview';
 import { BackToTopButton } from '../BackToTopButton';
 import { useQuery, gql, TypedDocumentNode } from '@apollo/client';
 import getClient from '@/utils/graphql-client';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Loader } from '../Loader';
 import { ErrorMessage } from '../ErrorMessage';
 
 const GET_ARTICLE_PREVIEWS: TypedDocumentNode<ArticlePreviewsResponse, QueryVariables> = gql`
-  query GetPreviews($locale: I18NLocaleCode!) {
-    articlePreviews(sort: "id:desc" locale: $locale) {
+  query GetPreviews($locale: I18NLocaleCode!, $page: Int, $pageSize: Int) {
+    articlePreviews(pagination: { page: $page, pageSize: $pageSize }, sort: "id:desc" locale: $locale) {
       data {
         id
         attributes {
@@ -58,24 +58,45 @@ const GET_ARTICLE_PREVIEWS: TypedDocumentNode<ArticlePreviewsResponse, QueryVari
 
 export const Home = (): JSX.Element => {
   const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null);
-  const [isQueryInitialized, setIsQueryInitialized] = useState(false);
+  const [isQueryInitialized, setIsQueryInitialized] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const page = searchParams.get('page');
 
   const { locale } = useParams();
   const client = getClient();
+
   const { loading, error, data } = useQuery(GET_ARTICLE_PREVIEWS, {
-    variables: { locale },
+    variables: {
+      locale,
+      page: currentPage,
+      pageSize: 10,
+    },
     client,
     onCompleted: () => setIsQueryInitialized(false),
     onError: () => setIsQueryInitialized(false),
   });
 
   const previews = data?.articlePreviews.data;
+  const pageCount = data?.articlePreviews.meta.pagination.pageCount || 0;
 
-  gsap.registerPlugin(ScrollTrigger);
+  const handlePageChange = (nwePage: number): void => {
+    setCurrentPage(nwePage);
+
+    router.push(nwePage === 1 ? `/${pathname}` : `/${pathname}?page=${nwePage}`);
+  };
+
+  useEffect(() => {
+    setCurrentPage(Number(page) || 1);
+  }, [page]);
 
   useEffect(() => {
     setIsQueryInitialized(true);
   }, []);
+
+  gsap.registerPlugin(ScrollTrigger);
 
   useLayoutEffect(() => {
     if (window.innerWidth < 769) {
@@ -233,10 +254,12 @@ export const Home = (): JSX.Element => {
       <main className='mx-auto max-w-[85%] font-condensed mb-8'>
         {previews && (
           <>
-            <LastPostPreview className='scroll-animation' preview={previews[0].attributes} />
+            {currentPage === 1 && (
+              <LastPostPreview className='scroll-animation' preview={previews[0].attributes} />
+            )}
 
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8 md:mb-10 max-w-[1224px] mx-auto'>
-              {previews.slice(1).map(preview => (
+              {previews.slice(currentPage === 1 ? 1 : 0).map(preview => (
                 <PostPreview
                   className='scroll-animation'
                   preview={preview.attributes}
@@ -249,7 +272,11 @@ export const Home = (): JSX.Element => {
       </main>
 
       <nav className='mx-auto max-w-[85%] mb-8 flex justify-center'>
-        {data && <PaginationComponent />}
+        {pageCount > 1 && <PaginationComponent
+          count={pageCount}
+          page={currentPage}
+          onChange={handlePageChange}
+        />}
       </nav>
 
       <BackToTopButton locoScroll={locoScroll} />

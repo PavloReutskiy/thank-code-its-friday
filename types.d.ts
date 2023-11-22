@@ -53,4 +53,6 @@ interface Pagination {
 
 interface QueryVariables {
   locale: string | string[];
+  page: number;
+  pageSize: number;
 }

@@ -66,7 +66,7 @@ export const Home = (): JSX.Element => {
   const page = searchParams.get('page');
 
   const { locale } = useParams();
-  const client = getClient(); // test
+  const client = getClient();
 
   const { loading, error, data } = useQuery(GET_ARTICLE_PREVIEWS, {
     variables: {

@@ -3,8 +3,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: '127.0.0.1',
+        protocol: 'https',
+        hostname: 'thank-code-strapi-84mp2.ondigitalocean.app',
       },
     ],
   },

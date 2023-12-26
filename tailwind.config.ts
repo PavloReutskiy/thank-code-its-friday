@@ -16,6 +16,7 @@ const config: Config = {
     extend: {
       colors: {
         background: '#f5f5f5',
+        accent_background: '#ededed',
         accent_colour: '#D0E3F7',
         label_color: '#7F7F7F',
         title_color: '#333333',

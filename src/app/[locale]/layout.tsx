@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
 import ReduxProvider from '@/redux/provider';
+import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -29,11 +30,14 @@ export default async function RootLayout({ children, params: { locale } }: Props
   }
   return (
     <html lang={locale} className={inter.className}>
-      <body className='bg-background'>
+      <body className='flex flex-col min-h-screen bg-background'>
         <ReduxProvider>
           <NextIntlClientProvider locale={locale} messages={dictionaries}>
             <Navbar />
-            {children}
+            <div className='flex-grow'>
+              {children}
+            </div>
+            <Footer />
           </NextIntlClientProvider>
         </ReduxProvider>
       </body>

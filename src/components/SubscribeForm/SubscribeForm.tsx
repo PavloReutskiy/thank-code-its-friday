@@ -1,37 +1,42 @@
 'use client';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 import { TextField, Button } from '@mui/material';
 import { FC } from 'react';
+import { useTranslations } from 'next-intl';
 
 type Props = {
   className: string;
 };
 
+const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
 const validationSchema = Yup.object({
   email: Yup
     .string()
-    .email('Enter a valid email')
+    .matches(emailRegex, 'Enter a valid email')
     .required('Email is required'),
 });
 
 export const SubscribeForm: FC<Props> = ({ className }): JSX.Element => {
+  const t = useTranslations('Footer');
+
   const formik = useFormik({
     initialValues: {
       email: '',
     },
     validationSchema,
-    onSubmit: values => {
-      alert(JSON.stringify(
-        values, null, 2,
-      ));
+    onSubmit: (values, { resetForm }) => {
+      toast.success(`${values.email} subscribed successfully!`);
+      resetForm();
     },
   });
 
   return (
     <>
-      <h3 className=''>Explore More with Me</h3>
-      <p>Dive into the dev world with me.</p>
+      <h3 className='font-condensed text-2xl font-bold text-text_color mb-3'>{t('heading')}</h3>
+      <p className='font-condensed text-lg font-light text-text_color mb-3'>{t('text')}</p>
       <form onSubmit={formik.handleSubmit} className={className}>
         <TextField
           sx={{
@@ -70,9 +75,11 @@ export const SubscribeForm: FC<Props> = ({ className }): JSX.Element => {
               fontSize: '1rem',
               fontWeight: '700',
               transition: 'all 0.3s ease',
-              '&:hover': {
-                bgcolor: 'primary.main',
-                color: '#fff',
+              ['@media (min-width: 951px)']: {
+                '&:hover': {
+                  bgcolor: 'primary.main',
+                  color: '#fff',
+                },
               },
             },
           }}
@@ -81,7 +88,7 @@ export const SubscribeForm: FC<Props> = ({ className }): JSX.Element => {
           fullWidth
           type="submit"
         >
-          Subscribe
+          {t('subscribe')}
         </Button>
       </form>
     </>

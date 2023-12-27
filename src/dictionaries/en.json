@@ -4,5 +4,17 @@
     "about": "About",
     "contact": "Contact",
     "subscribe": "Subscribe"
+  },
+
+  "Footer": {
+    "heading": "Get the latest updates",
+    "text": "Explore More with Me",
+    "subscribe": "Subscribe",
+    "about": "About",
+    "contact": "Contact",
+    "policy": "Privacy Policy",
+    "follow": "Follow me",
+    "support": "Support Ukraine",
+    "rights": "© 2023 All rights reserved."
   }
 }

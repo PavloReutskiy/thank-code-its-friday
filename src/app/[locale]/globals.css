@@ -2,3 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+.Toastify__toast--success {
+  background-color: #1976d2 !important;
+}
+
+.link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.text {
+  display: block;
+  transition: .4s cubic-bezier(.86,.35,.44,.99);
+}
+
+@media (min-width: 951px) {
+  .link::before {
+    position: absolute;
+    content: attr(data-link-alt);
+    top: 100%;
+    opacity: 0;
+    transition: .4s cubic-bezier(.86,.35,.44,.99);
+  }
+  
+  .link:hover .text {
+    transform: translateY(-100%);
+  }
+
+  .link:hover::before {
+    top: 0;
+    opacity: 1;
+  }
+}

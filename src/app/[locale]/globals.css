@@ -25,7 +25,7 @@
     opacity: 0;
     transition: .4s cubic-bezier(.86,.35,.44,.99);
   }
-  
+
   .link:hover .text {
     transform: translateY(-100%);
   }

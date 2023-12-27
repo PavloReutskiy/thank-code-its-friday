@@ -48,8 +48,8 @@ export const BackToTopButton: FC<Props> = ({ locoScroll }): JSX.Element | null =
       >
         <Image
           src={arrow}
-          width={30}
-          height={30}
+          width={25}
+          height={25}
           alt='Back to top arrow'
         />
       </button>

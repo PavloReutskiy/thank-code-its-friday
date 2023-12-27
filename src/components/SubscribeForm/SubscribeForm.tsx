@@ -36,7 +36,7 @@ export const SubscribeForm: FC<Props> = ({ className }): JSX.Element => {
   return (
     <>
       <h3 className='font-condensed text-2xl font-bold text-text_color mb-3'>{t('heading')}</h3>
-      <p className='font-condensed text-lg font-light text-text_color mb-3'>{t('text')}</p>
+      <p className='font-condensed text-lg font-light text-text_color mb-4'>{t('text')}</p>
       <form onSubmit={formik.handleSubmit} className={className}>
         <TextField
           sx={{
@@ -65,8 +65,8 @@ export const SubscribeForm: FC<Props> = ({ className }): JSX.Element => {
           className="custom-button"
           sx={{
             '&.custom-button': {
-              bgcolor: '#D0E3F7',
-              color: '#000',
+              bgcolor: 'primary.main',
+              color: '#fff',
               fontFamily: 'Roboto Condensed',
               textTransform: 'capitalize',
               height: '3.5rem',
@@ -77,8 +77,8 @@ export const SubscribeForm: FC<Props> = ({ className }): JSX.Element => {
               transition: 'all 0.3s ease',
               ['@media (min-width: 951px)']: {
                 '&:hover': {
-                  bgcolor: 'primary.main',
-                  color: '#fff',
+                  bgcolor: '#D0E3F7',
+                  color: '#000',
                 },
               },
             },

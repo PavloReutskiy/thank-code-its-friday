@@ -1,0 +1,19 @@
+.social-icon {
+  color: #333333;
+  transition: color 0.3s ease;
+}
+
+.united-icon {
+  color: #1976d2;
+  transition: color 0.3s ease;
+}
+
+@media (min-width: 951px) {
+  .social-icon:hover {
+    color: #1976d2;
+  }
+
+  .united-icon:hover {
+    color: #ffd800;
+  }
+}

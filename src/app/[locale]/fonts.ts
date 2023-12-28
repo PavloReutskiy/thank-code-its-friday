@@ -1,7 +1,7 @@
 import { Inter, Roboto_Mono, Roboto_Condensed } from 'next/font/google';
 
 export const inter = Inter({
-  weight: ['400', '700'],
+  weight: ['400', '600', '700'],
   subsets: ['latin', 'cyrillic'],
   display: 'swap',
 });

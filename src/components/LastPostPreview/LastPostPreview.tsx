@@ -1,5 +1,4 @@
 'use client';
-import './LastPostPreview.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import formatData from '@/utils/formatData';
@@ -75,7 +74,7 @@ export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element 
           </h2>
 
           <div className='
-            flex justify-start gap-x-4 flex-wrap
+            flex justify-start gap-x-4 lg:gap-x-1 flex-wrap
             mb-2 lg:mb-4
             text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
           '>

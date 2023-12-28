@@ -1,0 +1,12 @@
+.before-element::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: #1976d2;
+  border-radius: 5px;
+}
+
+.code-style {
+  @apply text-lg bg-gray-200 text-sky-800 px-1 py-0.5 rounded-md;
+}

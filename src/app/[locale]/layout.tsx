@@ -36,7 +36,7 @@ export default async function RootLayout({ children, params: { locale } }: Props
         <ReduxProvider>
           <NextIntlClientProvider locale={locale} messages={dictionaries}>
             <Navbar />
-            <div className='flex-grow'>
+            <div className='flex-grow max-w-full'>
               {children}
             </div>
             <Footer />

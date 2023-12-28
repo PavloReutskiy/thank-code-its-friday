@@ -18,6 +18,7 @@ const config: Config = {
         background: '#f5f5f5',
         accent_background: '#ededed',
         accent_colour: '#D0E3F7',
+        dark_accent_colour: '#1976d2',
         label_color: '#7F7F7F',
         title_color: '#333333',
         text_color: '#151515',

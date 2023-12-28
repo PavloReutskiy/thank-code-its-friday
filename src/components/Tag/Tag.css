@@ -3,10 +3,6 @@
   transition: 0.4s color ease-in-out;
 }
 
-.tag:hover {
-  color: #151515;
-}
-
 .tag::before {
   content: '';
   position: absolute;
@@ -16,11 +12,17 @@
   height: 100%;
   z-index: -1;
   background-color: #D0E3F7;
-  border-radius: 25px;
+  border-radius: 12px;
   transition: 0.4s all ease-in-out;
 }
 
-.tag:hover::before {
-  left: 0;
-  width: 100%;
+@media (min-width: 951px) {
+  .tag:hover {
+    color: #151515;
+  }
+
+  .tag:hover::before {
+    left: 0;
+    width: 100%;
+  }
 }

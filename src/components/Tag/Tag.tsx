@@ -1,3 +1,4 @@
+import './Tag.css';
 import { FC } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -13,7 +14,7 @@ export const Tag: FC<Props> = ({ tagName, color }): JSX.Element => {
     <button
       type="button"
       onClick={():void => router.push(`/tags/${tagName}`)}
-      className='tag py-1 md:pr-1 md:pl-1'
+      className='tag py-1 lg:pr-2 lg:pl-2'
     >
       <span style={{ color }}>#</span>
       {tagName}

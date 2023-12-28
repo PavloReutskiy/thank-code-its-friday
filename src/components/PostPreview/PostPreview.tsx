@@ -1,9 +1,6 @@
-import './PostPreview.css';
 import Link from 'next/link';
 import Image from 'next/image';
-// import { useRouter } from 'next/navigation';
 import formatData from '@/utils/formatData';
-// import closures from 'public/assets/main/closures.png';
 import { FC } from 'react';
 import clsx from 'clsx';
 import { Tag } from '../Tag';
@@ -71,7 +68,7 @@ export const PostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
           </h2>
 
           <div className='
-            flex justify-start gap-x-4 flex-wrap
+            flex justify-start gap-x-4 lg:gap-x-1 flex-wrap
             mb-2 lg:mb-4
             text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal
           '>

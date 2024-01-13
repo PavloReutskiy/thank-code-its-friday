@@ -11,7 +11,6 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import { BackToTopButton } from '@/components/BackToTopButton';
 import { Tag } from '@/components/Tag';
 import { toast } from 'react-toastify';
-import { LinkedinShareButton, EmailShareButton } from 'next-share';
 
 hljs.registerLanguage('javascript', javascript);
 
@@ -166,19 +165,7 @@ const Post = (): JSX.Element => {
           <div className='flex justify-between items-center gap-3'>
             <p className='text-label_color font-sans text-sm lg:text-base xl:text-l leading-normal font-bold'>Share:</p>
 
-            <LinkedinShareButton url={'https://thankcodeitsfriday.com/post/the-magic-of-closures-in-javaScript-for-beginners'}>
-              <button type='button' className='flex justify-between items-center'>
-                <Image
-                  src='/assets/linkedin-icon.svg'
-                  width={25}
-                  height={25}
-                  alt='Linkedin logo'
-                  className=''
-                />
-              </button>
-            </LinkedinShareButton>
-
-            {/* <Link
+            <Link
               role='button'
               href={`mailto:?subject=${
                 encodeURIComponent('The Magic of Closures in JavaScript for Beginners')
@@ -192,28 +179,9 @@ const Post = (): JSX.Element => {
                 alt='Email icon'
                 className=''
               />
-            </Link> */}
-            <EmailShareButton
-              url={fullUrl}
-              subject={'The Magic of Closures in JavaScript for Beginners'}
-              body='Check out this article: '
-            >
-              <button type='button' className='flex justify-between items-center'>
-                <Image
-                  src='/assets/email-icon.svg'
-                  width={25}
-                  height={25}
-                  alt='Email icon'
-                  className=''
-                />
-              </button>
-            </EmailShareButton>
+            </Link>
 
-            <button
-              type='button'
-              onClick={handleURLCopy}
-              className='flex justify-between items-center'
-            >
+            <button type='button' onClick={handleURLCopy}>
               <Image
                 src='/assets/link-icon.svg'
                 width={25}

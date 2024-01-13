@@ -11,6 +11,7 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import { BackToTopButton } from '@/components/BackToTopButton';
 import { Tag } from '@/components/Tag';
 import { toast } from 'react-toastify';
+import { LinkedinShareButton, EmailShareButton } from 'next-share';
 
 hljs.registerLanguage('javascript', javascript);
 
@@ -165,17 +166,19 @@ const Post = (): JSX.Element => {
           <div className='flex justify-between items-center gap-3'>
             <p className='text-label_color font-sans text-sm lg:text-base xl:text-l leading-normal font-bold'>Share:</p>
 
-            <button type='button'>
-              <Image
-                src='/assets/linkedin-icon.svg'
-                width={25}
-                height={25}
-                alt='Linkedin logo'
-                className=''
-              />
-            </button>
+            <LinkedinShareButton url={fullUrl}>
+              <button type='button'>
+                <Image
+                  src='/assets/linkedin-icon.svg'
+                  width={25}
+                  height={25}
+                  alt='Linkedin logo'
+                  className=''
+                />
+              </button>
+            </LinkedinShareButton>
 
-            <Link
+            {/* <Link
               role='button'
               href={`mailto:?subject=${
                 encodeURIComponent('The Magic of Closures in JavaScript for Beginners')
@@ -189,7 +192,22 @@ const Post = (): JSX.Element => {
                 alt='Email icon'
                 className=''
               />
-            </Link>
+            </Link> */}
+            <EmailShareButton
+              url={fullUrl}
+              subject={'The Magic of Closures in JavaScript for Beginners'}
+              body='Check out this article: '
+            >
+              <button type='button'>
+                <Image
+                  src='/assets/email-icon.svg'
+                  width={25}
+                  height={25}
+                  alt='Email icon'
+                  className=''
+                />
+              </button>
+            </EmailShareButton>
 
             <button type='button' onClick={handleURLCopy}>
               <Image

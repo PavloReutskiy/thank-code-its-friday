@@ -166,8 +166,8 @@ const Post = (): JSX.Element => {
           <div className='flex justify-between items-center gap-3'>
             <p className='text-label_color font-sans text-sm lg:text-base xl:text-l leading-normal font-bold'>Share:</p>
 
-            <LinkedinShareButton url={fullUrl}>
-              <button type='button'>
+            <LinkedinShareButton url={`${fullUrl}}`}>
+              <button type='button' className='flex justify-between items-center'>
                 <Image
                   src='/assets/linkedin-icon.svg'
                   width={25}
@@ -198,7 +198,7 @@ const Post = (): JSX.Element => {
               subject={'The Magic of Closures in JavaScript for Beginners'}
               body='Check out this article: '
             >
-              <button type='button'>
+              <button type='button' className='flex justify-between items-center'>
                 <Image
                   src='/assets/email-icon.svg'
                   width={25}
@@ -209,7 +209,11 @@ const Post = (): JSX.Element => {
               </button>
             </EmailShareButton>
 
-            <button type='button' onClick={handleURLCopy}>
+            <button
+              type='button'
+              onClick={handleURLCopy}
+              className='flex justify-between items-center'
+            >
               <Image
                 src='/assets/link-icon.svg'
                 width={25}

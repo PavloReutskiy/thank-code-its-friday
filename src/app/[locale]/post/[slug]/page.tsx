@@ -2,6 +2,7 @@
 import './page.css';
 import 'highlight.js/styles/ir-black.css';
 import React, { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
@@ -54,12 +55,24 @@ const Post = (): JSX.Element => {
   const [copied, setCopied] = useState(false);
   const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null);
   const sideRef = useRef(null);
+  const pathname = usePathname();
+  const baseUrl = process.env.NEXT_PUBLIC_DOMAIN;
+  const fullUrl = `${baseUrl}${pathname}`;
 
-  const handleCopy = async():Promise<void> => {
+  const handleCodeCopy = async():Promise<void> => {
     try {
       await navigator.clipboard.writeText(codeString);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      toast.error(`Copy failed: ${error}`);
+    }
+  };
+
+  const handleURLCopy = async():Promise<void> => {
+    try {
+      await navigator.clipboard.writeText(fullUrl);
+      toast.success('Copied to Clipboard!');
     } catch (error) {
       toast.error(`Copy failed: ${error}`);
     }
@@ -162,7 +175,13 @@ const Post = (): JSX.Element => {
               />
             </button>
 
-            <button type='button'>
+            <Link
+              role='button'
+              href={`mailto:?subject=${
+                encodeURIComponent('The Magic of Closures in JavaScript for Beginners')
+              }&body=${
+                encodeURIComponent('Check out this article: ') +
+                encodeURIComponent(fullUrl)}`}>
               <Image
                 src='/assets/email-icon.svg'
                 width={25}
@@ -170,9 +189,9 @@ const Post = (): JSX.Element => {
                 alt='Email icon'
                 className=''
               />
-            </button>
+            </Link>
 
-            <button type='button'>
+            <button type='button' onClick={handleURLCopy}>
               <Image
                 src='/assets/link-icon.svg'
                 width={25}
@@ -280,7 +299,7 @@ const Post = (): JSX.Element => {
               <button
                 type='button'
                 className='text-xs text-gray-100 font-normal'
-                onClick={handleCopy}
+                onClick={handleCodeCopy}
               >
                 <span>{copied ? 'Copied!' : 'Copy'}</span>
               </button>
@@ -343,7 +362,7 @@ const Post = (): JSX.Element => {
               <button
                 type='button'
                 className='text-xs text-gray-100 font-normal'
-                onClick={handleCopy}
+                onClick={handleCodeCopy}
               >
                 <span>{copied ? 'Copied!' : 'Copy'}</span>
               </button>
@@ -366,7 +385,7 @@ const Post = (): JSX.Element => {
               <button
                 type='button'
                 className='text-xs text-gray-100 font-normal'
-                onClick={handleCopy}
+                onClick={handleCodeCopy}
               >
                 <span>{copied ? 'Copied!' : 'Copy'}</span>
               </button>

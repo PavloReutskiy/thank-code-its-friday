@@ -7,6 +7,7 @@ const nextConfig = {
         hostname: 'thank-code-strapi-84mp2.ondigitalocean.app',
       },
     ],
+    domains: ['thank-code-strapi-84mp2.ondigitalocean.app'],
   },
 };
 

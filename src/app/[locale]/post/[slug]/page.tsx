@@ -58,6 +58,8 @@ const Post = (): JSX.Element => {
   const pathname = usePathname();
   const baseUrl = process.env.NEXT_PUBLIC_DOMAIN;
   const fullUrl = `${baseUrl}${pathname}`;
+  const tempTitle = 'The Magic of Closures in JavaScript for Beginners'; // удалить когда будет заголовок с API
+  const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(fullUrl)}&text=${encodeURIComponent(`Article: ${tempTitle}`)}`;
 
   const handleCodeCopy = async():Promise<void> => {
     try {
@@ -164,6 +166,18 @@ const Post = (): JSX.Element => {
 
           <div className='flex justify-between items-center gap-3'>
             <p className='text-label_color font-sans text-sm lg:text-base xl:text-l leading-normal font-bold'>Share:</p>
+
+            <Link href={shareUrl} target="_blank">
+              <button type='button' className='flex items-center'>
+                <Image
+                  src='/assets/telegram-icon.svg'
+                  width={25}
+                  height={25}
+                  alt='Link icon'
+                  className=''
+                />
+              </button>
+            </Link>
 
             <Link
               role='button'

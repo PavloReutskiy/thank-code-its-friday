@@ -166,7 +166,7 @@ const Post = (): JSX.Element => {
           <div className='flex justify-between items-center gap-3'>
             <p className='text-label_color font-sans text-sm lg:text-base xl:text-l leading-normal font-bold'>Share:</p>
 
-            <LinkedinShareButton url={`${fullUrl}}`}>
+            <LinkedinShareButton url={'https://thankcodeitsfriday.com/post/the-magic-of-closures-in-javaScript-for-beginners'}>
               <button type='button' className='flex justify-between items-center'>
                 <Image
                   src='/assets/linkedin-icon.svg'

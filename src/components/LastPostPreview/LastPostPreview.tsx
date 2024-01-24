@@ -22,6 +22,7 @@ export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element 
     tags,
     description,
     altText,
+    slug,
     image,
   } = preview;
 
@@ -35,7 +36,7 @@ export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element 
 
   return (
     <Link
-      href='/post/react-portals-vs-modal-windows-a-practical-guide'
+      href={`/post/${slug}`}
       className={clsx('block max-w-[1224px] mx-auto cursor-default', className)}
     >
       <section className='

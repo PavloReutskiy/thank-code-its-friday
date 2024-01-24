@@ -21,6 +21,7 @@ export const PostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
     tags,
     description,
     altText,
+    slug,
     image,
   } = preview;
 
@@ -37,7 +38,7 @@ export const PostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
       flex flex-col px-4 sm:px-5 py-5 sm:py-6 md:p-8
       border border-border_color rounded-3xl shadow`, className)
     }>
-      <Link href='/post/the-magic-of-closures-in-javaScript-for-beginners' className='cursor-default'>
+      <Link href={`/post/${slug}`} className='cursor-default'>
         <div className='
           max-w-[100%] max-h-[45vw] md:max-h-[25vw] xxl:max-h-[360px]
           overflow-hidden rounded-3xl flex justify-center items-center mb-4 lg:mb-8

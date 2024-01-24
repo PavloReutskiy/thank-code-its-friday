@@ -32,6 +32,7 @@ const GET_ARTICLE_PREVIEWS: TypedDocumentNode<ArticlePreviewsResponse, QueryVari
           }
           description
           altText
+          slug
           locale
           image {
             data {

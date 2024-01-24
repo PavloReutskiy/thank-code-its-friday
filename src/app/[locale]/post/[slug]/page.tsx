@@ -236,7 +236,7 @@ const Post = (): JSX.Element => {
             understand. In this article, I want to explain closures in JavaScript in a very simple way.
           </p>
 
-          <p className='mb-1'>To understand closures, you need to know three main concepts:</p>
+          <p className='mb-4'>To understand closures, you need to know three main concepts:</p>
           <ul className='mb-4 flex flex-col gap-1'>
             <li className='before-element flex items-center gap-2'>Scope</li>
             <li className='before-element flex items-center gap-2'>Lexical environment</li>
@@ -281,7 +281,7 @@ const Post = (): JSX.Element => {
             <code className="code-style">const</code> variables), makes a new local scope.
           </p>
 
-          <p className='mb-1 italic'>In JavaScript, there are 2 main scopes:</p>
+          <p className='mb-4 italic'>In JavaScript, there are 2 main scopes:</p>
           <ol className='mb-4 flex flex-col gap-1 list-decimal pl-6'>
             <li className=''>
               <span className='font-bold'>Global Scope</span>{' '}
@@ -299,7 +299,7 @@ const Post = (): JSX.Element => {
 
           <div className='mb-4'>
             <div className='flex justify-between bg-[#504e4e] rounded-tl-2xl rounded-tr-2xl px-5 py-2'>
-              <p className='text-xs text-gray-100 font-normal'>javascript</p>
+              <span className='text-xs text-gray-100 font-normal'>javascript</span>
               <button
                 type='button'
                 className='text-xs text-gray-100 font-normal'
@@ -362,7 +362,7 @@ const Post = (): JSX.Element => {
 
           <div className='mb-4'>
             <div className='flex justify-between bg-[#504e4e] rounded-tl-2xl rounded-tr-2xl px-5 py-2'>
-              <p className='text-xs text-gray-100 font-normal'>example</p>
+              <span className='text-xs text-gray-100 font-normal'>example</span>
               <button
                 type='button'
                 className='text-xs text-gray-100 font-normal'
@@ -385,7 +385,7 @@ const Post = (): JSX.Element => {
 
           <div className='mb-4'>
             <div className='flex justify-between bg-[#504e4e] rounded-tl-2xl rounded-tr-2xl px-5 py-2'>
-              <p className='text-xs text-gray-100 font-normal'>example</p>
+              <span className='text-xs text-gray-100 font-normal'>example</span>
               <button
                 type='button'
                 className='text-xs text-gray-100 font-normal'

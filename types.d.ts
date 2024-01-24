@@ -27,6 +27,7 @@ interface Preview {
   },
   description: string;
   altText: string;
+  slug: string;
   locale: string;
   image: {
     data: {
@@ -55,4 +56,46 @@ interface QueryVariables {
   locale: string | string[];
   page: number;
   pageSize: number;
+}
+
+interface Article {
+  title: string;
+  date: string;
+  readTime: string;
+  slug: string;
+  locale: string;
+  altText: string;
+  tags: {
+    data: Array<{
+      attributes: {
+        tagName: string;
+        color: string;
+      }
+    }>
+  },
+  image: {
+    data: {
+      attributes: {
+        url: string;
+        width: string;
+        height: string;
+      };
+    };
+  };
+  content: RichTextContent[];
+}
+
+interface RichTextContent {
+  type: string;
+  format?: string;
+  level?: number
+  children: Array<RichTextContent | RichText>;
+}
+
+interface RichText {
+  type: string;
+  text: string;
+  bold?: boolean;
+  italic?: boolean;
+  code?: boolean;
 }

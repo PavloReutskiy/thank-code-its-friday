@@ -27,7 +27,7 @@ export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element 
   } = preview;
 
   const { url, width, height } = image.data.attributes;
-  const imageUrl = process.env.NEXT_PUBLIC_BASE_URL + url;
+  const imageUrl = process.env.NODE_ENV === 'production' ? url : process.env.NEXT_PUBLIC_BASE_URL + url;
 
   const tagList = tags.data.map(tag => ({
     name: tag.attributes.tagName,

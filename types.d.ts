@@ -13,6 +13,12 @@ interface ArticlePreviewsResponse {
   };
 }
 
+interface ArticlesResponse {
+  articles: {
+    data: Array<ArticleWithID>;
+  };
+}
+
 interface Preview {
   date: string;
   readTime: string;
@@ -40,22 +46,10 @@ interface Preview {
   };
 }
 
-interface PreviewWithID {
-  id: string;
-  attributes: Preview;
-}
-
-interface Pagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-}
-
-interface QueryVariables {
-  locale: string | string[];
-  page: number;
-  pageSize: number;
+interface NextAndPreviousAticle {
+  data: {
+    attributes: Partial<Preview>;
+  };
 }
 
 interface Article {
@@ -77,25 +71,56 @@ interface Article {
     data: {
       attributes: {
         url: string;
-        width: string;
-        height: string;
       };
     };
   };
-  content: RichTextContent[];
+  content: RootNode[];
+  previousArticle?: NextAndPreviousAticle;
+  nextArticle?: NextAndPreviousAticle;
 }
 
-interface RichTextContent {
-  type: string;
-  format?: string;
-  level?: number
-  children: Array<RichTextContent | RichText>;
+// interface RichTextContent {
+//   type: string;
+//   format?: string;
+//   level?: number
+//   children: Array<RichTextContent | RichText>;
+// }
+
+// interface RichText {
+//   type: string;
+//   text: string;
+//   bold?: boolean;
+//   italic?: boolean;
+//   code?: boolean;
+// }
+
+interface PreviewWithID {
+  id: string;
+  attributes: Preview;
 }
 
-interface RichText {
-  type: string;
-  text: string;
-  bold?: boolean;
-  italic?: boolean;
-  code?: boolean;
+interface ArticleWithID {
+  id: string;
+  attributes: Article;
+}
+
+interface Pagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
+
+interface QueryVariables {
+  locale: string | string[];
+  page?: number;
+  pageSize?: number;
+  slug?: string | string[];
+}
+
+interface ArticleInfo {
+  imageUrl: string | undefined;
+  title: string | undefined;
+  altText: string | undefined;
+  slug: string | undefined;
 }

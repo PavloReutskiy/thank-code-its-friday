@@ -51,6 +51,7 @@ export const BackToTopButton: FC<Props> = ({ locoScroll }): JSX.Element | null =
           width={25}
           height={25}
           alt='Back to top arrow'
+          className='aspect-square'
         />
       </button>
     ) : null

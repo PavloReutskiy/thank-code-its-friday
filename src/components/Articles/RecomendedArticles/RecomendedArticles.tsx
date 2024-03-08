@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 type Props = {
   previousArticle: NextAndPreviousAticle;
@@ -8,6 +9,8 @@ type Props = {
 };
 
 export const RecomendedArticles: FC<Props> = ({ previousArticle, nextArticle }): JSX.Element => {
+  const t = useTranslations('Post');
+
   const getArticleInfo = (article: NextAndPreviousAticle): ArticleInfo => {
     const url = article.data.attributes.image?.data.attributes?.url;
     const { title } = article.data.attributes;
@@ -60,9 +63,9 @@ export const RecomendedArticles: FC<Props> = ({ previousArticle, nextArticle }):
 
           <div className='text-left max-w-[320px]'>
             <p className='
-              text-label_color font-sans uppercase text-sm leading-normal font-bold tracking-widest
+              text-label_color font-sans uppercase text-sm leading-normal font-bold tracking-widest mb-2
             '>
-              Previous
+              {t('previous')}
             </p>
             <p className='font-bold capitalize text-black text-lg leading-tight'>
               {previousArticleTitle}
@@ -77,9 +80,9 @@ export const RecomendedArticles: FC<Props> = ({ previousArticle, nextArticle }):
         <Link href={`/post/${nextArticleSlug}`} className="flex justify-between items-center gap-4">
           <div className='text-left order-2 max-w-[320px] md:order-1 md:text-right'>
             <p className='
-            text-label_color font-sans uppercase text-sm leading-normal font-bold tracking-widest
+            text-label_color font-sans uppercase text-sm leading-normal font-bold tracking-widest mb-2
             '>
-              Next
+              {t('next')}
             </p>
             <p className='font-bold capitalize text-black text-lg leading-tight'>
               {nextArticleTitle}

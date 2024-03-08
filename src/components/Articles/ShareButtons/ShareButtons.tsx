@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { toast } from 'react-toastify';
+import { useTranslations } from 'next-intl';
 
 type Props = {
   title: string;
@@ -10,6 +11,7 @@ type Props = {
 
 export const ShareButtons: FC<Props> = ({ title }): JSX.Element => {
   const pathname = usePathname();
+  const t = useTranslations('Post');
 
   const baseUrl = process.env.NEXT_PUBLIC_DOMAIN;
   const fullUrl = `${baseUrl}${pathname}`;
@@ -26,7 +28,9 @@ export const ShareButtons: FC<Props> = ({ title }): JSX.Element => {
 
   return (
     <div className='flex justify-between items-center gap-3'>
-      <p className='text-label_color font-sans text-sm lg:text-base xl:text-l leading-normal font-bold'>Share:</p>
+      <p className='text-label_color font-sans text-sm lg:text-base xl:text-l leading-normal font-bold'>
+        {t('share')}:
+      </p>
 
       <Link href={shareUrl} target="_blank">
         <button type='button' className='flex items-center'>

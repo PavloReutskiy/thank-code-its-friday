@@ -11,7 +11,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
 export const metadata: Metadata = {
-  title: 'Thank code it\'s friday',
+  title: {
+    default: 'Thank code it\'s friday',
+    template: '%s | TCIF Blog',
+  },
   description: 'Welcome to my personal blog dedicated to web development.' +
   'Join me as we explore the world of programming, experiment with new' +
   'technologies and approaches, and grow together as professional web developers.',

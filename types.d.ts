@@ -79,21 +79,6 @@ interface Article {
   nextArticle?: NextAndPreviousAticle;
 }
 
-// interface RichTextContent {
-//   type: string;
-//   format?: string;
-//   level?: number
-//   children: Array<RichTextContent | RichText>;
-// }
-
-// interface RichText {
-//   type: string;
-//   text: string;
-//   bold?: boolean;
-//   italic?: boolean;
-//   code?: boolean;
-// }
-
 interface PreviewWithID {
   id: string;
   attributes: Preview;
@@ -124,3 +109,30 @@ interface ArticleInfo {
   altText: string | undefined;
   slug: string | undefined;
 }
+
+// #region SEO
+interface SEO {
+  title: string;
+  description: string;
+  image: {
+    data: {
+      attributes: {
+        url: string;
+      };
+    };
+  };
+}
+
+interface ArticleSEOData {
+  id: string;
+  attributes: {
+    SEO: SEO;
+  };
+}
+
+interface ArticlesSEOResponse {
+  articles: {
+    data: Array<ArticleSEOData>;
+  };
+}
+// #endregion

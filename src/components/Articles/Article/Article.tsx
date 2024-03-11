@@ -276,7 +276,11 @@ export const Article = (): JSX.Element => {
                 },
                 code: ({ children }) => <CodeBlock>{children}</CodeBlock>,
                 image: ({ image }) => <ArticleImage image={image} />,
-                link: ({ children, url }) => <Link href={url} className='text-red-600'>{children}</Link>,
+                link: ({ children, url }) => (
+                  <Link href={url} className='text-[#1976d2] lg:hover:underline underline-offset-4'>
+                    {children}
+                  </Link>
+                ),
               }}
               modifiers={{
                 bold: ({ children }) => <span className='font-bold'>{children}</span>,

@@ -20,6 +20,7 @@ import { generateId } from '@/utils/generateId';
 import { CodeBlock } from '@/components/Articles/CodeBlock';
 import { ArticleImage } from '@/components/Articles/ArticleImage';
 import { ArticleJsonLd } from 'next-seo';
+import Link from 'next/link';
 
 const GET_ARTICLE: TypedDocumentNode<ArticlesResponse, QueryVariables> = gql`
   query GetArticle($locale: I18NLocaleCode!, $slug: String!) {
@@ -264,7 +265,7 @@ export const Article = (): JSX.Element => {
                     case 2:
                       return <h2 id={id} className='heading-h2'>{children}</h2>;
                     case 3:
-                      return <h3>{children}</h3>;
+                      return <h3 id={id} className='heading-h3'>{children}</h3>;
                     case 4:
                       return <h4>{children}</h4>;
                     case 5:
@@ -275,6 +276,7 @@ export const Article = (): JSX.Element => {
                 },
                 code: ({ children }) => <CodeBlock>{children}</CodeBlock>,
                 image: ({ image }) => <ArticleImage image={image} />,
+                link: ({ children, url }) => <Link href={url} className='text-red-600'>{children}</Link>,
               }}
               modifiers={{
                 bold: ({ children }) => <span className='font-bold'>{children}</span>,

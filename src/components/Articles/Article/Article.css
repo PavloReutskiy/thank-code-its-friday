@@ -32,6 +32,12 @@
   @apply font-semibold text-black;
 }
 
+.heading-h3 {
+  @apply mb-4 pt-2;
+  @apply text-xl md:text-2xl;
+  @apply font-semibold text-black;
+}
+
 .tag-wrapper {
   @apply flex flex-wrap justify-start items-start content-start gap-x-3 lg:gap-x-1;
   @apply text-label_color font-sans text-base md:text-lg font-normal;

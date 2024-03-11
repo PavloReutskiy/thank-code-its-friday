@@ -12,6 +12,7 @@ import getClient from '@/utils/graphql-client';
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Loader } from '../Loader';
 import { ErrorMessage } from '../ErrorMessage';
+import { WebPageJsonLd } from 'next-seo';
 
 const GET_ARTICLE_PREVIEWS: TypedDocumentNode<ArticlePreviewsResponse, QueryVariables> = gql`
   query GetPreviews($locale: I18NLocaleCode!, $page: Int, $pageSize: Int) {
@@ -250,6 +251,24 @@ export const Home = (): JSX.Element => {
             Thank&nbsp;code it’s&nbsp;friday
           </div>
         </h1>
+
+        <WebPageJsonLd
+          useAppDir={true}
+          description={locale === 'en'
+            ? 'Welcome to my personal blog dedicated to web development.' +
+              'Join me as we explore the world of programming, experiment with new' +
+              'technologies and approaches, and grow together as professional web developers.'
+            : 'Ласкаво прошу до мого блогу, який присвячено веб-розробці.' +
+              'Приєднуйтесь до мене, аби разом досліджувати світ програмування, експериментувати' +
+              'з новими технологіями та підходами, та разом рости як професійні веб-розробники.'
+          }
+          id='https://thankcodeitsfriday.com'
+          lastReviewed="2023-07-10T08:00:00+08:00"
+          reviewedBy={{
+            type: 'Person',
+            name: locale === 'en' ? 'Pavlo Reutskyi' : 'Павло Реуцький',
+          }}
+        />
       </header>
 
       <main className='mx-auto max-w-[85%] font-condensed mb-8'>

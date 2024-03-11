@@ -19,6 +19,7 @@ import { TableOfContents } from '@/components/Articles/TableOfContents';
 import { generateId } from '@/utils/generateId';
 import { CodeBlock } from '@/components/Articles/CodeBlock';
 import { ArticleImage } from '@/components/Articles/ArticleImage';
+import { ArticleJsonLd } from 'next-seo';
 
 const GET_ARTICLE: TypedDocumentNode<ArticlesResponse, QueryVariables> = gql`
   query GetArticle($locale: I18NLocaleCode!, $slug: String!) {
@@ -80,6 +81,17 @@ const GET_ARTICLE: TypedDocumentNode<ArticlesResponse, QueryVariables> = gql`
               }
             }
           }
+          SEO {
+            title
+            description
+            image {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -114,6 +126,7 @@ export const Article = (): JSX.Element => {
     content,
     previousArticle,
     nextArticle,
+    SEO,
   } = article ?? {};
 
   const tagList = tags?.data.map(tag => ({
@@ -183,6 +196,25 @@ export const Article = (): JSX.Element => {
         <h1 className='heading-h1'>
           {title}
         </h1>
+
+        {title && articleMainImage && date && SEO && (
+          <ArticleJsonLd
+            useAppDir={true}
+            type="BlogPosting"
+            url={`https://thankcodeitsfriday.com/${locale}/post/${slug}`}
+            title={title}
+            images={[articleMainImage?.data.attributes.url]}
+            datePublished={date}
+            dateModified={date}
+            authorName={[
+              {
+                name: locale === 'en' ? 'Pavlo Reutskyi' : 'Павло Реуцький',
+                url: 'https://thankcodeitsfriday.com/about',
+              },
+            ]}
+            description={SEO.description}
+          />
+        )}
 
         <div className='flex justify-between items-center max-w-[800px] mx-auto mb-4'>
           {date && readTime && (

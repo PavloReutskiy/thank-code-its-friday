@@ -35,20 +35,20 @@ export const SubscribeForm: FC<Props> = ({ className }): JSX.Element => {
 
   return (
     <>
-      <h3 className='font-condensed text-2xl font-bold text-text_color mb-3'>{t('heading')}</h3>
-      <p className='font-condensed text-lg font-light text-text_color mb-4'>{t('text')}</p>
+      <h3 className='font-sans text-2xl font-bold text-text_color mb-3'>{t('heading')}</h3>
+      <p className='font-sans text-lg font-light text-text_color mb-4'>{t('text')}</p>
       <form onSubmit={formik.handleSubmit} className={className}>
         <TextField
           sx={{
             height: '3.5rem',
-            fontFamily: 'Roboto Condensed',
+            fontFamily: 'Inter',
             transition: 'all 0.3s ease',
             fontSize: '1rem',
             '& .MuiOutlinedInput-notchedOutline': {
               borderRadius: '1.25rem',
             },
             '& .MuiInputBase-input': {
-              fontFamily: 'Roboto Condensed',
+              fontFamily: 'Inter',
             },
           }}
           fullWidth
@@ -67,7 +67,7 @@ export const SubscribeForm: FC<Props> = ({ className }): JSX.Element => {
             '&.custom-button': {
               bgcolor: 'primary.main',
               color: '#fff',
-              fontFamily: 'Roboto Condensed',
+              fontFamily: 'Inter',
               textTransform: 'capitalize',
               height: '3.5rem',
               borderRadius: '1.25rem',

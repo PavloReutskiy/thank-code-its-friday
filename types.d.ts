@@ -77,6 +77,7 @@ interface Article {
   content: RootNode[];
   previousArticle?: NextAndPreviousAticle;
   nextArticle?: NextAndPreviousAticle;
+  SEO: SEO;
 }
 
 interface PreviewWithID {

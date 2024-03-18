@@ -26,7 +26,10 @@ export const CodeBlock: FC<Props> = ({ children }) => {
   return (
     <div className='mb-4'>
       <div className='flex justify-between bg-[#504e4e] rounded-tl-2xl rounded-tr-2xl px-5 py-2'>
-        <span className='text-xs text-gray-100 font-normal'>{language}</span>
+        <span className='text-xs text-gray-100 font-normal'>
+          {language}
+        </span>
+
         <button
           type='button'
           className='text-xs text-gray-100 font-normal'

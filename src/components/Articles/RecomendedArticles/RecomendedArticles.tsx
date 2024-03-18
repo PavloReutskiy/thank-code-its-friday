@@ -1,3 +1,4 @@
+import './RecomendedArticles.css';
 import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -46,7 +47,10 @@ export const RecomendedArticles: FC<Props> = ({ previousArticle, nextArticle }):
   return (
     <div className='pt-10 flex justify-between items-start flex-col md:items-center md:flex-row gap-7'>
       {previousArticleImageUrl && previousArticleImageAltText && (
-        <Link href={`/post/${previousArticleSlug}`} className="flex justify-between items-center gap-4">
+        <Link
+          href={`/post/${previousArticleSlug}`}
+          className="recomended-link"
+        >
           <div className='relative min-w-[90px] min-h-[90px]'>
             <Image
               src={previousArticleImageUrl}
@@ -62,12 +66,11 @@ export const RecomendedArticles: FC<Props> = ({ previousArticle, nextArticle }):
           </div>
 
           <div className='text-left max-w-[320px]'>
-            <p className='
-              text-label_color font-sans uppercase text-sm leading-normal font-bold tracking-widest mb-2
-            '>
+            <p className='recomended-label'>
               {t('previous')}
             </p>
-            <p className='font-bold capitalize text-black text-lg leading-tight'>
+
+            <p className='recomended-title'>
               {previousArticleTitle}
             </p>
           </div>
@@ -77,14 +80,15 @@ export const RecomendedArticles: FC<Props> = ({ previousArticle, nextArticle }):
       <div className='w-px h-14 bg-border_color opacity-60 hidden md:block'></div>
 
       {nextArticleImageUrl && nextArticleImageAltText && (
-        <Link href={`/post/${nextArticleSlug}`} className="flex justify-between items-center gap-4">
+        <Link
+          href={`/post/${nextArticleSlug}`}
+          className="recomended-link"
+        >
           <div className='text-left order-2 max-w-[320px] md:order-1 md:text-right'>
-            <p className='
-            text-label_color font-sans uppercase text-sm leading-normal font-bold tracking-widest mb-2
-            '>
+            <p className='recomended-label'>
               {t('next')}
             </p>
-            <p className='font-bold capitalize text-black text-lg leading-tight'>
+            <p className='recomended-title'>
               {nextArticleTitle}
             </p>
           </div>

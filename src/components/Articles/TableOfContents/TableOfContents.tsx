@@ -44,7 +44,10 @@ export const TableOfContents: FC<Props> = ({ content, locoScroll }): JSX.Element
 
   return (
     <div className='bg-accent_colour p-3 rounded-2xl max-w-[500px]'>
-      <h3 className='mb-1 text-lg md:text-xl font-semibold capitalize text-black'>{t('toc')}</h3>
+      <h3 className='mb-1 text-lg md:text-xl font-semibold capitalize text-black'>
+        {t('toc')}
+      </h3>
+
       <nav className='text-black text-base md:text-lg leading-snug'>
         <ol className='flex flex-col gap-1 list-decimal pl-6'>
           {headingTexts.map(text => {

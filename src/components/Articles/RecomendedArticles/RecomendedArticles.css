@@ -1,0 +1,12 @@
+.recomended-link {
+  @apply flex justify-between items-center gap-4;
+}
+
+.recomended-label {
+  @apply text-label_color font-sans uppercase text-sm leading-normal font-bold;
+  @apply tracking-widest mb-2;
+}
+
+.recomended-title {
+  @apply font-bold capitalize text-black text-lg leading-tight;
+}

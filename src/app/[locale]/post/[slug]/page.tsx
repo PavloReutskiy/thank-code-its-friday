@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { GET_ARTICLE_METADATA } from '@/graphql/queries';
 import getGraphQLClient from '@/utils/getGraphQLClient';
 
+// #region generateMetadata
 const graphQLClient = getGraphQLClient();
 
 type Props = {
@@ -12,9 +13,7 @@ type Props = {
   };
 };
 
-export const generateMetadata = async({
-  params,
-}: Props): Promise<Metadata> => {
+export const generateMetadata = async({ params }: Props): Promise<Metadata> => {
   const { slug, locale } = params;
 
   try {
@@ -22,10 +21,7 @@ export const generateMetadata = async({
       { slug, locale });
 
     if (!articles || articles.data.length === 0) {
-      return {
-        title: 'Not Found',
-        description: 'This page is not found',
-      };
+      throw new Error('Article not found');
     }
 
     const { title, description } = articles.data[0].attributes.SEO;
@@ -68,15 +64,11 @@ export const generateMetadata = async({
       },
     };
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Error during GraphQL request:', error);
-
-    return {
-      title: 'Error',
-      description: 'There was a problem loading the article data.',
-    };
+    const message = (error instanceof Error) ? error.message : 'Unknown error';
+    throw new Error(`Error during GraphQL request: ${message}`);
   }
 };
+// #endregion
 
 const Post = (): JSX.Element => {
   return <Article />;

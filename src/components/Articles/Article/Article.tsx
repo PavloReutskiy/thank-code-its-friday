@@ -25,9 +25,10 @@ import useLocoScroll from '@/hooks/useLocoScroll';
 import { GET_ARTICLE } from '@/graphql/queries';
 
 export const Article = (): JSX.Element => {
+  const { locale, slug } = useParams();
   const locoScroll = useLocoScroll();
   const sideRef = useRef(null);
-  const { locale, slug } = useParams();
+
   const client = getApolloClient();
 
   const { loading, error, data } = useQuery(GET_ARTICLE, {
@@ -103,25 +104,6 @@ export const Article = (): JSX.Element => {
     <>
       <header className="mx-auto max-w-[85%] xxl:max-w-[1224px] mb-8 lg:mb-11 xl:mb-14">
         <h1 className="heading-h1">{title}</h1>
-
-        {title && articleMainImage && date && SEO && (
-          <ArticleJsonLd
-            useAppDir={true}
-            type="BlogPosting"
-            url={`https://thankcodeitsfriday.com/${locale}/post/${slug}`}
-            title={title}
-            images={[articleMainImage?.data.attributes.url]}
-            datePublished={date}
-            dateModified={date}
-            authorName={[
-              {
-                name: locale === 'en' ? 'Pavlo Reutskyi' : 'Павло Реуцький',
-                url: 'https://thankcodeitsfriday.com/about',
-              },
-            ]}
-            description={SEO.description}
-          />
-        )}
 
         <div className="flex justify-between items-center max-w-[800px] mx-auto mb-4">
           {date && readTime && (
@@ -244,6 +226,25 @@ export const Article = (): JSX.Element => {
           </span>
         </aside>
       </main>
+
+      {title && articleMainImage && date && SEO && (
+        <ArticleJsonLd
+          useAppDir={true}
+          type="BlogPosting"
+          url={`https://thankcodeitsfriday.com/${locale}/post/${slug}`}
+          title={title}
+          images={[articleMainImage?.data.attributes.url]}
+          datePublished={date}
+          dateModified={date}
+          authorName={[
+            {
+              name: locale === 'en' ? 'Pavlo Reutskyi' : 'Павло Реуцький',
+              url: 'https://thankcodeitsfriday.com/about',
+            },
+          ]}
+          description={SEO.description}
+        />
+      )}
 
       <BackToTopButton locoScroll={locoScroll} />
     </>

@@ -60,9 +60,7 @@ const GET_ARTICLE_PREVIEWS: TypedDocumentNode<ArticlePreviewsResponse, QueryVari
 `;
 
 export const Home = (): JSX.Element => {
-  // const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null); //1
   const locoScroll = useLocoScroll();
-  // const [isQueryInitialized, setIsQueryInitialized] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const pathname = usePathname();
   const router = useRouter();
@@ -79,8 +77,6 @@ export const Home = (): JSX.Element => {
       pageSize: 10,
     },
     client,
-    // onCompleted: () => setIsQueryInitialized(false),
-    // onError: () => setIsQueryInitialized(false),
   });
 
   const previews = data?.articlePreviews.data;
@@ -95,10 +91,6 @@ export const Home = (): JSX.Element => {
   useEffect(() => {
     setCurrentPage(Number(page) || 1);
   }, [page]);
-
-  // useEffect(() => { //1
-  //   setIsQueryInitialized(true); //1
-  // }, []); //1
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -139,16 +131,6 @@ export const Home = (): JSX.Element => {
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
   }, [data]);
-
-  // useEffect(() => { //1
-  //   ( //1
-  //     async(): Promise<void> => { //1
-  //       const LocomotiveScroll = (await import('locomotive-scroll')).default; //1
-  //       const scroll = new LocomotiveScroll(); //1
-  //       setLocoScroll(scroll); //1
-  //     } //1
-  //   )(); //1
-  // }, []); //1
 
   useEffect(() => {
     const cursor = document.querySelector('.cursor');

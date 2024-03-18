@@ -101,10 +101,7 @@ const GET_ARTICLE: TypedDocumentNode<ArticlesResponse, QueryVariables> = gql`
 `;
 
 export const Article = (): JSX.Element => {
-  // const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null); //1
   const locoScroll = useLocoScroll();
-
-  // const [isQueryInitialized, setIsQueryInitialized] = useState<boolean>(false);
   const sideRef = useRef(null);
   const { locale, slug } = useParams();
   const client = getClient();
@@ -115,8 +112,6 @@ export const Article = (): JSX.Element => {
       slug,
     },
     client,
-    // onCompleted: () => setIsQueryInitialized(false),
-    // onError: () => setIsQueryInitialized(false),
   });
 
   const { attributes: article } = data?.articles.data[0] ?? {};
@@ -137,10 +132,6 @@ export const Article = (): JSX.Element => {
     name: tag.attributes.tagName,
     color: tag.attributes.color,
   }));
-
-  // useEffect(() => {
-  //   setIsQueryInitialized(true);
-  // }, []);
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -172,16 +163,6 @@ export const Article = (): JSX.Element => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [article]);
-
-  // useEffect(() => { //1
-  //   ( //1
-  //     async(): Promise<void> => { //1
-  //       const LocomotiveScroll = (await import('locomotive-scroll')).default; //1
-  //       const scroll = new LocomotiveScroll(); //1
-  //       setLocoScroll(scroll); //1
-  //     } //1
-  //   )(); //1
-  // }, []); //1
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -294,14 +275,12 @@ export const Article = (): JSX.Element => {
             />
           )}
 
-          {
-            previousArticle && nextArticle && (
-              <RecomendedArticles
-                previousArticle={previousArticle}
-                nextArticle={nextArticle}
-              />
-            )
-          }
+          {previousArticle && nextArticle && (
+            <RecomendedArticles
+              previousArticle={previousArticle}
+              nextArticle={nextArticle}
+            />
+          )}
         </div>
 
         <aside className='order-1 xl:order-2'>

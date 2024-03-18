@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 import { RotatingLines } from 'react-loader-spinner';
 
 export const Loader = (): JSX.Element => {

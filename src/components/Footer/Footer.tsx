@@ -23,7 +23,7 @@ export const Footer = (): JSX.Element => {
                 data-link-alt={t('about')}
                 className='font-condensed text-lg font-bold text-text_color uppercase link'
               >
-                <span className='text'>{t('about')}</span>
+                <span className='link-text'>{t('about')}</span>
               </Link>
             </li>
             <li role='menuitem'>
@@ -32,7 +32,7 @@ export const Footer = (): JSX.Element => {
                 data-link-alt={t('contact')}
                 className='font-condensed text-lg font-bold text-text_color uppercase link'
               >
-                <span className='text'>{t('contact')}</span>
+                <span className='link-text'>{t('contact')}</span>
               </Link>
             </li>
             <li role='menuitem'>
@@ -41,7 +41,7 @@ export const Footer = (): JSX.Element => {
                 data-link-alt={t('policy')}
                 className='font-condensed text-lg font-bold text-text_color uppercase link'
               >
-                <span className='text'>{t('policy')}</span>
+                <span className='link-text'>{t('policy')}</span>
               </Link>
             </li>
           </ul>

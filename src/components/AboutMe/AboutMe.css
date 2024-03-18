@@ -1,0 +1,6 @@
+.text-block {
+  @apply mb-2 xl:mb-3;
+  @apply text-base leading-normal;
+  @apply md:text-lg md:leading-normal;
+  @apply xl:text-xl xl:leading-normal;
+}

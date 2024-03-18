@@ -1,23 +1,20 @@
+import './AboutMe.css';
 import Image from 'next/image';
 import stack from './stack.json';
 
 export const AboutMe = (): JSX.Element => {
   return (
     <main className='mx-auto max-w-[85%] xxl:max-w-[1224px] mt-[89px] sm:mt-[113px] xxl:mt-[129px]'>
-      <div className='text-wrapper mx-auto max-w-[800px] mb-10 md:mb-12 lg:mb-14'>
+      <div className='mx-auto max-w-[800px] mb-10 md:mb-12 lg:mb-14'>
         <h1 className='mb-4 md:mb-6 text-3xl md:text-4xl xl:text-5xl font-semibold text-black'>
           About me
         </h1>
 
-        <p className='mb-2 text-base leading-normal font-semibold md:text-lg md:leading-normal
-          xl:text-xl xl:leading-normal xl:mb-3'
-        >
+        <p className='text-block font-semibold'>
           Hi!👋 My name is Pavlo, and I&apos;m delighted to welcome you to my blog!
         </p>
 
-        <p className='mb-2 text-base leading-normal md:text-lg md:leading-normal
-          xl:text-xl xl:leading-normal xl:mb-3'
-        >
+        <p className='text-block'>
           I work as a Full Stack developer, and my greatest passion in work is finding optimal
           solutions for unconventional tasks. I enjoy deeply understanding the essence of things
           and tools I work with daily. The process of exploring how everything works and what
@@ -35,24 +32,22 @@ export const AboutMe = (): JSX.Element => {
           />
         </div>
 
-        <p className='mb-2 text-base leading-normal md:text-lg md:leading-normal
-          xl:text-xl xl:leading-normal xl:mb-3'
-        >
+        <p className='text-block'>
           This blog aims to explore various aspects of programming and the latest developments
           in the IT tools world, presenting this information to readers in the simplest and most understandable form.
         </p>
 
-        <p className='mb-2 text-base leading-normal md:text-lg md:leading-normal xl:text-xl xl:leading-normal xl:mb-3'>
+        <p className='text-block'>
           While primarily aimed at beginner programmers, I hope that experienced professionals
           will also find something new and useful here.
         </p>
 
-        <p className='mb-2 text-base leading-normal md:text-lg md:leading-normal xl:text-xl xl:leading-normal xl:mb-3'>
+        <p className='text-block'>
           I&apos;m always open to making new acquaintances, so I&apos;d be happy to chat or answer
           your questions on social media.
         </p>
 
-        <p className='mb-2 text-base leading-normal md:text-lg md:leading-normal xl:text-xl xl:leading-normal xl:mb-3'>
+        <p className='text-block'>
           Good luck, and may every line of code lead you to new successes!
         </p>
       </div>

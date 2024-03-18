@@ -142,7 +142,7 @@ export const Navbar = (): JSX.Element => {
                   data-link-alt={t('home')}
                   className='link'
                 >
-                  <span className='text'>{t('home')}</span>
+                  <span className='link-text'>{t('home')}</span>
                 </Link>
               </li>
               <li role='menuitem'>
@@ -151,7 +151,7 @@ export const Navbar = (): JSX.Element => {
                   data-link-alt={t('about')}
                   className='link'
                 >
-                  <span className='text'>{t('about')}</span>
+                  <span className='link-text'>{t('about')}</span>
                 </Link>
               </li>
               <li role='menuitem'>
@@ -160,7 +160,7 @@ export const Navbar = (): JSX.Element => {
                   data-link-alt={t('contact')}
                   className='link'
                 >
-                  <span className='text'>{t('contact')}</span>
+                  <span className='link-text'>{t('contact')}</span>
                 </Link>
               </li>
             </ul>
@@ -176,7 +176,7 @@ export const Navbar = (): JSX.Element => {
                   data-link-alt={t('subscribe')}
                   className='link'
                 >
-                  <span className='text'>{t('subscribe')}</span>
+                  <span className='link-text'>{t('subscribe')}</span>
                 </Link>
               </div>
             </div>

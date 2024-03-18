@@ -16,7 +16,7 @@ const authLink = setContext((_, { headers }) => {
 
 let client: ApolloClient<NormalizedCacheObject> | null = null;
 
-const getClient = (): ApolloClient<NormalizedCacheObject> => {
+const getApolloClient = (): ApolloClient<NormalizedCacheObject> => {
   if (!client || typeof window === 'undefined') {
     client = new ApolloClient({
       link: authLink.concat(httpLink),
@@ -27,4 +27,4 @@ const getClient = (): ApolloClient<NormalizedCacheObject> => {
   return client;
 };
 
-export default getClient;
+export default getApolloClient;

@@ -8,8 +8,13 @@ import { PostPreview } from '@/components/PostPreview';
 import { LastPostPreview } from '@/components/LastPostPreview';
 import { BackToTopButton } from '../BackToTopButton';
 import { useQuery } from '@apollo/client';
-import getClient from '@/utils/graphql-client';
-import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
+import getApolloClient from '@/utils/getApolloClient';
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from 'next/navigation';
 import { Loader } from '../Loader';
 import { ErrorMessage } from '../ErrorMessage';
 import { WebPageJsonLd } from 'next-seo';
@@ -25,7 +30,7 @@ export const Home = (): JSX.Element => {
   const page = searchParams.get('page');
 
   const { locale } = useParams();
-  const client = getClient(); // test
+  const client = getApolloClient(); // test
 
   const { loading, error, data } = useQuery(GET_ARTICLE_PREVIEWS, {
     variables: {
@@ -107,7 +112,10 @@ export const Home = (): JSX.Element => {
       posX += (mouseX - posX) / 10;
       posY += (mouseY - posY) / 10;
 
-      if (Math.abs(posX - lastPosX) > threshold || Math.abs(posY - lastPosY) > threshold) {
+      if (
+        Math.abs(posX - lastPosX) > threshold ||
+        Math.abs(posY - lastPosY) > threshold
+      ) {
         gsap.set(cursor, {
           left: posX,
           top: posY,
@@ -118,16 +126,16 @@ export const Home = (): JSX.Element => {
       }
     });
 
-    const handleMouseMove = (event: MouseEvent):void => {
+    const handleMouseMove = (event: MouseEvent): void => {
       mouseX = event.pageX;
       mouseY = event.pageY;
     };
 
-    const handleActiveAdd = ():void => {
+    const handleActiveAdd = (): void => {
       cursor?.classList.add('active');
     };
 
-    const handleActiveRemove = ():void => {
+    const handleActiveRemove = (): void => {
       cursor?.classList.remove('active');
     };
 
@@ -167,43 +175,50 @@ export const Home = (): JSX.Element => {
 
   return (
     <>
-      <header className='mx-auto max-w-[85%] font-condensed'>
-        <h1 className='
+      <header className="mx-auto max-w-[85%] font-condensed">
+        <h1
+          className="
           header-animation
           flex flex-col justify-center items-center
           md:flex-row md:gap-6 lg:gap-4
           mt-[89px] sm:mt-[113px] xxl:mt-[129px] mb-4 sm:mb-7 md:mb-10
           font-bold uppercase text-black text-center leading-none
           drop-shadow-md
-        '>
-          <div className='
+        "
+        >
+          <div
+            className="
             ml-[-7px]
             text-[105px] sm:text-[160px] md:text-[125px] lg:text-[160px] xl:text-[200px] xxl:text-[245px]
             leading-[0.9] tracking-[-7px] lg:tracking-[-9px] xxl:tracking-[-12px]
-          '>
+          "
+          >
             Blog
           </div>
-          <div className='
+          <div
+            className="
             md:max-w-[300px] lg:max-w-[370px] xl:max-w-[470px] xxl:max-w-[545px]
             text-[21px] sm:text-[33px] md:text-[45px] lg:text-[55px] xl:text-[70px] xxl:text-[80px]
             md:leading-tight lg:leading-[1.2]
             md:text-left
-          '>
+          "
+          >
             Thank&nbsp;code it’s&nbsp;friday
           </div>
         </h1>
 
         <WebPageJsonLd
           useAppDir={true}
-          description={locale === 'en'
-            ? 'Welcome to my personal blog dedicated to web development.' +
-              'Join me as we explore the world of programming, experiment with new' +
-              'technologies and approaches, and grow together as professional web developers.'
-            : 'Ласкаво прошу до мого блогу, який присвячено веб-розробці.' +
-              'Приєднуйтесь до мене, аби разом досліджувати світ програмування, експериментувати' +
-              'з новими технологіями та підходами, та разом рости як професійні веб-розробники.'
+          description={
+            locale === 'en'
+              ? 'Welcome to my personal blog dedicated to web development.' +
+                'Join me as we explore the world of programming, experiment with new' +
+                'technologies and approaches, and grow together as professional web developers.'
+              : 'Ласкаво прошу до мого блогу, який присвячено веб-розробці.' +
+                'Приєднуйтесь до мене, аби разом досліджувати світ програмування, експериментувати' +
+                'з новими технологіями та підходами, та разом рости як професійні веб-розробники.'
           }
-          id='https://thankcodeitsfriday.com'
+          id="https://thankcodeitsfriday.com"
           lastReviewed="2023-07-10T08:00:00+08:00"
           reviewedBy={{
             type: 'Person',
@@ -212,17 +227,20 @@ export const Home = (): JSX.Element => {
         />
       </header>
 
-      <main className='mx-auto max-w-[85%] font-condensed mb-8'>
+      <main className="mx-auto max-w-[85%] font-condensed mb-8">
         {previews && (
           <>
             {currentPage === 1 && (
-              <LastPostPreview className='scroll-animation' preview={previews[0].attributes} />
+              <LastPostPreview
+                className="scroll-animation"
+                preview={previews[0].attributes}
+              />
             )}
 
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-8 md:mb-10 max-w-[1224px] mx-auto'>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:mb-10 max-w-[1224px] mx-auto">
               {previews.slice(currentPage === 1 ? 1 : 0).map(preview => (
                 <PostPreview
-                  className='scroll-animation'
+                  className="scroll-animation"
                   preview={preview.attributes}
                   key={preview.id}
                 />
@@ -232,17 +250,19 @@ export const Home = (): JSX.Element => {
         )}
       </main>
 
-      <nav className='mx-auto max-w-[85%] mb-8 flex justify-center'>
-        {pageCount > 1 && <PaginationComponent
-          count={pageCount}
-          page={currentPage}
-          onChange={handlePageChange}
-        />}
+      <nav className="mx-auto max-w-[85%] mb-8 flex justify-center">
+        {pageCount > 1 && (
+          <PaginationComponent
+            count={pageCount}
+            page={currentPage}
+            onChange={handlePageChange}
+          />
+        )}
       </nav>
 
       <BackToTopButton locoScroll={locoScroll} />
 
-      <div className='cursor'></div>
+      <div className="cursor"></div>
     </>
   );
 };

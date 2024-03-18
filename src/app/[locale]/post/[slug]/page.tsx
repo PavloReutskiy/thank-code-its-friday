@@ -1,14 +1,9 @@
 import { Article } from '@/components/Articles/Article';
-import { GraphQLClient } from 'graphql-request';
 import { Metadata } from 'next';
 import { GET_ARTICLE_METADATA } from '@/graphql/queries';
+import getGraphQLClient from '@/utils/getGraphQLClient';
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT as string;
-const graphQLClient = new GraphQLClient(graphqlAPI, {
-  headers: {
-    authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-  },
-});
+const graphQLClient = getGraphQLClient();
 
 type Props = {
   params: {

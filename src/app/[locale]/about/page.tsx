@@ -1,11 +1,8 @@
 import React from 'react';
+import { AboutMe } from '@/components/AboutMe';
 
 const About = (): JSX.Element => {
-  return (
-    <div className="flex flex-col items-center justify-between p-24">
-      About page
-    </div>
-  );
+  return <AboutMe />;
 };
 
 export default About;

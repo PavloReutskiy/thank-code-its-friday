@@ -1,0 +1,73 @@
+[
+  {
+    "path": "javascript.svg",
+    "altText": "JavaScript logo",
+    "title": "JavaScript"
+  },
+
+  {
+    "path": "ts.svg",
+    "altText": "TypeScript logo",
+    "title": "TypeScript"
+  },
+
+  {
+    "path": "react.svg",
+    "altText": "React logo",
+    "title": "React"
+  },
+
+  {
+    "path": "next.svg",
+    "altText": "Next.js logo",
+    "title": "Next.js"
+  },
+
+  {
+    "path": "vue.svg",
+    "altText": "Vue.js logo",
+    "title": "Vue.js"
+  },
+
+  {
+    "path": "redux.svg",
+    "altText": "Redux logo",
+    "title": "Redux"
+  },
+
+  {
+    "path": "graphql.svg",
+    "altText": "GraphQL logo",
+    "title": "GraphQL"
+  },
+
+  {
+    "path": "sass.svg",
+    "altText": "Sass logo",
+    "title": "Sass"
+  },
+
+  {
+    "path": "tailwind.svg",
+    "altText": "Tailwind CSS logo",
+    "title": "Tailwind CSS"
+  },
+
+  {
+    "path": "node.svg",
+    "altText": "Node.js logo",
+    "title": "Node.js"
+  },
+
+  {
+    "path": "strapi.svg",
+    "altText": "Strapi logo",
+    "title": "Strapi"
+  },
+
+  {
+    "path": "ocean.svg",
+    "altText": "Digital Ocean logo",
+    "title": "Digital Ocean"
+  }
+]

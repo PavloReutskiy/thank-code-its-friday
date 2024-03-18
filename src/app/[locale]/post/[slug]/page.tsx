@@ -95,6 +95,7 @@ export const generateMetadata = async({
       },
     };
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Error during GraphQL request:', error);
 
     return {

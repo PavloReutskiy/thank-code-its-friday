@@ -7,57 +7,14 @@ import { PaginationComponent } from '@/components/PaginationComponent';
 import { PostPreview } from '@/components/PostPreview';
 import { LastPostPreview } from '@/components/LastPostPreview';
 import { BackToTopButton } from '../BackToTopButton';
-import { useQuery, gql, TypedDocumentNode } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import getClient from '@/utils/graphql-client';
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Loader } from '../Loader';
 import { ErrorMessage } from '../ErrorMessage';
 import { WebPageJsonLd } from 'next-seo';
 import useLocoScroll from '@/hooks/useLocoScroll';
-
-const GET_ARTICLE_PREVIEWS: TypedDocumentNode<ArticlePreviewsResponse, QueryVariables> = gql`
-  query GetPreviews($locale: I18NLocaleCode!, $page: Int, $pageSize: Int) {
-    articlePreviews(pagination: { page: $page, pageSize: $pageSize }, sort: "id:desc" locale: $locale) {
-      data {
-        id
-        attributes {
-          date
-          readTime
-          title
-          tags {
-            data {
-              attributes {
-                tagName
-                color
-              }
-            }
-          }
-          description
-          altText
-          slug
-          locale
-          image {
-            data {
-              attributes {
-                url
-                width
-                height
-              }
-            }
-          }
-        }
-      }
-      meta {
-        pagination {
-          page
-          pageSize
-          pageCount
-          total
-        }
-      }
-    }
-  }
-`;
+import { GET_ARTICLE_PREVIEWS } from '@/graphql/queries';
 
 export const Home = (): JSX.Element => {
   const locoScroll = useLocoScroll();

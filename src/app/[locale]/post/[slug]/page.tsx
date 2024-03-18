@@ -1,6 +1,7 @@
 import { Article } from '@/components/Articles/Article';
-import { GraphQLClient, gql } from 'graphql-request';
+import { GraphQLClient } from 'graphql-request';
 import { Metadata } from 'next';
+import { GET_ARTICLE_METADATA } from '@/graphql/queries';
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT as string;
 const graphQLClient = new GraphQLClient(graphqlAPI, {
@@ -8,29 +9,6 @@ const graphQLClient = new GraphQLClient(graphqlAPI, {
     authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
   },
 });
-
-const getArticleMetadata = gql`
-  query GetArticle($locale: I18NLocaleCode!, $slug: String!) {
-    articles(filters: { slug: { eq: $slug } }, locale: $locale) {
-      data {
-        id
-        attributes {
-          SEO {
-            title
-            description
-            image {
-              data {
-                attributes {
-                  url
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 type Props = {
   params: {
@@ -45,7 +23,7 @@ export const generateMetadata = async({
   const { slug, locale } = params;
 
   try {
-    const { articles } = await graphQLClient.request<ArticlesSEOResponse>(getArticleMetadata,
+    const { articles } = await graphQLClient.request<ArticlesSEOResponse>(GET_ARTICLE_METADATA,
       { slug, locale });
 
     if (!articles || articles.data.length === 0) {

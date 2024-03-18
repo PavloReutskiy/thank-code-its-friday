@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 import gsap from 'gsap';
 import { BackToTopButton } from '@/components/BackToTopButton';
 import { Tag } from '@/components/Tag';
-import { useQuery, gql, TypedDocumentNode } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import getClient from '@/utils/graphql-client';
 import { Loader } from '@/components/Loader';
 import { ErrorMessage } from '@/components/ErrorMessage';
@@ -22,83 +22,7 @@ import { ArticleImage } from '@/components/Articles/ArticleImage';
 import { ArticleJsonLd } from 'next-seo';
 import Link from 'next/link';
 import useLocoScroll from '@/hooks/useLocoScroll';
-
-const GET_ARTICLE: TypedDocumentNode<ArticlesResponse, QueryVariables> = gql`
-  query GetArticle($locale: I18NLocaleCode!, $slug: String!) {
-    articles(filters: { slug: { eq: $slug }}, locale: $locale) {
-      data {
-        id
-        attributes {
-          date
-          readTime
-          title
-          tags {
-            data {
-              attributes {
-                tagName
-                color
-              }
-            }
-          }
-          altText
-          slug
-          locale
-          content
-          image {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-          previousArticle {
-            data {
-              attributes {
-                title
-                altText
-                slug
-                image {
-                  data {
-                    attributes {
-                      url
-                    }
-                  }
-                }
-              }
-            }
-          }
-          nextArticle {
-            data {
-              attributes {
-                title
-                altText
-                slug
-                image {
-                  data {
-                    attributes {
-                      url
-                    }
-                  }
-                }
-              }
-            }
-          }
-          SEO {
-            title
-            description
-            image {
-              data {
-                attributes {
-                  url
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import { GET_ARTICLE } from '@/graphql/queries';
 
 export const Article = (): JSX.Element => {
   const locoScroll = useLocoScroll();

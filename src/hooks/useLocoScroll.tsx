@@ -15,7 +15,7 @@ const useLocoScroll = (): LocomotiveScroll | null => {
     return () => {
       locoScroll?.destroy();
     };
-  }, [locoScroll]);
+  }, []);
 
   return locoScroll;
 };

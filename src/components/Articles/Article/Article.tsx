@@ -1,7 +1,7 @@
 'use client';
 import './Article.css';
 import 'highlight.js/styles/ir-black.css';
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import gsap from 'gsap';
 import { BackToTopButton } from '@/components/BackToTopButton';
@@ -21,6 +21,7 @@ import { CodeBlock } from '@/components/Articles/CodeBlock';
 import { ArticleImage } from '@/components/Articles/ArticleImage';
 import { ArticleJsonLd } from 'next-seo';
 import Link from 'next/link';
+import useLocoScroll from '@/hooks/useLocoScroll';
 
 const GET_ARTICLE: TypedDocumentNode<ArticlesResponse, QueryVariables> = gql`
   query GetArticle($locale: I18NLocaleCode!, $slug: String!) {
@@ -100,8 +101,10 @@ const GET_ARTICLE: TypedDocumentNode<ArticlesResponse, QueryVariables> = gql`
 `;
 
 export const Article = (): JSX.Element => {
-  const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null);
-  const [isQueryInitialized, setIsQueryInitialized] = useState<boolean>(false);
+  // const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null); //1
+  const locoScroll = useLocoScroll();
+
+  // const [isQueryInitialized, setIsQueryInitialized] = useState<boolean>(false);
   const sideRef = useRef(null);
   const { locale, slug } = useParams();
   const client = getClient();
@@ -112,8 +115,8 @@ export const Article = (): JSX.Element => {
       slug,
     },
     client,
-    onCompleted: () => setIsQueryInitialized(false),
-    onError: () => setIsQueryInitialized(false),
+    // onCompleted: () => setIsQueryInitialized(false),
+    // onError: () => setIsQueryInitialized(false),
   });
 
   const { attributes: article } = data?.articles.data[0] ?? {};
@@ -135,9 +138,9 @@ export const Article = (): JSX.Element => {
     color: tag.attributes.color,
   }));
 
-  useEffect(() => {
-    setIsQueryInitialized(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsQueryInitialized(true);
+  // }, []);
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -170,21 +173,21 @@ export const Article = (): JSX.Element => {
     };
   }, [article]);
 
-  useEffect(() => {
-    (
-      async(): Promise<void> => {
-        const LocomotiveScroll = (await import('locomotive-scroll')).default;
-        const scroll = new LocomotiveScroll();
-        setLocoScroll(scroll);
-      }
-    )();
-  }, []);
+  // useEffect(() => { //1
+  //   ( //1
+  //     async(): Promise<void> => { //1
+  //       const LocomotiveScroll = (await import('locomotive-scroll')).default; //1
+  //       const scroll = new LocomotiveScroll(); //1
+  //       setLocoScroll(scroll); //1
+  //     } //1
+  //   )(); //1
+  // }, []); //1
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (loading && isQueryInitialized) {
+  if (loading) {
     return <Loader />;
   }
   if (error) {

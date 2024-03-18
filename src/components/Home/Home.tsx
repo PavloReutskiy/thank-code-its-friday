@@ -13,6 +13,7 @@ import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigat
 import { Loader } from '../Loader';
 import { ErrorMessage } from '../ErrorMessage';
 import { WebPageJsonLd } from 'next-seo';
+import useLocoScroll from '@/hooks/useLocoScroll';
 
 const GET_ARTICLE_PREVIEWS: TypedDocumentNode<ArticlePreviewsResponse, QueryVariables> = gql`
   query GetPreviews($locale: I18NLocaleCode!, $page: Int, $pageSize: Int) {
@@ -59,8 +60,9 @@ const GET_ARTICLE_PREVIEWS: TypedDocumentNode<ArticlePreviewsResponse, QueryVari
 `;
 
 export const Home = (): JSX.Element => {
-  const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null);
-  const [isQueryInitialized, setIsQueryInitialized] = useState<boolean>(false);
+  // const [locoScroll, setLocoScroll] = useState<LocomotiveScroll | null>(null); //1
+  const locoScroll = useLocoScroll();
+  // const [isQueryInitialized, setIsQueryInitialized] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const pathname = usePathname();
   const router = useRouter();
@@ -77,8 +79,8 @@ export const Home = (): JSX.Element => {
       pageSize: 10,
     },
     client,
-    onCompleted: () => setIsQueryInitialized(false),
-    onError: () => setIsQueryInitialized(false),
+    // onCompleted: () => setIsQueryInitialized(false),
+    // onError: () => setIsQueryInitialized(false),
   });
 
   const previews = data?.articlePreviews.data;
@@ -94,9 +96,9 @@ export const Home = (): JSX.Element => {
     setCurrentPage(Number(page) || 1);
   }, [page]);
 
-  useEffect(() => {
-    setIsQueryInitialized(true);
-  }, []);
+  // useEffect(() => { //1
+  //   setIsQueryInitialized(true); //1
+  // }, []); //1
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -138,15 +140,15 @@ export const Home = (): JSX.Element => {
     };
   }, [data]);
 
-  useEffect(() => {
-    (
-      async(): Promise<void> => {
-        const LocomotiveScroll = (await import('locomotive-scroll')).default;
-        const scroll = new LocomotiveScroll();
-        setLocoScroll(scroll);
-      }
-    )();
-  }, []);
+  // useEffect(() => { //1
+  //   ( //1
+  //     async(): Promise<void> => { //1
+  //       const LocomotiveScroll = (await import('locomotive-scroll')).default; //1
+  //       const scroll = new LocomotiveScroll(); //1
+  //       setLocoScroll(scroll); //1
+  //     } //1
+  //   )(); //1
+  // }, []); //1
 
   useEffect(() => {
     const cursor = document.querySelector('.cursor');
@@ -217,7 +219,7 @@ export const Home = (): JSX.Element => {
     };
   }, [data]);
 
-  if (loading && isQueryInitialized) {
+  if (loading) {
     return <Loader />;
   }
   if (error) {

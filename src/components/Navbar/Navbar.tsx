@@ -140,7 +140,7 @@ export const Navbar = (): JSX.Element => {
                 <Link
                   href='/'
                   data-link-alt={t('home')}
-                  className='link'
+                  className='nav-link'
                 >
                   <span className='link-text'>{t('home')}</span>
                 </Link>
@@ -149,7 +149,7 @@ export const Navbar = (): JSX.Element => {
                 <Link
                   href='/about'
                   data-link-alt={t('about')}
-                  className='link'
+                  className='nav-link'
                 >
                   <span className='link-text'>{t('about')}</span>
                 </Link>
@@ -158,7 +158,7 @@ export const Navbar = (): JSX.Element => {
                 <Link
                   href='/contact'
                   data-link-alt={t('contact')}
-                  className='link'
+                  className='nav-link'
                 >
                   <span className='link-text'>{t('contact')}</span>
                 </Link>
@@ -174,7 +174,7 @@ export const Navbar = (): JSX.Element => {
                 <Link
                   href='/subscribe'
                   data-link-alt={t('subscribe')}
-                  className='link'
+                  className='nav-link'
                 >
                   <span className='link-text'>{t('subscribe')}</span>
                 </Link>

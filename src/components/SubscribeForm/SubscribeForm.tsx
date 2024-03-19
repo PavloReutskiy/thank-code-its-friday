@@ -6,10 +6,6 @@ import { TextField, Button } from '@mui/material';
 import { FC } from 'react';
 import { useTranslations } from 'next-intl';
 
-type Props = {
-  className: string;
-};
-
 const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 const validationSchema = Yup.object({
@@ -19,7 +15,7 @@ const validationSchema = Yup.object({
     .required('Email is required'),
 });
 
-export const SubscribeForm: FC<Props> = ({ className }): JSX.Element => {
+export const SubscribeForm: FC = (): JSX.Element => {
   const t = useTranslations('Footer');
 
   const formik = useFormik({
@@ -37,7 +33,7 @@ export const SubscribeForm: FC<Props> = ({ className }): JSX.Element => {
     <>
       <h3 className='font-sans text-2xl font-bold text-text_color mb-3'>{t('heading')}</h3>
       <p className='font-sans text-lg font-light text-text_color mb-4'>{t('text')}</p>
-      <form onSubmit={formik.handleSubmit} className={className}>
+      <form onSubmit={formik.handleSubmit} className='grid grid-cols-1 gap-5 sm:grid-cols-[2fr_1fr] sm:gap-1'>
         <TextField
           sx={{
             height: '3.5rem',

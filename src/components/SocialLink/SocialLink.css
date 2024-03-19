@@ -1,11 +1,17 @@
 .social-icon {
   color: #333333;
   transition: color 0.3s ease;
+  width: 34px;
+  height: 34px;
+  fill: none;
 }
 
 .united-icon {
   color: #1976d2;
   transition: color 0.3s ease;
+  width: 154px;
+  height: 20px;
+  fill: none;
 }
 
 @media (min-width: 951px) {

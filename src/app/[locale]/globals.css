@@ -6,7 +6,7 @@
   background-color: #1976d2 !important;
 }
 
-.link {
+.nav-link {
   position: relative;
   display: block;
   overflow: hidden;
@@ -18,7 +18,7 @@
 }
 
 @media (min-width: 951px) {
-  .link::before {
+  .nav-link::before {
     position: absolute;
     content: attr(data-link-alt);
     top: 100%;
@@ -26,11 +26,11 @@
     transition: .4s cubic-bezier(.86,.35,.44,.99);
   }
 
-  .link:hover .link-text {
+  .nav-link:hover .link-text {
     transform: translateY(-100%);
   }
 
-  .link:hover::before {
+  .nav-link:hover::before {
     top: 0;
     opacity: 1;
   }

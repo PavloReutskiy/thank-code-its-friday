@@ -1,8 +1,8 @@
 'use client';
 import { SubscribeForm } from '../SubscribeForm';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { SocialLink } from '../SocialLink';
+import { NavLink } from '../NavLink';
 
 export const Footer = (): JSX.Element => {
   const t = useTranslations('Footer');
@@ -15,33 +15,17 @@ export const Footer = (): JSX.Element => {
             <SubscribeForm />
           </div>
 
-          <ul className='flex flex-col gap-2' role='list'>
+          <ul
+            role='list'
+            className='flex flex-col gap-2 font-condensed text-lg font-bold text-text_color uppercase'>
             <li role='menuitem'>
-              <Link
-                href='/about'
-                data-link-alt={t('about')}
-                className='font-condensed text-lg font-bold text-text_color uppercase nav-link'
-              >
-                <span className='link-text'>{t('about')}</span>
-              </Link>
+              <NavLink text='about' />
             </li>
             <li role='menuitem'>
-              <Link
-                href='/contact'
-                data-link-alt={t('contact')}
-                className='font-condensed text-lg font-bold text-text_color uppercase nav-link'
-              >
-                <span className='link-text'>{t('contact')}</span>
-              </Link>
+              <NavLink text='contact' />
             </li>
             <li role='menuitem'>
-              <Link
-                href='/contact'
-                data-link-alt={t('policy')}
-                className='font-condensed text-lg font-bold text-text_color uppercase nav-link'
-              >
-                <span className='link-text'>{t('policy')}</span>
-              </Link>
+              <NavLink text='policy' />
             </li>
           </ul>
 

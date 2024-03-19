@@ -6,13 +6,12 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { Sidebar } from '@/components/Sidebar';
 import { LanguageSwitcher } from '../LanguageSwitcher';
-import { useTranslations } from 'next-intl';
+import { NavLink } from '../NavLink';
 
 export const Navbar = (): JSX.Element => {
   const pathname = usePathname();
   const navRef = useRef(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const t = useTranslations('Navbar');
 
   const toggleMenu = (): void => {
     setIsOpen(prevState => !prevState);
@@ -131,37 +130,19 @@ export const Navbar = (): JSX.Element => {
           </div>
 
           <div className='hidden md:flex md:items-center md:justify-end md:min-w-[45%]'>
-            <ul className='
+            <ul role='list' className='
               flex space-x-6
               mr-8 mt-[2px]
               text-lg md:text-base font-bold text-title_color uppercase leading-normal
             '>
               <li role='menuitem'>
-                <Link
-                  href='/'
-                  data-link-alt={t('home')}
-                  className='nav-link'
-                >
-                  <span className='link-text'>{t('home')}</span>
-                </Link>
+                <NavLink text='home' />
               </li>
               <li role='menuitem'>
-                <Link
-                  href='/about'
-                  data-link-alt={t('about')}
-                  className='nav-link'
-                >
-                  <span className='link-text'>{t('about')}</span>
-                </Link>
+                <NavLink text='about' />
               </li>
               <li role='menuitem'>
-                <Link
-                  href='/contact'
-                  data-link-alt={t('contact')}
-                  className='nav-link'
-                >
-                  <span className='link-text'>{t('contact')}</span>
-                </Link>
+                <NavLink text='contact' />
               </li>
             </ul>
 
@@ -171,13 +152,7 @@ export const Navbar = (): JSX.Element => {
               </div>
 
               <div className='text-lg mt-[2px] md:text-base font-bold text-title_color uppercase leading-normal'>
-                <Link
-                  href='/subscribe'
-                  data-link-alt={t('subscribe')}
-                  className='nav-link'
-                >
-                  <span className='link-text'>{t('subscribe')}</span>
-                </Link>
+                <NavLink text='subscribe' />
               </div>
             </div>
           </div>

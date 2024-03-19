@@ -20,7 +20,7 @@ export const SocialLink: FC<Props> = ({ href, iconId, label, className }): JSX.E
         role='img'
         aria-label={label}
       >
-        <use xlinkHref={`assets/sprite.svg#${iconId}`}></use>
+        <use xlinkHref={`/assets/sprite.svg#${iconId}`}></use>
       </svg>
     </Link>
   );

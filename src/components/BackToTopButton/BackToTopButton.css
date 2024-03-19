@@ -1,0 +1,7 @@
+.back-button {
+  @apply fixed bottom-12 right-12;
+  @apply w-10 h-10 md:w-14 md:h-14;
+  @apply flex justify-center items-center;
+  @apply bg-accent_colour rounded-md drop-shadow-md z-10;
+  @apply active:drop-shadow-none transform active:scale-95;
+}

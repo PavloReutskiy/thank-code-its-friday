@@ -1,3 +1,4 @@
+import './BackToTopButton.css';
 import Image from 'next/image';
 import arrow from 'public/assets/back-to-top-arrow.svg';
 import { FC, useEffect, useState } from 'react';
@@ -39,12 +40,7 @@ export const BackToTopButton: FC<Props> = ({ locoScroll }): JSX.Element | null =
       <button
         type='button'
         onClick={scrollUp}
-        className='
-          fixed bottom-12 right-12 w-10 h-10 md:w-14 md:h-14
-          flex justify-center items-center
-          bg-accent_colour rounded-md drop-shadow-md z-10 active:drop-shadow-none
-          transform active:scale-95
-        '
+        className='back-button'
       >
         <Image
           src={arrow}

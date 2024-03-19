@@ -1,15 +1,14 @@
 import { Home } from '@/components/Home';
 import type { Metadata } from 'next';
 
+// #region generateMetadata
 type Props = {
   params: {
     locale: string;
   };
 };
 
-export const generateMetadata = async({
-  params,
-}: Props): Promise<Metadata> => {
+export const generateMetadata = async({ params }: Props): Promise<Metadata> => {
   const { locale } = params;
 
   return {
@@ -63,6 +62,7 @@ export const generateMetadata = async({
     },
   };
 };
+// #endregion
 
 const HomePage = (): JSX.Element => {
   return (

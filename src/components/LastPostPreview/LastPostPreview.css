@@ -1,0 +1,13 @@
+.last-post-wrapper {
+  @apply flex flex-col lg:flex-row lg:gap-8;
+  @apply px-4 sm:px-5 py-5 sm:py-6 md:p-8 mb-8 md:mb-10;
+  @apply border border-slate-400 rounded-3xl shadow;
+  @apply max-w-[1224px] mx-auto;
+}
+
+.last-post-image-wrapper {
+  @apply max-w-[100%] max-h-[45vw];
+  @apply flex justify-center items-center;
+  @apply mb-4 md:mb-8 lg:mb-0;
+  @apply overflow-hidden rounded-3xl;
+}

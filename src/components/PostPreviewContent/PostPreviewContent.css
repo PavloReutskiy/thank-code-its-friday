@@ -1,0 +1,19 @@
+.post-preview-tags-wrapper {
+  @apply flex justify-start gap-x-4 lg:gap-x-1 flex-wrap;
+  @apply mb-2 lg:mb-4;
+  @apply text-label_color font-sans text-sm lg:text-base xl:text-xl font-normal;
+}
+
+.post-preview-title {
+  @apply mb-2 lg:mb-4 xl:max-w-[30ch];
+  @apply text-title_color font-sans text-2xl md:text-3xl xl:text-4xl leading-[1.4] font-bold;
+}
+
+.post-preview-label-wrapper {
+  @apply mb-2.5 md:mb-5;
+  @apply text-label_color font-sans uppercase text-sm md:text-base xl:text-xl leading-normal font-bold;
+}
+
+.post-preview-description {
+  @apply text-text_color font-sans text-base md:text-xl xl:text-2xl leading-[1.4];
+}

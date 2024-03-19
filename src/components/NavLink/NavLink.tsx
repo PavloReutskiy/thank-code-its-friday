@@ -9,10 +9,11 @@ type Props = {
 
 export const NavLink: FC<Props> = ({ text }): JSX.Element => {
   const t = useTranslations('Navbar');
+  const hrefValue = text === 'home' ? '/' : `/${text}`;
 
   return (
     <Link
-      href={`/${text}`}
+      href={hrefValue}
       data-link-alt={t(`${text}`)}
       className='nav-link'
     >

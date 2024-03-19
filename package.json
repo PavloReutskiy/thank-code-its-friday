@@ -21,6 +21,7 @@
     "@apollo/client": "^3.8.7",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@gsap/react": "^2.1.0",
     "@mui/material": "^5.15.2",
     "@reduxjs/toolkit": "^1.9.6",
     "@strapi/blocks-react-renderer": "^1.0.0",

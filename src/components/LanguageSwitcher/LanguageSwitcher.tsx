@@ -12,7 +12,6 @@ export const LanguageSwitcher = (): JSX.Element => {
   const pathname = usePathname();
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  // const currentLocale = useSelector(selectLanguage);
 
   const changeLanguage = (newLocale: LanguageType): void => {
     const days = 30;

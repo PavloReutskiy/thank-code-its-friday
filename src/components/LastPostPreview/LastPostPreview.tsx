@@ -39,7 +39,7 @@ export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element 
       href={`/post/${slug}`}
       className={clsx('block max-w-[1224px] mx-auto cursor-default', className)}
     >
-      <div className='last-post-wrapper'>
+      <div data-preview className='last-post-wrapper'>
         <div className='last-post-image-wrapper'>
           <Image
             src={imageUrl}

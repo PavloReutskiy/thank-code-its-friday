@@ -34,8 +34,7 @@ export const PostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
   }));
 
   return (
-    <div className={clsx('post-wrapper', className)
-    }>
+    <div data-preview className={clsx('post-wrapper', className)}>
       <Link href={`/post/${slug}`} className='cursor-default'>
         <div className='post-image-wrapper'>
           <Image

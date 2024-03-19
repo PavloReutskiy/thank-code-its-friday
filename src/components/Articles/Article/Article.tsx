@@ -227,6 +227,8 @@ export const Article = (): JSX.Element => {
         </aside>
       </main>
 
+      <BackToTopButton locoScroll={locoScroll} />
+
       {title && articleMainImage && date && SEO && (
         <ArticleJsonLd
           useAppDir={true}
@@ -245,8 +247,6 @@ export const Article = (): JSX.Element => {
           description={SEO.description}
         />
       )}
-
-      <BackToTopButton locoScroll={locoScroll} />
     </>
   );
 };

@@ -1,7 +1,8 @@
 'use client';
 import Link from 'next/link';
 import gsap from 'gsap';
-import { FC, useEffect } from 'react';
+import { useGSAP } from '@gsap/react';
+import { FC } from 'react';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import { useTranslations } from 'next-intl';
 
@@ -12,11 +13,11 @@ type Props = {
 export const Sidebar: FC<Props> = ({ onToggleMenu }): JSX.Element => {
   const t = useTranslations('Navbar');
 
-  useEffect(() => {
+  useGSAP(() => {
     const tl = gsap.timeline();
     tl.to('.sidebar', { duration: .5, x: '0%', ease: 'power2.in' });
     tl.to('.navItem', { duration: .5, opacity: 1, ease: 'power2.in', stagger: .15 });
-  }, []);
+  });
 
   return (
     <aside
@@ -33,6 +34,7 @@ export const Sidebar: FC<Props> = ({ onToggleMenu }): JSX.Element => {
               {t('home')}
             </Link>
           </li>
+
           <li role='menuitem' className='navItem py-3 opacity-0'>
             <Link
               href='/about'
@@ -41,6 +43,7 @@ export const Sidebar: FC<Props> = ({ onToggleMenu }): JSX.Element => {
               {t('about')}
             </Link>
           </li>
+
           <li role='menuitem' className='navItem py-3 opacity-0'>
             <Link
               href='/contact'

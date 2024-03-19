@@ -1,8 +1,6 @@
 'use client';
 import './Home.css';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PaginationComponent } from '@/components/PaginationComponent';
 import { PostPreview } from '@/components/PostPreview';
 import { LastPostPreview } from '@/components/LastPostPreview';
@@ -20,6 +18,8 @@ import { ErrorMessage } from '../ErrorMessage';
 import { WebPageJsonLd } from 'next-seo';
 import useLocoScroll from '@/hooks/useLocoScroll';
 import { GET_ARTICLE_PREVIEWS } from '@/graphql/queries';
+import useHomePageAnimation from '@/hooks/useHomePageAnimation';
+import useCustomCursorAnimation from '@/hooks/useCustomCursorAnimation';
 
 export const Home = (): JSX.Element => {
   const locoScroll = useLocoScroll();
@@ -30,7 +30,7 @@ export const Home = (): JSX.Element => {
   const page = searchParams.get('page');
 
   const { locale } = useParams();
-  const client = getApolloClient(); // test
+  const client = getApolloClient();
 
   const { loading, error, data } = useQuery(GET_ARTICLE_PREVIEWS, {
     variables: {
@@ -54,117 +54,8 @@ export const Home = (): JSX.Element => {
     setCurrentPage(Number(page) || 1);
   }, [page]);
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  useLayoutEffect(() => {
-    if (window.innerWidth < 769) {
-      gsap.set('.scroll-animation', { opacity: 1, y: 0 });
-      gsap.set('.header-animation', { opacity: 1, y: 0 });
-      return;
-    }
-
-    const timeline = gsap.timeline();
-
-    timeline.to('.header-animation', {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: 'power1.inOut',
-    });
-
-    const triggerElements = document.querySelectorAll('.scroll-animation');
-
-    triggerElements.forEach((element, index) => {
-      gsap.to(element, {
-        scrollTrigger: {
-          trigger: element,
-          start: 'top 100%',
-          toggleActions: 'restart none none reverse',
-        },
-        opacity: 1,
-        y: 0,
-        delay: index * 0.05,
-        duration: 1,
-        ease: 'power1.inOut',
-      });
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(st => st.kill());
-    };
-  }, [data]);
-
-  useEffect(() => {
-    const cursor = document.querySelector('.cursor');
-    const sectionElements = document.querySelectorAll('section');
-    const buttonElements = document.querySelectorAll('section button');
-
-    let posX = 0;
-    let posY = 0;
-    let mouseX = 0;
-    let mouseY = 0;
-
-    let lastPosX = 0;
-    let lastPosY = 0;
-    const threshold = 0.1;
-
-    gsap.ticker.add(() => {
-      posX += (mouseX - posX) / 10;
-      posY += (mouseY - posY) / 10;
-
-      if (
-        Math.abs(posX - lastPosX) > threshold ||
-        Math.abs(posY - lastPosY) > threshold
-      ) {
-        gsap.set(cursor, {
-          left: posX,
-          top: posY,
-        });
-
-        lastPosX = posX;
-        lastPosY = posY;
-      }
-    });
-
-    const handleMouseMove = (event: MouseEvent): void => {
-      mouseX = event.pageX;
-      mouseY = event.pageY;
-    };
-
-    const handleActiveAdd = (): void => {
-      cursor?.classList.add('active');
-    };
-
-    const handleActiveRemove = (): void => {
-      cursor?.classList.remove('active');
-    };
-
-    document.addEventListener('mousemove', handleMouseMove);
-
-    sectionElements.forEach(section => {
-      section.addEventListener('mouseenter', handleActiveAdd);
-      section.addEventListener('mouseleave', handleActiveRemove);
-    });
-
-    buttonElements.forEach(button => {
-      button.addEventListener('mouseenter', handleActiveRemove);
-      button.addEventListener('mouseleave', handleActiveAdd);
-    });
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-
-      sectionElements.forEach(section => {
-        section.removeEventListener('mouseenter', handleActiveAdd);
-        section.removeEventListener('mouseleave', handleActiveRemove);
-      });
-
-      buttonElements.forEach(button => {
-        button.removeEventListener('mouseenter', handleActiveRemove);
-        button.removeEventListener('mouseleave', handleActiveAdd);
-      });
-    };
-  }, [data]);
+  useHomePageAnimation(data);
+  useCustomCursorAnimation(data);
 
   if (loading) {
     return <Loader />;
@@ -175,72 +66,32 @@ export const Home = (): JSX.Element => {
 
   return (
     <>
-      <header className="mx-auto max-w-[85%] font-condensed">
-        <h1
-          className="
-          header-animation
-          flex flex-col justify-center items-center
-          md:flex-row md:gap-6 lg:gap-4
-          mt-[89px] sm:mt-[113px] xxl:mt-[129px] mb-4 sm:mb-7 md:mb-10
-          font-bold uppercase text-black text-center leading-none
-          drop-shadow-md
-        "
-        >
-          <div
-            className="
-            ml-[-7px]
-            text-[105px] sm:text-[160px] md:text-[125px] lg:text-[160px] xl:text-[200px] xxl:text-[245px]
-            leading-[0.9] tracking-[-7px] lg:tracking-[-9px] xxl:tracking-[-12px]
-          "
-          >
+      <header className='mx-auto max-w-[85%] font-condensed'>
+        <h1 className='header-animation h1-wrapper'>
+          <span className='h1-left-part'>
             Blog
-          </div>
-          <div
-            className="
-            md:max-w-[300px] lg:max-w-[370px] xl:max-w-[470px] xxl:max-w-[545px]
-            text-[21px] sm:text-[33px] md:text-[45px] lg:text-[55px] xl:text-[70px] xxl:text-[80px]
-            md:leading-tight lg:leading-[1.2]
-            md:text-left
-          "
-          >
-            Thank&nbsp;code it’s&nbsp;friday
-          </div>
-        </h1>
+          </span>
 
-        <WebPageJsonLd
-          useAppDir={true}
-          description={
-            locale === 'en'
-              ? 'Welcome to my personal blog dedicated to web development.' +
-                'Join me as we explore the world of programming, experiment with new' +
-                'technologies and approaches, and grow together as professional web developers.'
-              : 'Ласкаво прошу до мого блогу, який присвячено веб-розробці.' +
-                'Приєднуйтесь до мене, аби разом досліджувати світ програмування, експериментувати' +
-                'з новими технологіями та підходами, та разом рости як професійні веб-розробники.'
-          }
-          id="https://thankcodeitsfriday.com"
-          lastReviewed="2023-07-10T08:00:00+08:00"
-          reviewedBy={{
-            type: 'Person',
-            name: locale === 'en' ? 'Pavlo Reutskyi' : 'Павло Реуцький',
-          }}
-        />
+          <span className='h1-right-part'>
+            Thank&nbsp;code it’s&nbsp;friday
+          </span>
+        </h1>
       </header>
 
-      <main className="mx-auto max-w-[85%] font-condensed mb-8">
+      <main className='mx-auto max-w-[85%] font-condensed mb-8'>
         {previews && (
           <>
             {currentPage === 1 && (
               <LastPostPreview
-                className="scroll-animation"
+                className='scroll-animation'
                 preview={previews[0].attributes}
               />
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:mb-10 max-w-[1224px] mx-auto">
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-8 md:mb-10 max-w-[1224px] mx-auto'>
               {previews.slice(currentPage === 1 ? 1 : 0).map(preview => (
                 <PostPreview
-                  className="scroll-animation"
+                  className='scroll-animation'
                   preview={preview.attributes}
                   key={preview.id}
                 />
@@ -250,7 +101,7 @@ export const Home = (): JSX.Element => {
         )}
       </main>
 
-      <nav className="mx-auto max-w-[85%] mb-8 flex justify-center">
+      <nav className='mx-auto max-w-[85%] mb-8 flex justify-center'>
         {pageCount > 1 && (
           <PaginationComponent
             count={pageCount}
@@ -262,7 +113,26 @@ export const Home = (): JSX.Element => {
 
       <BackToTopButton locoScroll={locoScroll} />
 
-      <div className="cursor"></div>
+      <div className='cursor'></div>
+
+      <WebPageJsonLd
+        useAppDir={true}
+        description={
+          locale === 'en'
+            ? 'Welcome to my personal blog dedicated to web development.' +
+              'Join me as we explore the world of programming, experiment with new' +
+              'technologies and approaches, and grow together as professional web developers.'
+            : 'Ласкаво прошу до мого блогу, який присвячено веб-розробці.' +
+              'Приєднуйтесь до мене, аби разом досліджувати світ програмування, експериментувати' +
+              'з новими технологіями та підходами, та разом рости як професійні веб-розробники.'
+        }
+        id='https://thankcodeitsfriday.com'
+        lastReviewed='2023-07-10T08:00:00+08:00'
+        reviewedBy={{
+          type: 'Person',
+          name: locale === 'en' ? 'Pavlo Reutskyi' : 'Павло Реуцький',
+        }}
+      />
     </>
   );
 };

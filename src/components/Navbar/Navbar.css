@@ -8,3 +8,28 @@
   background-position: 0% 0;
 }
 
+.nav-main-wrapper {
+  @apply fixed top-0 left-0 right-0 z-20;
+  @apply mx-auto max-w-full;
+  @apply opacity-100 translate-y-0 md:opacity-0 md:translate-y-[-100%];
+  @apply font-condensed;
+}
+
+.nav-container {
+  @apply relative z-20;
+  @apply flex justify-between items-center;
+  @apply max-w-[85%] xxl:max-w-[1224px] mx-auto;
+  @apply border-b border-border_color;
+}
+
+.nav-logo-wrapper {
+  @apply relative z-20;
+  @apply py-4;
+  @apply text-base sm:text-xl leading-tight font-bold text-title_color uppercase whitespace-nowrap;
+}
+
+.nav-links-wrapper {
+  @apply flex space-x-6;
+  @apply mr-8 mt-[2px];
+  @apply text-lg md:text-base font-bold text-title_color uppercase leading-normal;
+}

@@ -18,7 +18,7 @@ import { ErrorMessage } from '../ErrorMessage';
 import { WebPageJsonLd } from 'next-seo';
 import useLocoScroll from '@/hooks/useLocoScroll';
 import { GET_ARTICLE_PREVIEWS } from '@/graphql/queries';
-import useHomePageAnimation from '@/hooks/useHomePageAnimation';
+import useOnLoadPageAnimation from '@/hooks/useOnLoadPageAnimation';
 import useCustomCursorAnimation from '@/hooks/useCustomCursorAnimation';
 
 export const Home = (): JSX.Element => {
@@ -54,7 +54,7 @@ export const Home = (): JSX.Element => {
     setCurrentPage(Number(page) || 1);
   }, [page]);
 
-  useHomePageAnimation(data);
+  useOnLoadPageAnimation(data);
   useCustomCursorAnimation(data);
 
   if (loading) {

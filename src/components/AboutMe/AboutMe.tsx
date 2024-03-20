@@ -4,13 +4,16 @@ import Image from 'next/image';
 import stack from './stack.json';
 import useLocoScroll from '@/hooks/useLocoScroll';
 import { BackToTopButton } from '../BackToTopButton';
+import useOnLoadPageAnimation from '@/hooks/useOnLoadPageAnimation';
 
 export const AboutMe = (): JSX.Element => {
   const locoScroll = useLocoScroll();
 
+  useOnLoadPageAnimation();
+
   return (
     <>
-      <main className='mx-auto max-w-[85%] xxl:max-w-[1224px] mt-[89px] sm:mt-[113px] xxl:mt-[129px]'>
+      <main className='scroll-animation mx-auto max-w-[85%] xxl:max-w-[1224px] mt-[89px] sm:mt-[113px] xxl:mt-[129px]'>
         <div className='mx-auto max-w-[800px] mb-10 md:mb-12 lg:mb-14'>
           <h1 className='mb-4 md:mb-6 text-3xl md:text-4xl xl:text-5xl font-semibold text-black'>
             About me

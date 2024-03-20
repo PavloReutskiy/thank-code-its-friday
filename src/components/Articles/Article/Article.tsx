@@ -1,9 +1,10 @@
 'use client';
 import './Article.css';
 import 'highlight.js/styles/ir-black.css';
-import React, { ReactElement, useEffect, useRef } from 'react';
+import React, { ReactElement, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { BackToTopButton } from '@/components/BackToTopButton';
 import { Tag } from '@/components/Tag';
 import { useQuery } from '@apollo/client';
@@ -23,6 +24,7 @@ import { ArticleJsonLd } from 'next-seo';
 import Link from 'next/link';
 import useLocoScroll from '@/hooks/useLocoScroll';
 import { GET_ARTICLE } from '@/graphql/queries';
+import useOnLoadPageAnimation from '@/hooks/useOnLoadPageAnimation';
 
 export const Article = (): JSX.Element => {
   const { locale, slug } = useParams();
@@ -58,11 +60,13 @@ export const Article = (): JSX.Element => {
     color: tag.attributes.color,
   }));
 
-  useEffect(() => {
+  useOnLoadPageAnimation(data);
+
+  useGSAP((_context, contextSafe) => {
     let lastScrollTop = 0;
     const stickyElement = sideRef.current;
 
-    const handleScroll = (): void => {
+    const handleScroll = contextSafe ? contextSafe((): void => {
       const position = window.scrollY;
 
       if (position > lastScrollTop) {
@@ -80,7 +84,7 @@ export const Article = (): JSX.Element => {
       }
 
       lastScrollTop = position <= 0 ? 0 : position;
-    };
+    }) : (): void => {};
 
     window.addEventListener('scroll', handleScroll);
 
@@ -89,9 +93,9 @@ export const Article = (): JSX.Element => {
     };
   }, [article]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   if (loading) {
     return <Loader />;
@@ -102,7 +106,7 @@ export const Article = (): JSX.Element => {
 
   return (
     <>
-      <header className="mx-auto max-w-[85%] xxl:max-w-[1224px] mb-8 lg:mb-11 xl:mb-14">
+      <header className="scroll-animation mx-auto max-w-[85%] xxl:max-w-[1224px] mb-8 lg:mb-11 xl:mb-14">
         <h1 className="heading-h1">{title}</h1>
 
         <div className="flex justify-between items-center max-w-[800px] mx-auto mb-4">
@@ -125,7 +129,7 @@ export const Article = (): JSX.Element => {
         )}
       </header>
 
-      <main className="article-main">
+      <main className="scroll-animation article-main">
         <div className="max-w-[800px] order-2 xl:order-1">
           {content && (
             <BlocksRenderer

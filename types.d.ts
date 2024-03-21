@@ -79,8 +79,8 @@ interface Article {
     };
   };
   content: RootNode[];
-  previousArticle?: NextAndPreviousAticle;
-  nextArticle?: NextAndPreviousAticle;
+  previousArticle: NextAndPreviousAticle;
+  nextArticle: NextAndPreviousAticle;
   SEO: SEO;
 }
 

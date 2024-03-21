@@ -2,6 +2,7 @@ import { Article } from '@/components/Articles/Article';
 import { Metadata } from 'next';
 import { GET_ARTICLE, GET_ARTICLE_METADATA } from '@/graphql/queries';
 import getGraphQLClient from '@/utils/getGraphQLClient';
+import ArticleHeader from '@/components/Articles/ArticleHeader/ArticleHeader';
 
 const graphQLClient = getGraphQLClient();
 
@@ -79,11 +80,17 @@ const getArticle = async(locale: string, slug: string): Promise<ArticleData> => 
 
 const Post = async({ params }: Props): Promise<JSX.Element> => {
   const { slug, locale } = params;
+
   const articles = await getArticle(locale, slug);
   const article = articles.data[0].attributes;
   console.log('++article', article);
 
-  return <Article />;
+  return (
+    <Article article={article} slug={slug}
+      locale={locale}>
+      <ArticleHeader locale={locale} article={article} />
+    </Article>
+  ) ;
 };
 
 export default Post;

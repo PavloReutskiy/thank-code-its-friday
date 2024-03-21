@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const useOnLoadPageAnimation = (data?: ArticlePreviewsResponse | ArticlesResponse | undefined): void => {
+const useOnLoadPageAnimation = (data?: ArticlePreviewsResponse | ArticlesResponse | Article | undefined): void => {
   useGSAP(() => {
     if (window.innerWidth < 769) {
       gsap.set('.scroll-animation', { opacity: 1, y: 0 });

@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 type Props = {
   altText: string;
-  articleMainImage: {
+  image: {
     data: {
       attributes: {
         url: string;
@@ -12,8 +12,8 @@ type Props = {
   }
 };
 
-export const ArticleMainImage: FC<Props> = ({ altText, articleMainImage }): JSX.Element => {
-  const { url } = articleMainImage.data.attributes;
+export const ArticleMainImage: FC<Props> = ({ altText, image }): JSX.Element => {
+  const { url } = image.data.attributes;
 
   const imageUrl = process.env.NODE_ENV === 'production'
     ? url

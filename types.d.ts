@@ -19,6 +19,10 @@ interface ArticlesResponse {
   };
 }
 
+interface ArticleData {
+  data: ArticleWithID[];
+}
+
 interface Preview {
   date: string;
   readTime: string;

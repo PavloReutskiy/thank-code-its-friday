@@ -1,9 +1,8 @@
 import { Article } from '@/components/Articles/Article';
 import { Metadata } from 'next';
-import { GET_ARTICLE_METADATA } from '@/graphql/queries';
+import { GET_ARTICLE, GET_ARTICLE_METADATA } from '@/graphql/queries';
 import getGraphQLClient from '@/utils/getGraphQLClient';
 
-// #region generateMetadata
 const graphQLClient = getGraphQLClient();
 
 type Props = {
@@ -13,6 +12,7 @@ type Props = {
   };
 };
 
+// #region generateMetadata
 export const generateMetadata = async({ params }: Props): Promise<Metadata> => {
   const { slug, locale } = params;
 
@@ -70,7 +70,19 @@ export const generateMetadata = async({ params }: Props): Promise<Metadata> => {
 };
 // #endregion
 
-const Post = (): JSX.Element => {
+const getArticle = async(locale: string, slug: string): Promise<ArticleData> => {
+  const { articles } = await graphQLClient.request<ArticlesResponse>(GET_ARTICLE,
+    { slug, locale });
+
+  return articles;
+};
+
+const Post = async({ params }: Props): Promise<JSX.Element> => {
+  const { slug, locale } = params;
+  const articles = await getArticle(locale, slug);
+  const article = articles.data[0].attributes;
+  console.log('++article', article);
+
   return <Article />;
 };
 

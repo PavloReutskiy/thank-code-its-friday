@@ -2,7 +2,10 @@ import { Article } from '@/components/Articles/Article';
 import { Metadata } from 'next';
 import { GET_ARTICLE, GET_ARTICLE_METADATA } from '@/graphql/queries';
 import getGraphQLClient from '@/utils/getGraphQLClient';
-import ArticleHeader from '@/components/Articles/ArticleHeader/ArticleHeader';
+import { ArticleHeader } from '@/components/Articles/ArticleHeader';
+import { ArticleMain } from '@/components/Articles/ArticleMain';
+import { BackToTopButton } from '@/components/BackToTopButton';
+import { ArticleJsonLdComponent } from '@/components/Articles/ArticleJsonLdComponent';
 
 const graphQLClient = getGraphQLClient();
 
@@ -83,12 +86,13 @@ const Post = async({ params }: Props): Promise<JSX.Element> => {
 
   const articles = await getArticle(locale, slug);
   const article = articles.data[0].attributes;
-  console.log('++article', article);
 
   return (
-    <Article article={article} slug={slug}
-      locale={locale}>
+    <Article article={article}>
       <ArticleHeader locale={locale} article={article} />
+      <ArticleMain locale={locale} article={article} />
+      <BackToTopButton />
+      <ArticleJsonLdComponent locale={locale} article={article} />
     </Article>
   ) ;
 };

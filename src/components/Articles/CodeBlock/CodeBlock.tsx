@@ -1,3 +1,4 @@
+import 'highlight.js/styles/ir-black.css';
 import { FC, useState } from 'react';
 import { toast } from 'react-toastify';
 import Highlight from 'react-highlight';

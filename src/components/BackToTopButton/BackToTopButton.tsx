@@ -1,14 +1,13 @@
+'use client';
+import useLocoScroll from '@/hooks/useLocoScroll';
 import './BackToTopButton.css';
 import Image from 'next/image';
 import arrow from 'public/assets/back-to-top-arrow.svg';
 import { FC, useEffect, useState } from 'react';
 
-type Props = {
-  locoScroll: LocomotiveScroll | null;
-};
-
-export const BackToTopButton: FC<Props> = ({ locoScroll }): JSX.Element | null => {
+export const BackToTopButton: FC = (): JSX.Element | null => {
   const [showButton, setShowButton] = useState(false);
+  const locoScroll = useLocoScroll();
 
   useEffect(() => {
     const handleScroll = (): void => {

@@ -2,21 +2,23 @@ import './RecomendedArticles.css';
 import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
 
 type Props = {
   previousArticle: NextAndPreviousAticle;
   nextArticle: NextAndPreviousAticle;
+  locale: string;
 };
 
-export const RecomendedArticles: FC<Props> = ({ previousArticle, nextArticle }): JSX.Element => {
-  const t = useTranslations('Post');
-
+export const RecomendedArticles: FC<Props> = ({ previousArticle, nextArticle, locale }): JSX.Element => {
   const getArticleInfo = (article: NextAndPreviousAticle): ArticleInfo => {
-    const url = article.data.attributes.image?.data.attributes?.url;
-    const { title } = article.data.attributes;
-    const { altText } = article.data.attributes;
-    const { slug } = article.data.attributes;
+    const {
+      title,
+      altText,
+      slug,
+      image,
+    } = article.data.attributes;
+
+    const url = image?.data.attributes.url;
 
     const imageUrl = process.env.NODE_ENV === 'production'
       ? url
@@ -31,30 +33,30 @@ export const RecomendedArticles: FC<Props> = ({ previousArticle, nextArticle }):
   };
 
   const {
-    imageUrl: previousArticleImageUrl,
-    title: previousArticleTitle,
-    altText: previousArticleImageAltText,
-    slug: previousArticleSlug,
+    imageUrl: previousImageUrl,
+    title: previousTitle,
+    altText: previousAltText,
+    slug: previousSlug,
   } = getArticleInfo(previousArticle);
 
   const {
-    imageUrl: nextArticleImageUrl,
-    title: nextArticleTitle,
-    altText: nextArticleImageAltText,
-    slug: nextArticleSlug,
+    imageUrl: nextImageUrl,
+    title: nextTitle,
+    altText: nextAltText,
+    slug: nextSlug,
   } = getArticleInfo(nextArticle);
 
   return (
     <div className='pt-10 flex justify-between items-start flex-col md:items-center md:flex-row gap-7'>
-      {previousArticleImageUrl && previousArticleImageAltText && (
+      {previousImageUrl && previousAltText && (
         <Link
-          href={`/post/${previousArticleSlug}`}
+          href={`/post/${previousSlug}`}
           className="recomended-link"
         >
           <div className='relative min-w-[90px] min-h-[90px]'>
             <Image
-              src={previousArticleImageUrl}
-              alt={previousArticleImageAltText}
+              src={previousImageUrl}
+              alt={previousAltText}
               fill
               sizes="90px"
               style={{
@@ -67,11 +69,11 @@ export const RecomendedArticles: FC<Props> = ({ previousArticle, nextArticle }):
 
           <div className='text-left max-w-[320px]'>
             <p className='recomended-label'>
-              {t('previous')}
+              {locale === 'en' ? 'Previous' : 'Попередня' }
             </p>
 
             <p className='recomended-title'>
-              {previousArticleTitle}
+              {previousTitle}
             </p>
           </div>
         </Link>
@@ -79,24 +81,24 @@ export const RecomendedArticles: FC<Props> = ({ previousArticle, nextArticle }):
 
       <div className='w-px h-14 bg-border_color opacity-60 hidden md:block'></div>
 
-      {nextArticleImageUrl && nextArticleImageAltText && (
+      {nextImageUrl && nextAltText && (
         <Link
-          href={`/post/${nextArticleSlug}`}
+          href={`/post/${nextSlug}`}
           className="recomended-link"
         >
           <div className='text-left order-2 max-w-[320px] md:order-1 md:text-right'>
             <p className='recomended-label'>
-              {t('next')}
+              {locale === 'en' ? 'Next' : 'Наступна' }
             </p>
             <p className='recomended-title'>
-              {nextArticleTitle}
+              {nextTitle}
             </p>
           </div>
 
           <div className='relative min-w-[90px] min-h-[90px] order-1 md:order-2'>
             <Image
-              src={nextArticleImageUrl}
-              alt={nextArticleImageAltText}
+              src={nextImageUrl}
+              alt={nextAltText}
               fill
               sizes="90px"
               style={{

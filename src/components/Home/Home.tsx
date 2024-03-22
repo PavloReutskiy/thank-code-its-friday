@@ -22,7 +22,7 @@ import useOnLoadPageAnimation from '@/hooks/useOnLoadPageAnimation';
 import useCustomCursorAnimation from '@/hooks/useCustomCursorAnimation';
 
 export const Home = (): JSX.Element => {
-  const locoScroll = useLocoScroll();
+  useLocoScroll();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const pathname = usePathname();
   const router = useRouter();
@@ -111,7 +111,7 @@ export const Home = (): JSX.Element => {
         )}
       </nav>
 
-      <BackToTopButton locoScroll={locoScroll} />
+      <BackToTopButton />
 
       <div className='cursor'></div>
 

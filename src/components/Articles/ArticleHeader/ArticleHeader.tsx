@@ -8,8 +8,14 @@ type Props = {
   locale: string;
 };
 
-const ArticleHeader: FC<Props> = ({ locale, article }) => {
-  const { title, date, readTime, altText, image } = article;
+export const ArticleHeader: FC<Props> = ({ locale, article }) => {
+  const {
+    title,
+    date,
+    readTime,
+    altText,
+    image,
+  } = article;
 
   return (
     <header className="scroll-animation mx-auto max-w-[85%] xxl:max-w-[1224px] mb-8 lg:mb-11 xl:mb-14">
@@ -32,5 +38,3 @@ const ArticleHeader: FC<Props> = ({ locale, article }) => {
     </header>
   );
 };
-
-export default ArticleHeader;

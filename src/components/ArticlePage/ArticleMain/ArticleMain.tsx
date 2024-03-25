@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { RecomendedArticles } from '../RecomendedArticles';
-import { ContentNavigation } from '@/components/Articles/ContentNavigation';
-import { ArticleContent } from '@/components/Articles/ArticleContent';
+import { ContentNavigation } from '@/components/ArticlePage/ContentNavigation';
+import { ArticleContent } from '@/components/ArticlePage/ArticleContent';
 
 type Props = {
   article: Article;

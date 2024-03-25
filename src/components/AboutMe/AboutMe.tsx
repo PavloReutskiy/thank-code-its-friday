@@ -3,11 +3,11 @@ import './AboutMe.css';
 import Image from 'next/image';
 import stack from './stack.json';
 import useLocoScroll from '@/hooks/useLocoScroll';
-import { BackToTopButton } from '../BackToTopButton';
+import { BackToTopButton } from '@/components/Common/BackToTopButton';
 import useOnLoadPageAnimation from '@/hooks/useOnLoadPageAnimation';
 
 export const AboutMe = (): JSX.Element => {
-  const locoScroll = useLocoScroll();
+  useLocoScroll();
 
   useOnLoadPageAnimation();
 
@@ -97,7 +97,7 @@ export const AboutMe = (): JSX.Element => {
         <div></div>
       </main>
 
-      <BackToTopButton locoScroll={locoScroll} />
+      <BackToTopButton />
     </>
   );
 };

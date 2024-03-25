@@ -20,7 +20,7 @@
   top: 0;
   left: 0;
   display: block;
-  background-image: url(../../../public/assets/cursor.jpeg);
+  background-image: url(/assets/cursor.jpeg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;

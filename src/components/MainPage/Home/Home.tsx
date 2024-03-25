@@ -1,10 +1,10 @@
 'use client';
 import './Home.css';
-import { useEffect, useState } from 'react';
-import { PaginationComponent } from '@/components/PaginationComponent';
-import { PostPreview } from '@/components/PostPreview';
-import { LastPostPreview } from '@/components/LastPostPreview';
-import { BackToTopButton } from '../BackToTopButton';
+import { FC, ReactNode, useEffect, useState } from 'react';
+import { PaginationComponent } from '@/components/MainPage/PaginationComponent';
+import { PostPreview } from '@/components/MainPage/PostPreview';
+import { LastPostPreview } from '@/components/MainPage/LastPostPreview';
+import { BackToTopButton } from '@/components/Common/BackToTopButton';
 import { useQuery } from '@apollo/client';
 import getApolloClient from '@/utils/getApolloClient';
 import {
@@ -13,15 +13,19 @@ import {
   useRouter,
   useSearchParams,
 } from 'next/navigation';
-import { Loader } from '../Loader';
-import { ErrorMessage } from '../ErrorMessage';
+import { Loader } from '@/components/Common/Loader';
+import { ErrorMessage } from '@/components/Common/ErrorMessage';
 import { WebPageJsonLd } from 'next-seo';
 import useLocoScroll from '@/hooks/useLocoScroll';
 import { GET_ARTICLE_PREVIEWS } from '@/graphql/queries';
 import useOnLoadPageAnimation from '@/hooks/useOnLoadPageAnimation';
 import useCustomCursorAnimation from '@/hooks/useCustomCursorAnimation';
 
-export const Home = (): JSX.Element => {
+type Props = {
+  children: ReactNode;
+};
+
+export const Home: FC<Props> = ({ children }): JSX.Element => {
   useLocoScroll();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const pathname = usePathname();
@@ -36,7 +40,7 @@ export const Home = (): JSX.Element => {
     variables: {
       locale,
       page: currentPage,
-      pageSize: 10,
+      pageSize: 2,
     },
     client,
   });
@@ -66,7 +70,8 @@ export const Home = (): JSX.Element => {
 
   return (
     <>
-      <header className='mx-auto max-w-[85%] font-condensed'>
+      {children}
+      {/* <header className='mx-auto max-w-[85%] font-condensed'>
         <h1 className='header-animation h1-wrapper'>
           <span className='h1-left-part'>
             Blog
@@ -76,7 +81,7 @@ export const Home = (): JSX.Element => {
             Thank&nbsp;code it’s&nbsp;friday
           </span>
         </h1>
-      </header>
+      </header> */}
 
       <main className='mx-auto max-w-[85%] font-condensed mb-8'>
         {previews && (

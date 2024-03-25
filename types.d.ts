@@ -23,6 +23,13 @@ interface ArticleData {
   data: ArticleWithID[];
 }
 
+interface PreviewsData {
+  data: PreviewWithID[];
+  meta: {
+    pagination: Pagination;
+  };
+}
+
 interface Preview {
   date: string;
   readTime: string;

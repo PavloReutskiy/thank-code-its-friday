@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import './PostPreviewContent.css';
 import formatData from '@/utils/formatData';
-import { Tag } from '../Tag';
+import { Tag } from '@/components/Common/Tag';
 
 type Props = {
   date: string;

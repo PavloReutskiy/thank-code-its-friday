@@ -1,11 +1,11 @@
-import { Article } from '@/components/Articles/Article';
+import { Article } from '@/components/ArticlePage/Article';
 import { Metadata } from 'next';
 import { GET_ARTICLE, GET_ARTICLE_METADATA } from '@/graphql/queries';
 import getGraphQLClient from '@/utils/getGraphQLClient';
-import { ArticleHeader } from '@/components/Articles/ArticleHeader';
-import { ArticleMain } from '@/components/Articles/ArticleMain';
-import { BackToTopButton } from '@/components/BackToTopButton';
-import { ArticleJsonLdComponent } from '@/components/Articles/ArticleJsonLdComponent';
+import { ArticleHeader } from '@/components/ArticlePage/ArticleHeader';
+import { ArticleMain } from '@/components/ArticlePage/ArticleMain';
+import { BackToTopButton } from '@/components/Common/BackToTopButton';
+import { ArticleJsonLdComponent } from '@/components/ArticlePage/ArticleJsonLdComponent';
 
 const graphQLClient = getGraphQLClient();
 

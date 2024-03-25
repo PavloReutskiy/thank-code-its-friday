@@ -1,13 +1,20 @@
-import { Home } from '@/components/Home';
+import { Home } from '@/components/MainPage/Home';
+import getGraphQLClient from '@/utils/getGraphQLClient';
 import type { Metadata } from 'next';
+import { GET_ARTICLE_PREVIEWS } from '@/graphql/queries';
 
-// #region generateMetadata
+const graphQLClient = getGraphQLClient();
+
 type Props = {
   params: {
     locale: string;
   };
+  searchParams: {
+    [key: string]: string | string[] | undefined;
+  }
 };
 
+// #region generateMetadata
 export const generateMetadata = async({ params }: Props): Promise<Metadata> => {
   const { locale } = params;
 
@@ -64,9 +71,47 @@ export const generateMetadata = async({ params }: Props): Promise<Metadata> => {
 };
 // #endregion
 
-const HomePage = (): JSX.Element => {
+const HomePage = async({ searchParams, params }: Props): Promise<JSX.Element> => {
+  const { locale: localeParam } = params;
+  const currentPage = Number(searchParams.page ?? '1');
+  const currentPageSize = 10;
+
+  const getArticlePreviews = async(
+    locale: string, page: number, pageSize: number,
+  ): Promise<PreviewsData> => {
+    const { articlePreviews } = await graphQLClient.request<ArticlePreviewsResponse>(GET_ARTICLE_PREVIEWS,
+      { locale, page, pageSize });
+
+    return articlePreviews;
+  };
+
+  const articlePreviews = await getArticlePreviews(
+    localeParam, currentPage, currentPageSize,
+  );
+  const previews = articlePreviews.data;
+  // const { page, pageSize, pageCount} = articlePreviews.meta.pagination;
+
+  console.log('+++++articlePreviews', articlePreviews);
+  console.log('+++++previews', previews);
+
   return (
-    <Home />
+    <>
+      <header className='mx-auto max-w-[85%] font-condensed'>
+        <h1 className='header-animation h1-wrapper'>
+          <span className='h1-left-part'>
+            Blog
+          </span>
+
+          <span className='h1-right-part'>
+            Thank&nbsp;code it’s&nbsp;friday
+          </span>
+        </h1>
+      </header>
+
+      <Home>
+        test
+      </Home>
+    </>
   );
 };
 

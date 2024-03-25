@@ -2,8 +2,8 @@
 import { FC, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { Tag } from '@/components/Tag';
-import { TableOfContents } from '@/components/Articles/TableOfContents';
+import { Tag } from '@/components/Common/Tag';
+import { TableOfContents } from '@/components/ArticlePage/TableOfContents';
 import useLocoScroll from '@/hooks/useLocoScroll';
 
 type Props = {

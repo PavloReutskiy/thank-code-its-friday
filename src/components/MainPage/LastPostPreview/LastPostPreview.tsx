@@ -1,17 +1,18 @@
-import './PostPreview.css';
+'use client';
+import './LastPostPreview.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FC } from 'react';
 import clsx from 'clsx';
+import { FC } from 'react';
 import { useParams } from 'next/navigation';
-import { PostPreviewContent } from '../PostPreviewContent';
+import { PostPreviewContent } from '@/components/MainPage/PostPreviewContent';
 
 type Props = {
   className: string;
   preview: Preview;
 };
 
-export const PostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
+export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
   const { locale } = useParams();
 
   const {
@@ -34,9 +35,12 @@ export const PostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
   }));
 
   return (
-    <div data-preview className={clsx('post-wrapper', className)}>
-      <Link href={`/post/${slug}`} className='cursor-default'>
-        <div className='post-image-wrapper'>
+    <Link
+      href={`/post/${slug}`}
+      className={clsx('block max-w-[1224px] mx-auto cursor-default', className)}
+    >
+      <div data-preview className='last-post-wrapper'>
+        <div className='last-post-image-wrapper'>
           <Image
             src={imageUrl}
             width={Number(width)}
@@ -54,7 +58,7 @@ export const PostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
           tagList={tagList}
           description={description}
         />
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };

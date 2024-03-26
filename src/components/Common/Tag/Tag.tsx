@@ -1,3 +1,4 @@
+'use client';
 import './Tag.css';
 import { FC } from 'react';
 import { useRouter } from 'next/navigation';

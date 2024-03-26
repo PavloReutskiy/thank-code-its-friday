@@ -1,0 +1,19 @@
+.h1-wrapper {
+  @apply flex flex-col justify-center items-center md:flex-row md:gap-6 lg:gap-4;
+  @apply mt-[89px] sm:mt-[113px] xxl:mt-[129px] mb-4 sm:mb-7 md:mb-10;
+  @apply font-bold uppercase text-black text-center leading-none;
+  @apply drop-shadow-md;
+}
+
+.h1-left-part {
+  @apply ml-[-7px];
+  @apply text-[105px] sm:text-[160px] md:text-[125px] lg:text-[160px] xl:text-[200px] xxl:text-[245px];
+  @apply leading-[0.9] tracking-[-7px] lg:tracking-[-9px] xxl:tracking-[-12px];
+}
+
+.h1-right-part {
+  @apply md:max-w-[300px] lg:max-w-[370px] xl:max-w-[470px] xxl:max-w-[545px];
+  @apply text-[21px] sm:text-[33px] md:text-[45px] lg:text-[55px] xl:text-[70px] xxl:text-[80px];
+  @apply md:leading-tight lg:leading-[1.2] md:text-left;
+}
+

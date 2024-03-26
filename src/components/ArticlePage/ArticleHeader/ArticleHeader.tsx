@@ -18,7 +18,7 @@ export const ArticleHeader: FC<Props> = ({ locale, article }) => {
   } = article;
 
   return (
-    <header className="scroll-animation mx-auto max-w-[85%] xxl:max-w-[1224px] mb-8 lg:mb-11 xl:mb-14">
+    <header className="loading-animation mx-auto max-w-[85%] xxl:max-w-[1224px] mb-8 lg:mb-11 xl:mb-14">
       <h1 className="heading-h1">{title}</h1>
 
       <div className="flex justify-between items-center max-w-[800px] mx-auto mb-4">

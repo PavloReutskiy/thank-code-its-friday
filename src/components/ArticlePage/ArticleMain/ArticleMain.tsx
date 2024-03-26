@@ -16,7 +16,7 @@ export const ArticleMain: FC<Props> = ({ article, locale }) => {
   } = article;
 
   return (
-    <main className="scroll-animation article-main">
+    <main className="loading-animation article-main">
       <div className="max-w-[800px] order-2 xl:order-1">
         <ArticleContent content={content} />
 

@@ -1,7 +1,6 @@
 'use client';
 import './Navbar.css';
 import { useState, useRef } from 'react';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -12,7 +11,6 @@ import useHamburgerAnimation from '@/hooks/useHamburgerAnimation';
 import useNavbarAnimation from '@/hooks/useNavbarAnimation';
 
 export const Navbar = (): JSX.Element => {
-  const pathname = usePathname();
   const navRef = useRef(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -38,19 +36,13 @@ export const Navbar = (): JSX.Element => {
       <nav ref={navRef} className='animateNav nav-main-wrapper'>
         <div className='nav-container'>
           <div className='nav-logo-wrapper'>
-            {pathname !== '/' ? (
-              <Link
-                href='/'
-                className='block'
-                onClick={():void => setIsOpen(false)}
-              >
-                thank code <br /> it`s friday
-              </Link>
-            ) : (
-              <span className='block cursor-pointer leading-tight text-base sm:text-xl'>
-                thank code <br /> it`s friday
-              </span>
-            )}
+            <Link
+              href='/'
+              className='block'
+              onClick={():void => setIsOpen(false)}
+            >
+              thank code <br /> it`s friday
+            </Link>
           </div>
 
           <div className='hidden md:flex md:items-center md:justify-end md:min-w-[45%]'>

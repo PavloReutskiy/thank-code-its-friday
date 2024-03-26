@@ -2,19 +2,15 @@
 import './LastPostPreview.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import clsx from 'clsx';
 import { FC } from 'react';
-import { useParams } from 'next/navigation';
 import { PostPreviewContent } from '@/components/MainPage/PostPreviewContent';
 
 type Props = {
-  className: string;
   preview: Preview;
+  locale: string;
 };
 
-export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
-  const { locale } = useParams();
-
+export const LastPostPreview: FC<Props> = ({ preview, locale }): JSX.Element => {
   const {
     date,
     readTime,
@@ -37,7 +33,7 @@ export const LastPostPreview: FC<Props> = ({ className, preview }): JSX.Element 
   return (
     <Link
       href={`/post/${slug}`}
-      className={clsx('block max-w-[1224px] mx-auto cursor-default', className)}
+      className='block max-w-[1224px] mx-auto cursor-default'
     >
       <div data-preview className='last-post-wrapper'>
         <div className='last-post-image-wrapper'>

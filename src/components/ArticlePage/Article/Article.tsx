@@ -1,19 +1,15 @@
 'use client';
 import './Article.css';
 import { FC, ReactNode } from 'react';
-import useOnLoadPageAnimation from '@/hooks/useOnLoadPageAnimation';
+import { usePageLoadAnimation } from '@/hooks/usePageLoadAnimation';
 
 type Props = {
   article: Article;
   children: ReactNode;
 };
 
-export const Article: FC<Props> = ({ article, children }): JSX.Element => {
-  useOnLoadPageAnimation(article);
+export const Article: FC<Props> = ({ children }): JSX.Element => {
+  usePageLoadAnimation();
 
-  return (
-    <div>
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 };

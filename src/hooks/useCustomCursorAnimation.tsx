@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-const useCustomCursorAnimation = (data: ArticlePreviewsResponse | undefined): void => {
+const useCustomCursorAnimation = (data: ArticlePreviewsResponse | PreviewWithID[] | undefined): void => {
   useGSAP(() => {
     const cursor = document.querySelector('.cursor');
     const sectionElements = document.querySelectorAll('[data-preview]');

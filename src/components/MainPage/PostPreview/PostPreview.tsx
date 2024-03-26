@@ -2,18 +2,14 @@ import './PostPreview.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FC } from 'react';
-import clsx from 'clsx';
-import { useParams } from 'next/navigation';
 import { PostPreviewContent } from '@/components/MainPage/PostPreviewContent';
 
 type Props = {
-  className: string;
   preview: Preview;
+  locale: string;
 };
 
-export const PostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
-  const { locale } = useParams();
-
+export const PostPreview: FC<Props> = ({ preview, locale }): JSX.Element => {
   const {
     date,
     readTime,
@@ -34,7 +30,7 @@ export const PostPreview: FC<Props> = ({ className, preview }): JSX.Element => {
   }));
 
   return (
-    <div data-preview className={clsx('post-wrapper', className)}>
+    <div data-preview className='post-wrapper'>
       <Link href={`/post/${slug}`} className='cursor-default'>
         <div className='post-image-wrapper'>
           <Image

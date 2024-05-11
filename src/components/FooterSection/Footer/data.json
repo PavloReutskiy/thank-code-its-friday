@@ -1,0 +1,25 @@
+[
+  {
+    "href": "https://www.linkedin.com/in/pavlo-reutskyi-294657278/",
+    "label": "Link to my LinkedIn",
+    "iconId": "icon-linkedin"
+  },
+
+  {
+    "href": "https://dev.to/pavloreutskiy",
+    "label": "Link to my Dev.to profile",
+    "iconId": "icon-devTo"
+  },
+
+  {
+    "href": "https://github.com/PavloReutskiy",
+    "label": "Link to my GitHub profile",
+    "iconId": "icon-gitHub"
+  },
+
+  {
+    "href": "https://www.buymeacoffee.com/pavloreutskiy",
+    "label": "Link to my By Me a Coffee profile",
+    "iconId": "icon-buyMeACoffee"
+  }
+]

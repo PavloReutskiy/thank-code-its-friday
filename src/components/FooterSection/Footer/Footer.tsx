@@ -3,6 +3,7 @@ import { SubscribeForm } from '../SubscribeForm';
 import { useTranslations } from 'next-intl';
 import { SocialLink } from '../SocialLink';
 import { NavLink } from '../../Common/NavLink';
+import data from './data.json';
 
 export const Footer = (): JSX.Element => {
   const t = useTranslations('Footer');
@@ -36,41 +37,16 @@ export const Footer = (): JSX.Element => {
             </p>
 
             <ul className="flex gap-3 mb-6" role="list">
-              <li role="menuitem">
-                <SocialLink
-                  href="https://www.linkedin.com/in/pavlo-reutskyi-294657278/"
-                  label="Link to my LinkedIn"
-                  iconId="icon-linkedin"
-                  className="social-icon"
-                />
-              </li>
-
-              <li role="menuitem">
-                <SocialLink
-                  href="https://dev.to/pavloreutskiy"
-                  label="Link to my Dev.to profile"
-                  iconId="icon-devTo"
-                  className="social-icon"
-                />
-              </li>
-
-              <li role="menuitem">
-                <SocialLink
-                  href="https://github.com/PavloReutskiy"
-                  label="Link to my GitHub profile"
-                  iconId="icon-gitHub"
-                  className="social-icon"
-                />
-              </li>
-
-              <li role="menuitem">
-                <SocialLink
-                  href="https://www.buymeacoffee.com/pavloreutskiy"
-                  label="Link to my By Me a Coffee profile"
-                  iconId="icon-buyMeACoffee"
-                  className="social-icon"
-                />
-              </li>
+              {data.map(item => (
+                <li key={item.iconId} role="menuitem">
+                  <SocialLink
+                    href={item.href}
+                    label={item.label}
+                    iconId={item.iconId}
+                    className="social-icon"
+                  />
+                </li>
+              ))}
             </ul>
 
             <p className="font-condensed text-lg font-bold text-text_color uppercase mb-2">

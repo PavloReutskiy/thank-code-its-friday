@@ -4,3 +4,121 @@
   @apply md:text-lg md:leading-normal;
   @apply xl:text-xl xl:leading-normal;
 }
+
+.books {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 20px;
+}
+
+.book {
+  height: 300px;
+  width: 60px;
+  background-color: #3b8a5d;
+  border-radius: 2px;
+  box-shadow: inset 10px 0px 0px 0px #378157;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 7px;
+}
+
+.book-horizontal {
+  width: 300px;
+  height: 60px;
+  background-color: #30714c;
+  box-shadow: inset 0px -10px 0px 0px #296141;
+  margin-left: 120px;
+}
+
+.book-diagonal {
+  height: 250px;
+  width: 50px;
+  transform: rotate(-15deg) translate(29px, 14px);
+  padding-left: 10px;
+  background-color: #c41e16;
+  box-shadow: inset 10px 0px 0px 0px #ab1c14;
+}
+
+.book-diagonal-brown {
+  height: 250px;
+  width: 50px;
+  transform: rotate(-15deg) translate(29px, 14px);
+  padding-left: 10px;
+  background-color: #331f0a;
+  box-shadow: inset 10px 0px 0px 0px #221507;
+}
+
+.book-diagonal-blue {
+  height: 240px;
+  width: 75px;
+  transform: rotate(-15deg) translate(33px, 14px);
+  padding-left: 10px;
+  background-color: #376990;
+  box-shadow: inset 10px 0px 0px 0px #336286;
+}
+
+.book-horizontal .book-title {
+  writing-mode: horizontal-tb;
+  transform: rotate(0deg);
+  text-align: center;
+  line-height: 1.2;
+  font-size: 16px;
+  color: #ebe4d1;
+  padding-bottom: 20px;
+}
+
+.book-brown {
+  height: 280px;
+  background-color: #331f0a;
+  box-shadow: inset 10px 0px 0px 0px #221507;
+}
+
+.book-blue {
+  height: 270px;
+  background-color: #376990;
+  box-shadow: inset 10px 0px 0px 0px #336286;
+}
+
+.book-yellow {
+  height: 250px;
+  width: 75px;
+  background-color: #dbb808;
+  box-shadow: inset 10px 0px 0px 0px #cdac08;
+}
+
+.book-yellow .book-title {
+  color: #5d5a51;
+}
+
+.book-title {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+  line-height: 1.2;
+  font-size: 16px;
+  color: #ebe4d1;
+  padding: 10px 0;
+}
+
+.book-subtitle {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.shelf {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-image: url('/assets/about/wood.webp');
+  z-index: 2;
+  box-shadow: -10px 17px 80px 0px rgba(0,0,0,0.7);
+  margin-bottom: 500px;
+}
+
+.plant {
+  width: 150px;
+  height: auto;
+  margin-bottom: -3px;
+  margin-left: 70px;
+}

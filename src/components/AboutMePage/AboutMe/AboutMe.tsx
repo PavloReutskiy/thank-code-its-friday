@@ -13,7 +13,7 @@ export const AboutMe = (): JSX.Element => {
   return (
     <>
       <main className="loading-animation mx-auto max-w-[85%] xxl:max-w-[1224px] mt-[89px] sm:mt-[113px] xxl:mt-[129px]">
-        <div className="mx-auto max-w-[800px] mb-10 md:mb-12 lg:mb-14">
+        <section className="mx-auto max-w-[800px] mb-10 md:mb-12 lg:mb-14">
           <h1 className="mb-4 md:mb-6 text-3xl md:text-4xl xl:text-5xl font-semibold text-black">
             About me
           </h1>
@@ -62,9 +62,9 @@ export const AboutMe = (): JSX.Element => {
           <p className="text-block">
             Good luck, and may every line of code lead you to new successes!
           </p>
-        </div>
+        </section>
 
-        <div className="mb-10 md:mb-12 lg:mb-14">
+        <section className="mb-10 md:mb-12 lg:mb-14">
           <h2 className="mb-10 md:mb-12 text-2xl md:text-3xl xl:text-4xl font-semibold text-black text-center">
             Technologies I Work With
           </h2>
@@ -97,9 +97,75 @@ export const AboutMe = (): JSX.Element => {
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div></div>
+        <section className="mb-10 md:mb-12 lg:mb-14">
+          <h2 className="mb-10 md:mb-12 text-2xl md:text-3xl xl:text-4xl font-semibold text-black text-center">
+            My bookshelf
+          </h2>
+
+          <div className="books">
+            <div className='book'>
+              <span className='book-title'>JavaScript: <br /> The Definitive Guide</span>
+            </div>
+
+            <div className='book book-brown'>
+              <span className='book-title'>
+                Clean Code <br />
+                <span className="book-subtitle">A Handbook of Agile Software Craftsmanship</span>
+              </span>
+            </div>
+
+            <div className='book book-blue'>
+              <span className='book-title'>
+                Learning React <br />
+                <span className="book-subtitle">Modern Patterns for Developing React Apps</span>
+              </span>
+            </div>
+
+            <div className='book book-yellow'>
+              <span className='book-title'>
+                Clean Architecture <br />
+                <span className="book-subtitle">A Craftsman&apos;s Guide to Software Structure and Design</span>
+              </span>
+            </div>
+
+            <div className='book book-diagonal'>
+              <span className='book-title'>
+                Clean Agile <br />
+                <span className="book-subtitle">Back to Basics</span>
+              </span>
+            </div>
+
+            <div className='book book-diagonal-brown'>
+              <span className='book-title'>
+                Clean Craftsmanship <br />
+                <span className="book-subtitle">Disciplines, Standards, and Ethics</span>
+              </span>
+            </div>
+
+            <div className='book book-diagonal-blue'>
+              <span className='book-title'>
+                The Clean Coder <br />
+                <span className="book-subtitle">A Code of Conduct for Professional Programmers</span>
+              </span>
+            </div>
+
+            <div className='book book-horizontal'>
+              <span className='book-title'>
+                Python for Kids <br />
+                <span className="book-subtitle">A Playful Introduction to Programming</span>
+              </span>
+            </div>
+
+            <img
+              src="/assets/about/clock.png"
+              alt=""
+              className='plant'
+            />
+          </div>
+          <div className='shelf'></div>
+        </section>
       </main>
 
       <BackToTopButton />

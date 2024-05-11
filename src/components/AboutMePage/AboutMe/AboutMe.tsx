@@ -5,10 +5,23 @@ import stack from './stack.json';
 import useLocoScroll from '@/hooks/useLocoScroll';
 import { BackToTopButton } from '@/components/Common/BackToTopButton';
 import { usePageLoadAnimation } from '@/hooks/usePageLoadAnimation';
+import { orbitron } from '@/app/[locale]/fonts';
+import { useState, useEffect } from 'react';
 
 export const AboutMe = (): JSX.Element => {
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+  const [isLoaded, setIsLoaded] = useState(false);
   useLocoScroll();
   usePageLoadAnimation();
+
+  useEffect(() => {
+    setIsLoaded(true);
+    const timerId = setInterval(() => {
+      setTime(new Date().toLocaleTimeString());
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, []);
 
   return (
     <>
@@ -107,6 +120,7 @@ export const AboutMe = (): JSX.Element => {
           <div className="books">
             <div className='book'>
               <span className='book-title'>JavaScript: <br /> The Definitive Guide</span>
+              <span className='author'>David Flanagan</span>
             </div>
 
             <div className='book book-brown'>
@@ -114,6 +128,7 @@ export const AboutMe = (): JSX.Element => {
                 Clean Code <br />
                 <span className="book-subtitle">A Handbook of Agile Software Craftsmanship</span>
               </span>
+              <span className='author'>Robert C. Martin</span>
             </div>
 
             <div className='book book-blue'>
@@ -121,13 +136,15 @@ export const AboutMe = (): JSX.Element => {
                 Learning React <br />
                 <span className="book-subtitle">Modern Patterns for Developing React Apps</span>
               </span>
+              <span className='author'>Alex Banks, Eve Porcello</span>
             </div>
 
             <div className='book book-yellow'>
               <span className='book-title'>
                 Clean Architecture <br />
-                <span className="book-subtitle">A Craftsman&apos;s Guide to Software Structure and Design</span>
+                <span className="book-subtitle">A Craftsman&apos;s Guide to Software <br /> Structure and Design</span>
               </span>
+              <span className='author'>Robert C. Martin</span>
             </div>
 
             <div className='book book-diagonal'>
@@ -135,6 +152,7 @@ export const AboutMe = (): JSX.Element => {
                 Clean Agile <br />
                 <span className="book-subtitle">Back to Basics</span>
               </span>
+              <span className='author'>Robert C. Martin</span>
             </div>
 
             <div className='book book-diagonal-brown'>
@@ -142,27 +160,28 @@ export const AboutMe = (): JSX.Element => {
                 Clean Craftsmanship <br />
                 <span className="book-subtitle">Disciplines, Standards, and Ethics</span>
               </span>
+              <span className='author'>Robert C. Martin</span>
             </div>
 
             <div className='book book-diagonal-blue'>
               <span className='book-title'>
                 The Clean Coder <br />
-                <span className="book-subtitle">A Code of Conduct for Professional Programmers</span>
+                <span className="book-subtitle">A Code of Conduct for <br /> Professional Programmers</span>
               </span>
+              <span className='author'>Robert C. Martin</span>
             </div>
 
-            <div className='book book-horizontal'>
+            <div className='book book-diagonal-green'>
               <span className='book-title'>
                 Python for Kids <br />
                 <span className="book-subtitle">A Playful Introduction to Programming</span>
               </span>
+              <span className='author'>Jason R. Briggs</span>
             </div>
 
-            <img
-              src="/assets/about/clock.png"
-              alt=""
-              className='plant'
-            />
+            <div className={`clock ${orbitron.className}`}>
+              <span className='time'>{isLoaded && time}</span>
+            </div>
           </div>
           <div className='shelf'></div>
         </section>

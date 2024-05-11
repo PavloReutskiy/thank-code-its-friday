@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { inter } from './fonts';
+
 import { Navbar } from '@/components/Navigation/Navbar';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';

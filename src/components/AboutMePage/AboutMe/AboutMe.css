@@ -8,117 +8,194 @@
 .books {
   display: flex;
   align-items: flex-end;
-  margin-left: 20px;
+  margin-left: 125px;
+  position: relative;
 }
 
 .book {
   height: 300px;
   width: 60px;
-  background-color: #3b8a5d;
-  border-radius: 2px;
-  box-shadow: inset 10px 0px 0px 0px #378157;
+  background-image: linear-gradient(
+    to right,
+    #3b8a5d 0%,
+    #378157 50%,
+    #3b8a5d 100%
+  );
+  border-radius: 3px;
+  box-shadow:
+    inset 5px 0px 3px 0px #368056,
+    inset -5px 0px 2px 0px #368056;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 7px;
-}
-
-.book-horizontal {
-  width: 300px;
-  height: 60px;
-  background-color: #30714c;
-  box-shadow: inset 0px -10px 0px 0px #296141;
-  margin-left: 120px;
+  position: relative;
 }
 
 .book-diagonal {
   height: 250px;
   width: 50px;
   transform: rotate(-15deg) translate(29px, 14px);
-  padding-left: 10px;
-  background-color: #c41e16;
-  box-shadow: inset 10px 0px 0px 0px #ab1c14;
+  background-image: linear-gradient(
+    to right,
+    #c41e16 0%,
+    #d62b1f 50%,
+    #c41e16 100%
+  );
+  box-shadow:
+    inset 5px 0px 3px 0px #b71e16,
+    inset -5px 0px 2px 0px #b71e16;
 }
 
 .book-diagonal-brown {
   height: 250px;
   width: 50px;
-  transform: rotate(-15deg) translate(29px, 14px);
-  padding-left: 10px;
-  background-color: #331f0a;
-  box-shadow: inset 10px 0px 0px 0px #221507;
+  transform: rotate(-15deg) translate(31px, 14px);
+  background-image: linear-gradient(
+    to right,
+    #331f0a 0%,
+    #4a3115 50%,
+    #331f0a 100%
+  );
+  box-shadow:
+    inset 5px 0px 3px 0px #291908,
+    inset -5px 0px 2px 0px #291908;
 }
 
 .book-diagonal-blue {
   height: 240px;
-  width: 75px;
-  transform: rotate(-15deg) translate(33px, 14px);
-  padding-left: 10px;
-  background-color: #376990;
-  box-shadow: inset 10px 0px 0px 0px #336286;
+  width: 65px;
+  transform: rotate(-15deg) translate(35px, 14px);
+  background-image: linear-gradient(
+    to right,
+    #376990 0%,
+    #4b81a6 50%,
+    #376990 100%
+  );
+  box-shadow:
+    inset 5px 0px 3px 0px #376990,
+    inset -5px 0px 2px 0px #376990;
 }
 
-.book-horizontal .book-title {
-  writing-mode: horizontal-tb;
-  transform: rotate(0deg);
-  text-align: center;
-  line-height: 1.2;
-  font-size: 16px;
-  color: #ebe4d1;
-  padding-bottom: 20px;
+.book-diagonal-green {
+  height: 240px;
+  width: 60px;
+  background-image: linear-gradient(
+    to right,
+    #30714c 0%,
+    #378157 50%,
+    #30714c 100%
+  );
+  box-shadow:
+    inset 5px 0px 3px 0px #2e6c49,
+    inset -5px 0px 2px 0px #2e6c49;
+  margin-left: 50px;
+  transform: rotate(-15deg) translate(-11px, 2px);
 }
 
 .book-brown {
   height: 280px;
-  background-color: #331f0a;
-  box-shadow: inset 10px 0px 0px 0px #221507;
+  background-image: linear-gradient(
+    to right,
+    #331f0a 0%,
+    #4a3115 50%,
+    #331f0a 100%
+  );
+  box-shadow:
+    inset 5px 0px 3px 0px #291908,
+    inset -5px 0px 2px 0px #291908;
 }
 
 .book-blue {
   height: 270px;
-  background-color: #376990;
-  box-shadow: inset 10px 0px 0px 0px #336286;
+  background-image: linear-gradient(
+    to right,
+    #376990 0%,
+    #4b81a6 50%,
+    #376990 100%
+  );
+  box-shadow:
+    inset 5px 0px 3px 0px #376990,
+    inset -5px 0px 2px 0px #376990;
 }
 
 .book-yellow {
   height: 250px;
-  width: 75px;
-  background-color: #dbb808;
-  box-shadow: inset 10px 0px 0px 0px #cdac08;
+  width: 65px;
+  background-image: linear-gradient(
+    to right,
+    #dbb808 0%,
+    #fcd217 50%,
+    #dbb808 100%
+  );
+  box-shadow:
+    inset 5px 0px 3px 0px #d4b208,
+    inset -5px 0px 2px 0px #d4b208;
 }
 
 .book-yellow .book-title {
   color: #5d5a51;
 }
 
+.book-yellow .author {
+  color: #5d5a51;
+}
+
 .book-title {
   writing-mode: vertical-rl;
-  transform: rotate(180deg);
   text-align: center;
   line-height: 1.2;
   font-size: 16px;
   color: #ebe4d1;
   padding: 10px 0;
+  margin-top: -20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.author {
+  font-size: 9px;
+  position: absolute;
+  bottom: 7px;
+  text-align: center;
+  line-height: 1.2;
+  color: #ebe4d1;
 }
 
 .book-subtitle {
-  font-size: 12px;
-  line-height: 1;
+  font-size: 10px;
+  line-height: 1.3;
 }
 
 .shelf {
   position: relative;
   height: 30px;
-  width: 100%;
+  width: 85%;
   background-image: url('/assets/about/wood.webp');
   z-index: 2;
-  box-shadow: -10px 17px 80px 0px rgba(0,0,0,0.7);
+  box-shadow: -15px 19px 50px 0px rgba(0, 0, 0, 0.5);
   margin-bottom: 500px;
+  margin-inline: auto;
 }
 
-.plant {
-  width: 150px;
-  height: auto;
-  margin-bottom: -3px;
-  margin-left: 70px;
+.clock {
+  width: 200px;
+  height: 65px;
+  background-color: #05073f;
+  border-radius: 7px;
+  border: 5px solid black;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+
+  position: absolute;
+  bottom: 0;
+  right: 180px;
+}
+
+.time {
+  min-width: 159px;
+  transform: translateX(5px);
 }

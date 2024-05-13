@@ -218,7 +218,7 @@ export const AboutMe = (): JSX.Element => {
           </div>
           <div className='shelf'></div>
 
-          {activeBook && <BookCard activeBook={activeBook} />}
+          {activeBook && <BookCard key={activeBook.id} activeBook={activeBook} />}
         </section>
       </main>
 

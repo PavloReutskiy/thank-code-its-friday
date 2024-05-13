@@ -10,6 +10,7 @@
   align-items: flex-end;
   margin-left: 125px;
   position: relative;
+  cursor: pointer;
 }
 
 .book {
@@ -132,6 +133,32 @@
     inset -5px 0px 2px 0px #d4b208;
 }
 
+.active,
+.active-diagonal {
+  position: relative;
+  overflow: hidden;
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 15px;
+  height: 50px;
+  background: linear-gradient(to bottom right, #ff6347, #ff4500);
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 80%,
+    55% 50%,
+    50% 100%,
+    55% 50%,
+    0% 80%
+  );
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+
 .book-yellow .book-title {
   color: #5d5a51;
 }
@@ -174,7 +201,7 @@
   background-image: url('/assets/about/wood.webp');
   z-index: 2;
   box-shadow: -15px 19px 50px 0px rgba(0, 0, 0, 0.5);
-  margin-bottom: 500px;
+  margin-bottom: 100px;
   margin-inline: auto;
 }
 
@@ -198,4 +225,53 @@
 .time {
   min-width: 159px;
   transform: translateX(5px);
+}
+
+
+
+
+.book-content {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  width: 85%;
+  margin-inline: auto;
+  gap: 30px;
+}
+
+.image-wrapper {
+  box-shadow: -2px 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: auto;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.book-author {
+  margin-bottom: 4px;
+}
+
+.date {
+  margin-bottom: 24px;
+}
+
+.info {
+  color: #d11b1b;
+}
+
+.description {
+  font-size: 20px;
 }

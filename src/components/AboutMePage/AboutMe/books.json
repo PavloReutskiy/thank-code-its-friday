@@ -1,0 +1,74 @@
+[
+  {
+    "id": "01",
+    "image": "/assets/about/javascript.webp",
+    "altText": "book image",
+    "title": "JavaScript: The Definitive Guide",
+    "author": "David Flanagan",
+    "date": "2020",
+    "description": "Read it now on the O\u0027Reilly learning platform with a 10-day free trial. O\u0027Reilly members get unlimited access to books, live events, courses curated by job role, and more from O\u0027Reilly and nearly 200 top publishers."
+  },
+  {
+    "id": "02",
+    "image": "/assets/about/clean-code.webp",
+    "altText": "book image",
+    "title": "Clean Code: A Handbook of Agile Software Craftsmanship",
+    "author": "Robert C. Martin",
+    "date": "2008",
+    "description": "Read it now on the O\u0027Reilly learning platform with a 10-day free trial. O\u0027Reilly members get unlimited access to books, live events, courses curated by job role, and more from O\u0027Reilly and nearly 200 top publishers."
+  },
+  {
+    "id": "03",
+    "image": "/assets/about/learning-react.webp",
+    "altText": "book image",
+    "title": "Learning React",
+    "author": "Alex Banks, Eve Porcello",
+    "date": "2020",
+    "description": "Read it now on the O\u0027Reilly learning platform with a 10-day free trial. O\u0027Reilly members get unlimited access to books, live events, courses curated by job role, and more from O\u0027Reilly and nearly 200 top publishers."
+  },
+  {
+    "id": "04",
+    "image": "/assets/about/clean-architecture.webp",
+    "altText": "book image",
+    "title": "Clean Architecture: A Craftsman's Guide to Software Structure and Design",
+    "author": "Robert C. Martin",
+    "date": "2017",
+    "description": "Read it now on the O\u0027Reilly learning platform with a 10-day free trial. O\u0027Reilly members get unlimited access to books, live events, courses curated by job role, and more from O\u0027Reilly and nearly 200 top publishers."
+  },
+  {
+    "id": "05",
+    "image": "/assets/about/clean-agile.webp",
+    "altText": "book image",
+    "title": "Clean Agile: Back to Basics",
+    "author": "Robert C. Martin",
+    "date": "2019",
+    "description": "Read it now on the O\u0027Reilly learning platform with a 10-day free trial. O\u0027Reilly members get unlimited access to books, live events, courses curated by job role, and more from O\u0027Reilly and nearly 200 top publishers."
+  },
+  {
+    "id": "06",
+    "image": "/assets/about/clean-craftsmanship.webp",
+    "altText": "book image",
+    "title": "Clean Craftsmanship: Disciplines, Standards, and Ethics",
+    "author": "Robert C. Martin",
+    "date": "2021",
+    "description": "Read it now on the O\u0027Reilly learning platform with a 10-day free trial. O\u0027Reilly members get unlimited access to books, live events, courses curated by job role, and more from O\u0027Reilly and nearly 200 top publishers."
+  },
+  {
+    "id": "07",
+    "image": "/assets/about/clean-coder.webp",
+    "altText": "book image",
+    "title": "Clean Coder, The: A Code of Conduct for Professional Programmers",
+    "author": "Robert C. Martin",
+    "date": "2011",
+    "description": "Read it now on the O\u0027Reilly learning platform with a 10-day free trial. O\u0027Reilly members get unlimited access to books, live events, courses curated by job role, and more from O\u0027Reilly and nearly 200 top publishers."
+  },
+  {
+    "id": "08",
+    "image": "/assets/about/python-for-kids.webp",
+    "altText": "book image",
+    "title": "Python for Kids",
+    "author": "Jason R. Briggs",
+    "date": "2012",
+    "description": "Read it now on the O\u0027Reilly learning platform with a 10-day free trial. O\u0027Reilly members get unlimited access to books, live events, courses curated by job role, and more from O\u0027Reilly and nearly 200 top publishers."
+  }
+]

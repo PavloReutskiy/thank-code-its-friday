@@ -148,3 +148,13 @@ interface ArticlesSEOResponse {
   };
 }
 // #endregion
+
+interface Book {
+  id: string;
+  image: string;
+  altText: string;
+  title: string;
+  author: string;
+  date: string;
+  description: string;
+}

@@ -6,11 +6,20 @@ import useLocoScroll from '@/hooks/useLocoScroll';
 import { BackToTopButton } from '@/components/Common/BackToTopButton';
 import { usePageLoadAnimation } from '@/hooks/usePageLoadAnimation';
 import { orbitron } from '@/app/[locale]/fonts';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import books from './books.json';
+import { BookCard } from '../BookCard/BookCard';
+import clsx from 'clsx';
 
 export const AboutMe = (): JSX.Element => {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [isLoaded, setIsLoaded] = useState(false);
+  const [activeBookId, setActiveBookId] = useState('01');
+
+  const activeBook = useMemo(() => (
+    books.find(item => item.id === activeBookId)
+  ), [activeBookId]);
+
   useLocoScroll();
   usePageLoadAnimation();
 
@@ -118,12 +127,18 @@ export const AboutMe = (): JSX.Element => {
           </h2>
 
           <div className="books">
-            <div className='book'>
+            <div
+              onClick={() => setActiveBookId('01')}
+              className={clsx('book', { active: activeBookId === '01' })}
+            >
               <span className='book-title'>JavaScript: <br /> The Definitive Guide</span>
               <span className='author'>David Flanagan</span>
             </div>
 
-            <div className='book book-brown'>
+            <div
+              onClick={() => setActiveBookId('02')}
+              className={clsx('book book-brown', { active: activeBookId === '02' })}
+            >
               <span className='book-title'>
                 Clean Code <br />
                 <span className="book-subtitle">A Handbook of Agile Software Craftsmanship</span>
@@ -131,7 +146,10 @@ export const AboutMe = (): JSX.Element => {
               <span className='author'>Robert C. Martin</span>
             </div>
 
-            <div className='book book-blue'>
+            <div
+              onClick={() => setActiveBookId('03')}
+              className={clsx('book book-blue', { active: activeBookId === '03' })}
+            >
               <span className='book-title'>
                 Learning React <br />
                 <span className="book-subtitle">Modern Patterns for Developing React Apps</span>
@@ -139,7 +157,10 @@ export const AboutMe = (): JSX.Element => {
               <span className='author'>Alex Banks, Eve Porcello</span>
             </div>
 
-            <div className='book book-yellow'>
+            <div
+              onClick={() => setActiveBookId('04')}
+              className={clsx('book book-yellow', { active: activeBookId === '04' })}
+            >
               <span className='book-title'>
                 Clean Architecture <br />
                 <span className="book-subtitle">A Craftsman&apos;s Guide to Software <br /> Structure and Design</span>
@@ -147,7 +168,10 @@ export const AboutMe = (): JSX.Element => {
               <span className='author'>Robert C. Martin</span>
             </div>
 
-            <div className='book book-diagonal'>
+            <div
+              onClick={() => setActiveBookId('05')}
+              className={clsx('book book-diagonal', { active: activeBookId === '05' })}
+            >
               <span className='book-title'>
                 Clean Agile <br />
                 <span className="book-subtitle">Back to Basics</span>
@@ -155,7 +179,10 @@ export const AboutMe = (): JSX.Element => {
               <span className='author'>Robert C. Martin</span>
             </div>
 
-            <div className='book book-diagonal-brown'>
+            <div
+              onClick={() => setActiveBookId('06')}
+              className={clsx('book book-diagonal-brown', { active: activeBookId === '06' })}
+            >
               <span className='book-title'>
                 Clean Craftsmanship <br />
                 <span className="book-subtitle">Disciplines, Standards, and Ethics</span>
@@ -163,7 +190,10 @@ export const AboutMe = (): JSX.Element => {
               <span className='author'>Robert C. Martin</span>
             </div>
 
-            <div className='book book-diagonal-blue'>
+            <div
+              onClick={() => setActiveBookId('07')}
+              className={clsx('book book-diagonal-blue', { active: activeBookId === '07' })}
+            >
               <span className='book-title'>
                 The Clean Coder <br />
                 <span className="book-subtitle">A Code of Conduct for <br /> Professional Programmers</span>
@@ -171,7 +201,10 @@ export const AboutMe = (): JSX.Element => {
               <span className='author'>Robert C. Martin</span>
             </div>
 
-            <div className='book book-diagonal-green'>
+            <div
+              onClick={() => setActiveBookId('08')}
+              className={clsx('book book-diagonal-green', { active: activeBookId === '08' })}
+            >
               <span className='book-title'>
                 Python for Kids <br />
                 <span className="book-subtitle">A Playful Introduction to Programming</span>
@@ -184,6 +217,8 @@ export const AboutMe = (): JSX.Element => {
             </div>
           </div>
           <div className='shelf'></div>
+
+          {activeBook && <BookCard activeBook={activeBook} />}
         </section>
       </main>
 
